@@ -39,4 +39,8 @@ public class Token {
 	public TokenType getType() {
 		return type;
 	}
+
+	public boolean equals(TokenType compareAgainst) {
+		return compareAgainst == getType();
+	}
 }

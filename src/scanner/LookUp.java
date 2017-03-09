@@ -11,21 +11,21 @@ import java.util.HashMap;
  *
  * @author Benji
  */
-public class LookUp {
+public class LookUp extends HashMap<String, TokenType> {
 
-	public static HashMap<String, TokenType> lookUp;
 	private static String[] keywordArray = new String[]{
 		"and", "array", "begin", "div", "do", "else", "end", "function", "if", "integer", "mod", "not", "of", "or", "procedure", "program", "real", "then", "var", "while",
 		";", ",", ".", ":", "[", "]", "(", ")", "+", "-", "=", "<>", "<", ">", "<=", ">=", "*", "/", ":="
 	//ID and NUM left empty because we don't know what to do
 	};
 
-	public static void initilize() {
-		lookUp = new HashMap<>();
+	private LookUp() {
 
 		//init the lookup
 		for (int i = 0; i < keywordArray.length; i++) {
-			lookUp.put(keywordArray[i], TokenType.values()[i]);
+			put(keywordArray[i], TokenType.values()[i]);
 		}
 	}
+
+	public static LookUp lookUp = new LookUp();
 }

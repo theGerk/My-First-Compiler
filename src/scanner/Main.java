@@ -20,7 +20,6 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println(args[0]);
 		// TODO code application logic here
-		LookUp.initilize();
 		String filename = args[0];
 		FileInputStream fis = null;
 		try {
