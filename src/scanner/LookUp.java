@@ -16,7 +16,6 @@ public class LookUp extends HashMap<String, TokenType> {
 	private static String[] keywordArray = new String[]{
 		"and", "array", "begin", "div", "do", "else", "end", "function", "if", "integer", "mod", "not", "of", "or", "procedure", "program", "real", "then", "var", "while",
 		";", ",", ".", ":", "[", "]", "(", ")", "+", "-", "=", "<>", "<", ">", "<=", ">=", "*", "/", ":="
-	//ID and NUM left empty because we don't know what to do
 	};
 
 	private LookUp() {
