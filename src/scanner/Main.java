@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 public class Main {
 
 	/**
+	 * Main function
+	 *
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
