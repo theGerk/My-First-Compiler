@@ -6,6 +6,7 @@
 package scanner;
 
 /**
+ * enumerable to represent any type of token that could occur.
  *
  * @author Benji
  */
