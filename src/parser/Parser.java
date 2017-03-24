@@ -14,14 +14,26 @@ import scanner.TokenType;
 import static sun.management.Agent.error;
 
 /**
+ * Parser for program, parses from a stream
  *
  * @author Benji
  */
 public class Parser {
 
+	/**
+	 * next Token
+	 */
 	private Token lookAhead;
+	/**
+	 * Scanner to read
+	 */
 	private Scanner scanner;
 
+	/**
+	 * sets up parser class from file
+	 *
+	 * @param filename
+	 */
 	public Parser(String filename) {
 		FileInputStream fis = null;
 
@@ -41,6 +53,12 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Matches against an expected token, throws error if token is not correct,
+	 * and eats it and moves on if token is correct.
+	 *
+	 * @param expected
+	 */
 	public void match(TokenType expected) {
 		if (this.lookAhead.equals(expected)) {
 			try {
@@ -56,6 +74,9 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Eats a program
+	 */
 	public void program() {
 		match(TokenType.PROGRAM);
 		match(TokenType.ID);
@@ -65,6 +86,9 @@ public class Parser {
 		match(TokenType.PERIOD);
 	}
 
+	/**
+	 * Eats an identifier list
+	 */
 	public void identifierList() {
 		match(TokenType.ID);
 		if (lookAhead.equals(TokenType.COMMA)) {
@@ -73,6 +97,9 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Eats declarations
+	 */
 	public void declarations() {
 		if (lookAhead.equals(TokenType.VAR)) {
 			identifierList();
@@ -83,6 +110,9 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * eats a type
+	 */
 	public void type() {
 		if (lookAhead.equals(TokenType.ARRAY)) {
 			match(TokenType.ARRAY);
@@ -95,6 +125,9 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * eats a standard type
+	 */
 	public void standardType() {
 		if (lookAhead.equals(TokenType.INTEGER)) {
 			match(TokenType.INTEGER);
@@ -103,6 +136,9 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * eats a subprogram declarations
+	 */
 	public void subprogramDeclarations() {
 		if (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
 			subprogramDeclaration();
@@ -111,14 +147,20 @@ public class Parser {
 		}
 	}
 
-	private void subprogramDeclaration() {
+	/**
+	 * eats a subprogram declaration
+	 */
+	public void subprogramDeclaration() {
 		subprogramHead();
 		declarations();
 		subprogramDeclarations();
 		compoundStatement();
 	}
 
-	private void subprogramHead() {
+	/**
+	 * eats a subprogram head
+	 */
+	public void subprogramHead() {
 		if (lookAhead.equals(TokenType.FUNCTION)) {
 			match(TokenType.FUNCTION);
 			match(TokenType.ID);
@@ -132,7 +174,10 @@ public class Parser {
 		}
 	}
 
-	private void arguments() {
+	/**
+	 * eats an arguments
+	 */
+	public void arguments() {
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
 			parameterList();
@@ -140,7 +185,10 @@ public class Parser {
 		}
 	}
 
-	private void parameterList() {
+	/**
+	 * eats a parameter list
+	 */
+	public void parameterList() {
 		identifierList();
 		match(TokenType.COLON);
 		if (lookAhead.equals(TokenType.SEMICOLON)) {
@@ -149,19 +197,28 @@ public class Parser {
 		}
 	}
 
-	private void compoundStatement() {
+	/**
+	 * eats a compound statement
+	 */
+	public void compoundStatement() {
 		match(TokenType.BEGIN);
 		optionalStatements();
 		match(TokenType.END);
 	}
 
-	private void optionalStatements() {
+	/**
+	 * eats an optional statement
+	 */
+	public void optionalStatements() {
 		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {
 			statementList();
 		}
 	}
 
-	private void statementList() {
+	/**
+	 * eats a statement list
+	 */
+	public void statementList() {
 		statement();
 		if (lookAhead.equals(TokenType.SEMICOLON)) {
 			match(TokenType.SEMICOLON);
@@ -169,7 +226,10 @@ public class Parser {
 		}
 	}
 
-	private void statement() {
+	/**
+	 * eats a statement
+	 */
+	public void statement() {
 		if (lookAhead.equals(TokenType.ID)) {
 			//could also be prodedure statement
 			variable();
@@ -193,7 +253,10 @@ public class Parser {
 		//also need read and write
 	}
 
-	private void variable() {
+	/**
+	 * eats a variable
+	 */
+	public void variable() {
 		match(TokenType.ID);
 		if (lookAhead.equals(TokenType.LEFTSQUAREBRACKET)) {
 			match(TokenType.LEFTSQUAREBRACKET);
@@ -202,7 +265,10 @@ public class Parser {
 		}
 	}
 
-	private void procedureStatement() {
+	/**
+	 * eats a procedure statement
+	 */
+	public void procedureStatement() {
 		match(TokenType.ID);
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
@@ -211,7 +277,10 @@ public class Parser {
 		}
 	}
 
-	private void expressionList() {
+	/**
+	 * eats an expression list
+	 */
+	public void expressionList() {
 		expression();
 		if (lookAhead.equals(TokenType.COMMA)) {
 			match(TokenType.COMMA);
@@ -219,14 +288,20 @@ public class Parser {
 		}
 	}
 
-	private void expression() {
+	/**
+	 * eats an expression
+	 */
+	public void expression() {
 		simpleExpression();
 		if (relop()) {
 			simpleExpression();
 		}
 	}
 
-	private void simpleExpression() {
+	/**
+	 * eats a simple expression
+	 */
+	public void simpleExpression() {
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
 			sign();
 		}
@@ -234,7 +309,10 @@ public class Parser {
 		simplePart();
 	}
 
-	private void simplePart() {
+	/**
+	 * eats a simple part
+	 */
+	public void simplePart() {
 		if (addop()) {
 			match(lookAhead.getType());
 			term();
@@ -242,12 +320,18 @@ public class Parser {
 		}
 	}
 
-	private void term() {
+	/**
+	 * eats a term
+	 */
+	public void term() {
 		factor();
 		termPart();
 	}
 
-	private void termPart() {
+	/**
+	 * eats a term part
+	 */
+	public void termPart() {
 		if (mulop()) {
 			match(lookAhead.getType());
 			factor();
@@ -255,7 +339,10 @@ public class Parser {
 		}
 	}
 
-	private void factor() {
+	/**
+	 * eats a factor
+	 */
+	public void factor() {
 		if (lookAhead.equals(TokenType.ID)) {
 			match(TokenType.ID);
 			if (lookAhead.equals(TokenType.LEFTSQUAREBRACKET)) {
@@ -279,13 +366,21 @@ public class Parser {
 		}
 	}
 
-	private void sign() {
+	/**
+	 * eats a sign
+	 */
+	public void sign() {
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
 			match(lookAhead.getType());
 		}
 	}
 
-	private boolean relop() {
+	/**
+	 * checks if the next token is a relop: =, <>, <, <=, >=, >
+	 *
+	 * @return if the next token is a relop
+	 */
+	public boolean relop() {
 		return lookAhead.equals(TokenType.EQUALS)
 				|| lookAhead.equals(TokenType.DIAMOND)
 				|| lookAhead.equals(TokenType.LESSTHAN)
@@ -294,7 +389,12 @@ public class Parser {
 				|| lookAhead.equals(TokenType.GREATERTHAN);
 	}
 
-	private boolean mulop() {
+	/**
+	 * checks if the next token is a mulop: *, /, DIV, MOD, AND
+	 *
+	 * @return if the next token is a mulop
+	 */
+	public boolean mulop() {
 		return lookAhead.equals(TokenType.ASTERISK)
 				|| lookAhead.equals(TokenType.FORWARDSLASH)
 				|| lookAhead.equals(TokenType.DIV)
@@ -302,7 +402,12 @@ public class Parser {
 				|| lookAhead.equals(TokenType.AND);
 	}
 
-	private boolean addop() {
+	/**
+	 * checks if the next token is an addop: +, -, OR
+	 *
+	 * @return if the next token is an addop
+	 */
+	public boolean addop() {
 		return lookAhead.equals(TokenType.PLUS)
 				|| lookAhead.equals(TokenType.MINUS)
 				|| lookAhead.equals(TokenType.OR);
