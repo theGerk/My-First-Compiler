@@ -15,7 +15,7 @@ package scanner;
 
 whitespace	= [ \n\t]|\r\n
 letter		= [A-Za-z]
-word		= {letter}({letter}|{digit})*
+word		= (_|{letter})(_|{letter}|{digit})*
 digit		= [0-9]
 number		= {digit}+
 symbol		= <>|<=|>=|:=|[;,.:\[\]()+\-=*<>/]
