@@ -15,11 +15,11 @@ package scanner;
 
 whitespace	= [ \n\t]|\r\n
 letter		= [A-Za-z]
-word		= (_|{letter})(_|{letter}|{digit})*
 digit		= [0-9]
+word		= (_|{letter})(_|{letter}|{digit})*
 number		= {digit}+
 symbol		= <>|<=|>=|:=|[;,.:\[\]()+\-=*<>/]
-comment		= \{[^\}\{]*\}
+comment		= \{[^\}]*\}
 
 
 %%

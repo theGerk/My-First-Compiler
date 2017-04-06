@@ -17,7 +17,7 @@ public class Main {
 	/**
 	 * Main function
 	 *
-	 * @param args the command line arguments
+	 * @param args the command line arguments, args[0] is the input file
 	 */
 	public static void main(String[] args) {
 		System.out.println(args[0]);

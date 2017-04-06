@@ -83,4 +83,14 @@ public class Token {
 	public boolean equals(TokenType compareAgainst) {
 		return compareAgainst == getType();
 	}
+
+	/**
+	 * overload of equals for comparing tokens
+	 *
+	 * @param compareAgainst
+	 * @return if they are the same token
+	 */
+	public boolean equals(Token compareAgainst) {
+		return getType() == compareAgainst.getType() && getLexeme() == compareAgainst.getLexeme();
+	}
 }
