@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 import scanner.Scanner;
 import scanner.Token;
 import scanner.TokenType;
-import static sun.management.Agent.error;
 
 /**
  * Parser for program, parses from a stream
@@ -19,6 +18,16 @@ import static sun.management.Agent.error;
  * @author Benji
  */
 public class Parser {
+
+	/**
+	 * print error
+	 *
+	 * @param err error message
+	 */
+	public void error(String err) {
+		System.out.println(err);
+		System.exit(1);
+	}
 
 	/**
 	 * next Token
