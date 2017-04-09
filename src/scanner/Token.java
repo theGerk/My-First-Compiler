@@ -28,7 +28,7 @@ public class Token {
 	 */
 	public Token(String key) {
 		input = key;
-		type = LookUp.lookUp.get(key);
+		type = LookUp.LOOKUP.get(key);
 		if (type == null) {
 			type = TokenType.ID;
 		}

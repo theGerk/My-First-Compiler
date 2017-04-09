@@ -13,14 +13,16 @@ import java.util.HashMap;
  *
  * @author Benji
  */
+@SuppressWarnings("serial")
 public class LookUp extends HashMap<String, TokenType> {
 
 	/**
 	 * An array of strings corresponding to the TokenType enumerable.
 	 */
-	private static String[] keywordArray = new String[]{
+	private static final String[] KEYWORD_ARRAY = new String[]{
 		"and", "array", "begin", "div", "do", "else", "end", "function", "if", "integer", "mod", "not", "of", "or", "procedure", "program", "real", "then", "var", "while",
-		";", ",", ".", ":", "[", "]", "(", ")", "+", "-", "=", "<>", "<", ">", "<=", ">=", "*", "/", ":="
+		";", ",", ".", ":", "[", "]", "(", ")", "+", "-", "=", "<>", "<", ">", "<=", ">=", "*", "/", ":=",
+		"read", "write" //not sure I want these here, but I think it will work.
 	};
 
 	/**
@@ -29,13 +31,13 @@ public class LookUp extends HashMap<String, TokenType> {
 	private LookUp() {
 
 		//init the lookup
-		for (int i = 0; i < keywordArray.length; i++) {
-			put(keywordArray[i], TokenType.values()[i]);
+		for (int i = 0; i < KEYWORD_ARRAY.length; i++) {
+			put(KEYWORD_ARRAY[i], TokenType.values()[i]);
 		}
 	}
 
 	/**
 	 * Global lookup to be used in all cases
 	 */
-	public final static LookUp lookUp = new LookUp();
+	public final static LookUp LOOKUP = new LookUp();
 }

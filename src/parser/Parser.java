@@ -8,9 +8,9 @@ package parser;
 import SymbolTable.Scope;
 import SymbolTable.Scope.IdentifierKind;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import scanner.Scanner;
@@ -29,19 +29,14 @@ public class Parser {
 	 *
 	 * @param err error message
 	 */
-	public void error(String err) {
+	private void error(String err) {
 		System.out.println(err);
 		System.exit(1);
 	}
 
-	/**
-	 * next Token
-	 */
-	private Token lookAhead;
-	/**
-	 * Scanner to read
-	 */
+	private Token lookAhead;		//next token
 	private Scanner scanner;
+	private Scope currentScope = new Scope();
 
 	/**
 	 * sets up parser class from file
@@ -53,7 +48,7 @@ public class Parser {
 
 		try {
 			fis = new FileInputStream(filename);
-		} catch (Exception e) {
+		} catch (FileNotFoundException ex) {
 			error("not a file");
 		}
 
@@ -72,6 +67,7 @@ public class Parser {
 	 * and eats it and moves on if token is correct.
 	 *
 	 * @param expected
+	 * @return the string that was eaten
 	 */
 	public String match(TokenType expected) {
 		String output = lookAhead.getLexeme();
@@ -90,8 +86,6 @@ public class Parser {
 		return output;
 	}
 
-	public Scope currentScope = new Scope();
-
 	/**
 	 * Eats a program
 	 */
@@ -106,7 +100,7 @@ public class Parser {
 	}
 
 	/**
-	 * Eats an identifier list. Adds ID names to current scope's buffer
+	 * Adds ID names to currentScope buffer.
 	 */
 	public void identifierList() {
 		if (!currentScope.addId(match(TokenType.ID))) {
@@ -119,7 +113,7 @@ public class Parser {
 	}
 
 	/**
-	 * Eats declarations
+	 * Adds declared variables to currentScope.
 	 */
 	public void declarations() {
 		if (lookAhead.equals(TokenType.VAR)) {
@@ -138,7 +132,7 @@ public class Parser {
 	}
 
 	/**
-	 * eats a type
+	 * sets type (and kind if array) for currentScope buffer.
 	 */
 	public void type() {
 		if (lookAhead.equals(TokenType.ARRAY)) {
@@ -158,7 +152,7 @@ public class Parser {
 	}
 
 	/**
-	 * eats a standard type
+	 * sets type for currentScope buffer.
 	 */
 	public void standardType() {
 		if (lookAhead.equals(TokenType.INTEGER)) {
@@ -171,7 +165,7 @@ public class Parser {
 	}
 
 	/**
-	 * eats a subprogram declarations
+	 * parses functions and procedures
 	 */
 	public void subprogramDeclarations() {
 		if (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
@@ -185,7 +179,7 @@ public class Parser {
 	}
 
 	/**
-	 * eats a subprogram declaration
+	 * parses a single function or procedure
 	 */
 	public void subprogramDeclaration() {
 		subprogramHead();
@@ -195,35 +189,36 @@ public class Parser {
 	}
 
 	/**
-	 * eats a subprogram head
+	 * parses a function or procedure signature, creates new scope for it,
+	 * enters scope, and adds itself to parent scope.
 	 */
 	public void subprogramHead() {
 		currentScope.set(IdentifierKind.FUNC);
 		if (lookAhead.equals(TokenType.FUNCTION)) {
 			match(TokenType.FUNCTION);
-			if (!currentScope.addId(match(TokenType.ID))) {
+			if (!currentScope.addId(match(TokenType.ID))) {			//adds ID to buffer
 				error("invalid ID");
 			}
-			Scope lower = currentScope = new Scope(currentScope);
+			Scope lower = currentScope = new Scope(currentScope);	//creates new scope and enters
 			arguments();
 			match(TokenType.COLON);
-			currentScope = lower.getParent();
-			standardType();
+			currentScope = lower.getParent();						//enter into parent set type and add into parent scope
+			standardType();											//set type of function (the return type)
 			try {
-				currentScope.flushBuffer();
+				currentScope.flushBuffer();							//flush buffer (Add function to scope)
 			} catch (Exception ex) {
 				error(ex.getMessage());
 			}
-			currentScope = lower;
+			currentScope = lower;									//enter lower scope again
 			match(TokenType.SEMICOLON);
 		} else {
 			match(TokenType.PROCEDURE);
-			if (!currentScope.addId(match(TokenType.ID))) {
+			if (!currentScope.addId(match(TokenType.ID))) {			//adds ID to buffer
 				error("invalid ID");
 			}
-			currentScope = new Scope(currentScope);
+			currentScope = new Scope(currentScope);					//creates new scope and enters
 			try {
-				currentScope.getParent().flushBuffer();
+				currentScope.getParent().flushBuffer();				//flush parent scope's buffer (Add procedure to parent scope)
 			} catch (Exception ex) {
 				error(ex.getMessage());
 			}
@@ -233,7 +228,7 @@ public class Parser {
 	}
 
 	/**
-	 * eats an arguments
+	 * parses arguments for procedure or function
 	 */
 	public void arguments() {
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
@@ -244,14 +239,20 @@ public class Parser {
 	}
 
 	/**
-	 * eats a parameter list
+	 * parses parameters for procedure or function
 	 */
 	public void parameterList() {
 		identifierList();
 		match(TokenType.COLON);
+		type();
+		try {
+			currentScope.flushBuffer();				//flushes currentScope buffer
+		} catch (Exception ex) {
+			error("wouldn't happen, would it?");
+		}
 		if (lookAhead.equals(TokenType.SEMICOLON)) {
 			match(TokenType.SEMICOLON);
-			parameterList();
+			parameterList();	//recursion
 		}
 	}
 
@@ -265,7 +266,7 @@ public class Parser {
 	}
 
 	/**
-	 * eats an optional statement
+	 * eats an optional statements
 	 */
 	public void optionalStatements() {
 		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {
@@ -288,38 +289,77 @@ public class Parser {
 	 * eats a statement
 	 */
 	public void statement() {
-		if (lookAhead.equals(TokenType.ID)) {
-			//could also be prodedure statement
-			variable();
-			match(TokenType.COLONEQUALS);
-			expression();
-		} else if (lookAhead.equals(TokenType.BEGIN)) {
-			compoundStatement();
-		} else if (lookAhead.equals(TokenType.IF)) {
-			match(TokenType.IF);
-			expression();
-			match(TokenType.THEN);
-			statement();
-			match(TokenType.ELSE);
-			statement();
-		} else /*if (lookAhead.equals(TokenType.WHILE))*/ {
-			match(TokenType.WHILE);
-			expression();
-			match(TokenType.DO);
-			statement();
+		switch (lookAhead.getType()) {
+			case ID:
+				switch (currentScope.getKind(lookAhead.getLexeme())) {
+					case VAR:
+					case ARR:
+						variable();
+						match(TokenType.ASSIGNOP);
+						expression();
+						break;
+					case FUNC:
+						procedureStatement();
+						break;
+					default:
+						error("You done goofed");
+				}
+				break;
+			case BEGIN:
+				compoundStatement();
+				break;
+			case IF:
+				match(TokenType.IF);
+				expression();
+				match(TokenType.THEN);
+				statement();
+				match(TokenType.ELSE);
+				statement();
+				break;
+			case WHILE:
+				match(TokenType.WHILE);
+				expression();
+				match(TokenType.DO);
+				statement();
+				break;
+			case READ:
+				match(TokenType.READ);
+				match(TokenType.LEFTPARANTHESIS);
+				variable();		//breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.
+
+//				if (currentScope.getKind(lookAhead.getLexeme()) == Scope.IdentifierKind.VAR) {
+//					match(TokenType.ID);		//TODO check it is a valid type
+//				} else {
+//					error("can only read variables");
+//				}
+				match(TokenType.RIGHTPARANTHESIS);
+				break;
+			case WRITE:
+				match(TokenType.WRITE);
+				match(TokenType.LEFTPARANTHESIS);
+				expression();
+				match(TokenType.RIGHTPARANTHESIS);
+				break;
+			default:
+				error("You done goofed");
 		}
-		//also need read and write
 	}
 
 	/**
-	 * eats a variable
+	 * parses a variable, possibly one in an array, confirms that the Identifier
+	 * is of an array or variable
 	 */
 	public void variable() {
-		match(TokenType.ID);
-		if (lookAhead.equals(TokenType.LEFTSQUAREBRACKET)) {
-			match(TokenType.LEFTSQUAREBRACKET);
-			expression();
-			match(TokenType.RIGHTSQUAREBRACKET);
+		switch (currentScope.getKind(match(TokenType.ID))) {
+			case VAR:
+				break;
+			case ARR:
+				match(TokenType.LEFTSQUAREBRACKET);
+				expression();
+				match(TokenType.RIGHTSQUAREBRACKET);
+				break;
+			default:
+				error("Need to use array or variable as array");
 		}
 	}
 

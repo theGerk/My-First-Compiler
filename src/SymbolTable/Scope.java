@@ -21,6 +21,7 @@ public class Scope {
 	 */
 	public Scope() {
 		parentScope = null;
+		bufferArguments = false;
 	}
 
 	/**
@@ -32,6 +33,8 @@ public class Scope {
 	public Scope(Scope parent) {
 		parentScope = parent;
 		parent.set(this);
+		parent.argumentBuffer = new ArrayList<>();
+		bufferArguments = true;
 	}
 
 	public Scope getParent() {
@@ -44,6 +47,8 @@ public class Scope {
 	private IdentifierKind bufferKind = null;
 	private TokenType bufferType = null;
 	private Scope bufferScope = null;
+	public boolean bufferArguments;						//when constructing a function there is a phase where arguments are being buffered
+	private ArrayList<Symbol> argumentBuffer = null;		//when constructing a function we will buffer it's arguments as well
 
 	/**
 	 * Finds a variable in the current scope from the string representation.
@@ -51,7 +56,7 @@ public class Scope {
 	 * @param name string of identifier
 	 * @return the kind of the variable if it exists, otherwise null
 	 */
-	public IdentifierKind kindOf(String name) {
+	public IdentifierKind getKind(String name) {
 		Scope current = this;
 		Symbol output = null;
 		do {
@@ -68,7 +73,7 @@ public class Scope {
 	 * @return
 	 */
 	public boolean exists(String name) {
-		return kindOf(name) != null;
+		return getKind(name) != null;
 	}
 
 	/**
@@ -83,33 +88,39 @@ public class Scope {
 	 */
 	private static class Symbol {
 
-		final private String name;					//identifier string
-		final private IdentifierKind kind;
-		final private TokenType type;
-		final private ToStringType toStringType;	//type is used for printing as string
-		final private Scope local;
+		final public String name;					//identifier string
+		final public IdentifierKind kind;
+		final public TokenType type;
+		final public Scope local;					//only used in procedures, functions (and programs)
+		final private ArrayList<Symbol> arguments;	//only used in procedures, and functions
 
-		/**
-		 * Type used for printing as string
-		 */
-		private static enum ToStringType {
-			ARRAY, HASTYPE, NOTYPE
+		@Override
+		public String toString() {
+			return toString("");
 		}
 
 		/**
-		 * @return human readable string representation of Info
+		 * toString helper function
+		 *
+		 * @param t number of tabs to indent output with
+		 * @return human readable string representing identifier
 		 */
-		public String toString() {
-			switch (toStringType) {
-				case ARRAY:
-					return name + " = [" + type.toString() + "]";
-				case HASTYPE:
-					return name + " = " + kind.toString() + " of " + type.toString();
-				case NOTYPE:
-					return name + " = " + kind.toString();
-				default:
-					return "ERROR";
+		private String toString(String t) {
+			StringBuilder output = new StringBuilder(t);
+			if (type != null) {
+				output.append(name).append(" = ").append(kind.toString()).append(" of ").append(type.toString());
+			} else {
+				output.append(name).append(" = ").append(kind.toString());
 			}
+
+			if (arguments != null) {
+				t = t + '\t';
+				for (Symbol s : arguments) {
+					output.append('\n').append(s.toString(t));
+				}
+			}
+
+			return output.toString();
 		}
 
 		/**
@@ -121,12 +132,12 @@ public class Scope {
 		 * array)
 		 * @param scope scope, only used if function or procedure variable)
 		 */
-		public Symbol(String name, IdentifierKind kind, TokenType type, Scope scope) {
+		public Symbol(String name, IdentifierKind kind, TokenType type, Scope scope, ArrayList<Symbol> args) {
 			this.name = name;
 			this.kind = kind;
 			this.type = type;
 			this.local = scope;
-			toStringType = kind == IdentifierKind.ARR ? ToStringType.ARRAY : (type == null ? ToStringType.NOTYPE : ToStringType.HASTYPE); //TODO don't be a fucking retard
+			this.arguments = args;
 		}
 	}
 
@@ -155,21 +166,30 @@ public class Scope {
 	}
 
 	/**
-	 * flushes buffer into table, with set type and kind.
+	 * flushes buffer into table, with set parameters.
 	 *
-	 * @throws Exception If kind or type is not set
+	 * @throws Exception If kind is not set
 	 */
 	public void flushBuffer() throws Exception {
 		if (bufferKind == null) {
 			throw new Exception("Kind not set");
 		} else {
 			for (String s : buffer) {
-				map.put(s, new Symbol(s, bufferKind, bufferType, bufferScope));
+				map.put(s, new Symbol(s, bufferKind, bufferType, bufferScope, argumentBuffer));
+			}
+			if (bufferArguments) {
+
 			}
 			buffer.clear();
 			bufferKind = null;
 			bufferType = null;
+			bufferScope = null;
+			argumentBuffer = null;
 		}
+	}
+
+	private void appendArguments() {
+
 	}
 
 	/**
