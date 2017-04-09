@@ -1,4 +1,4 @@
-A simple compiler for a mini version of Pascal.
+# A simple compiler for a mini version of Pascal. #
 
 ----------
 
