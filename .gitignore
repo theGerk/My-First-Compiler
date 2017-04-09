@@ -1,3 +1,4 @@
 /dist/
 /build/
-**.synctex.gz
+**.SDD/*.synctex.gz
+**.SDD/*.aux
