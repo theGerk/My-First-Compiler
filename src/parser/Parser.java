@@ -5,9 +5,14 @@
  */
 package parser;
 
+import SymbolTable.Scope;
+import SymbolTable.Scope.IdentifierKind;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import scanner.Scanner;
 import scanner.Token;
 import scanner.TokenType;
@@ -68,7 +73,8 @@ public class Parser {
 	 *
 	 * @param expected
 	 */
-	public void match(TokenType expected) {
+	public String match(TokenType expected) {
+		String output = lookAhead.getLexeme();
 		if (this.lookAhead.equals(expected)) {
 			try {
 				this.lookAhead = scanner.nextToken();
@@ -81,14 +87,18 @@ public class Parser {
 		} else {
 			error("invalid match. expected " + expected + " recived " + this.lookAhead.getType());
 		}
+		return output;
 	}
+
+	public Scope currentScope = new Scope();
 
 	/**
 	 * Eats a program
 	 */
 	public void program() {
 		match(TokenType.PROGRAM);
-		match(TokenType.ID);
+		match(TokenType.ID);	//TODO maybe add symbol table reference
+		match(TokenType.SEMICOLON);
 		declarations();
 		subprogramDeclarations();
 		compoundStatement();
@@ -96,10 +106,12 @@ public class Parser {
 	}
 
 	/**
-	 * Eats an identifier list
+	 * Eats an identifier list. Adds ID names to current scope's buffer
 	 */
 	public void identifierList() {
-		match(TokenType.ID);
+		if (!currentScope.addId(match(TokenType.ID))) {
+			error("invalid ID");
+		}
 		if (lookAhead.equals(TokenType.COMMA)) {
 			match(TokenType.COMMA);
 			identifierList();	//recursion
@@ -111,10 +123,16 @@ public class Parser {
 	 */
 	public void declarations() {
 		if (lookAhead.equals(TokenType.VAR)) {
+			match(TokenType.VAR);
 			identifierList();
 			match(TokenType.COLON);
 			type();
 			match(TokenType.SEMICOLON);
+			try {
+				currentScope.flushBuffer();
+			} catch (Exception ex) {
+				error(ex.getMessage());
+			}
 			declarations();		//recursion;
 		}
 	}
@@ -124,12 +142,17 @@ public class Parser {
 	 */
 	public void type() {
 		if (lookAhead.equals(TokenType.ARRAY)) {
+			currentScope.set(IdentifierKind.ARR);
 			match(TokenType.ARRAY);
 			match(TokenType.LEFTSQUAREBRACKET);
 			match(TokenType.NUM);
 			match(TokenType.COLON);
+			match(TokenType.NUM);
 			match(TokenType.RIGHTSQUAREBRACKET);
 			match(TokenType.OF);
+			standardType();
+		} else {
+			currentScope.set(IdentifierKind.VAR);
 			standardType();
 		}
 	}
@@ -140,8 +163,10 @@ public class Parser {
 	public void standardType() {
 		if (lookAhead.equals(TokenType.INTEGER)) {
 			match(TokenType.INTEGER);
+			currentScope.set(TokenType.INTEGER);
 		} else {
 			match(TokenType.REAL);
+			currentScope.set(TokenType.REAL);
 		}
 	}
 
@@ -151,8 +176,11 @@ public class Parser {
 	public void subprogramDeclarations() {
 		if (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
 			subprogramDeclaration();
-			match(TokenType.SEMICOLON);
-			subprogramDeclarations();	//recursion
+			if (lookAhead.equals(TokenType.SEMICOLON)) {
+				match(TokenType.SEMICOLON);
+			} else {
+				subprogramDeclarations();	//recursion
+			}
 		}
 	}
 
@@ -170,14 +198,35 @@ public class Parser {
 	 * eats a subprogram head
 	 */
 	public void subprogramHead() {
+		currentScope.set(IdentifierKind.FUNC);
 		if (lookAhead.equals(TokenType.FUNCTION)) {
 			match(TokenType.FUNCTION);
-			match(TokenType.ID);
+			if (!currentScope.addId(match(TokenType.ID))) {
+				error("invalid ID");
+			}
+			Scope lower = currentScope = new Scope(currentScope);
 			arguments();
 			match(TokenType.COLON);
+			currentScope = lower.getParent();
+			standardType();
+			try {
+				currentScope.flushBuffer();
+			} catch (Exception ex) {
+				error(ex.getMessage());
+			}
+			currentScope = lower;
+			match(TokenType.SEMICOLON);
 		} else {
 			match(TokenType.PROCEDURE);
-			match(TokenType.ID);
+			if (!currentScope.addId(match(TokenType.ID))) {
+				error("invalid ID");
+			}
+			currentScope = new Scope(currentScope);
+			try {
+				currentScope.getParent().flushBuffer();
+			} catch (Exception ex) {
+				error(ex.getMessage());
+			}
 			arguments();
 			match(TokenType.SEMICOLON);
 		}
