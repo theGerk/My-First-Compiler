@@ -14,10 +14,10 @@ package scanner;
 /* paterns */
 
 whitespace	= [ \n\t]|\r\n
-letter		= [A-Za-z]
+letter		= [A-Za-z_]
 digit		= [0-9]
-word		= (_|{letter})(_|{letter}|{digit})*
-number		= {digit}+
+word		= ({letter})({letter}|{digit})*
+number		= ({digit}+\.{digit}+)|{digit}+
 symbol		= <>|<=|>=|:=|[;,.:\[\]()+\-=*<>/]
 comment		= \{[^\}]*\}
 
@@ -32,9 +32,9 @@ comment		= \{[^\}]*\}
 	return(new Token(yytext()));
 }
 
-{number}	{
+{real}		{
 	System.out.println("Found a number: " + yytext());
-	return(new Token(Integer.parseInt(yytext()), yytext()));
+	return(new Token(Double.parseDouble(yytext()), yytext()));
 }
 
 {symbol}	{

@@ -21,7 +21,7 @@ public class Scope {
 	 */
 	public Scope() {
 		parentScope = null;
-		bufferArguments = false;
+		bufferingArguments = false;
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class Scope {
 		parentScope = parent;
 		parent.set(this);
 		parent.argumentBuffer = new ArrayList<>();
-		bufferArguments = true;
+		bufferingArguments = true;
 	}
 
 	public Scope getParent() {
@@ -47,7 +47,7 @@ public class Scope {
 	private IdentifierKind bufferKind = null;
 	private TokenType bufferType = null;
 	private Scope bufferScope = null;
-	public boolean bufferArguments;						//when constructing a function there is a phase where arguments are being buffered
+	public boolean bufferingArguments;						//when constructing a function there is a phase where arguments are being buffered
 	private ArrayList<Symbol> argumentBuffer = null;		//when constructing a function we will buffer it's arguments as well
 
 	/**
@@ -88,7 +88,6 @@ public class Scope {
 	 */
 	private static class Symbol {
 
-		final public String name;					//identifier string
 		final public IdentifierKind kind;
 		final public TokenType type;
 		final public Scope local;					//only used in procedures, functions (and programs)
@@ -108,9 +107,9 @@ public class Scope {
 		private String toString(String t) {
 			StringBuilder output = new StringBuilder(t);
 			if (type != null) {
-				output.append(name).append(" = ").append(kind.toString()).append(" of ").append(type.toString());
+				output.append(kind.toString()).append(" of ").append(type.toString());
 			} else {
-				output.append(name).append(" = ").append(kind.toString());
+				output.append(kind.toString());
 			}
 
 			if (arguments != null) {
@@ -126,18 +125,21 @@ public class Scope {
 		/**
 		 * constructor for all types
 		 *
-		 * @param name string name of variable
 		 * @param kind kind of identifier it is
 		 * @param type type of identifier (returned by function, or type of
 		 * array)
-		 * @param scope scope, only used if function or procedure variable)
+		 * @param scope scope, only used if function or program
+		 * @param args Argument List, only used if function
 		 */
-		public Symbol(String name, IdentifierKind kind, TokenType type, Scope scope, ArrayList<Symbol> args) {
-			this.name = name;
+		public Symbol(IdentifierKind kind, TokenType type, Scope scope, ArrayList<Symbol> args) {
 			this.kind = kind;
 			this.type = type;
 			this.local = scope;
 			this.arguments = args;
+		}
+
+		public final ArrayList<Symbol> getArgList() {
+			return arguments;
 		}
 	}
 
@@ -171,25 +173,47 @@ public class Scope {
 	 * @throws Exception If kind is not set
 	 */
 	public void flushBuffer() throws Exception {
+
+		//Would be used to implement overloading functions -- needs way more to be able to work, deemed not worth it.
+//		//makes fully qualified string for functions
+//		if (argumentBuffer != null) {
+//			StringBuilder qualification = new StringBuilder(" ");	//all function's have a space after their ID to identify them by.
+//			for (Symbol s : argumentBuffer) {
+//				qualification.append(s.toString());
+//			}
+//			for (int i = 0; i < buffer.size(); i++) {
+//				buffer.set(i, buffer.get(i) + qualification.toString());
+//			}
+//		}
+		//check for kind being set
 		if (bufferKind == null) {
 			throw new Exception("Kind not set");
 		} else {
-			for (String s : buffer) {
-				map.put(s, new Symbol(s, bufferKind, bufferType, bufferScope, argumentBuffer));
-			}
-			if (bufferArguments) {
 
+			//does stuff
+			if (bufferingArguments) {
+
+				//flushing when buffering arguments
+				for (String s : buffer) {
+					Symbol tmp = new Symbol(bufferKind, bufferType, bufferScope, argumentBuffer);
+					parentScope.argumentBuffer.add(tmp);
+					map.put(s, tmp);
+				}
+			} else {
+
+				//normal flushing
+				for (String s : buffer) {
+					map.put(s, new Symbol(bufferKind, bufferType, bufferScope, argumentBuffer));
+				}
 			}
+
+			//clear all buffer stuff
 			buffer.clear();
 			bufferKind = null;
 			bufferType = null;
 			bufferScope = null;
 			argumentBuffer = null;
 		}
-	}
-
-	private void appendArguments() {
-
 	}
 
 	/**

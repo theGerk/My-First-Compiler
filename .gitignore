@@ -2,3 +2,4 @@
 /build/
 **.SDD/*.synctex.gz
 **.SDD/*.aux
+**.SDD/*.log

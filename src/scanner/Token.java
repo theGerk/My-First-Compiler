@@ -41,7 +41,7 @@ public class Token {
 	 * @param key Could be any number, supposed to be the number that was read
 	 * @param stringForm String version of the number
 	 */
-	public Token(int key, String stringForm) {
+	public Token(double key, String stringForm) {
 		type = TokenType.NUM;
 		input = stringForm;
 	}

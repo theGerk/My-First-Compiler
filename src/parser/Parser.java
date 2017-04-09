@@ -11,8 +11,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import scanner.Scanner;
 import scanner.Token;
 import scanner.TokenType;
@@ -199,7 +197,7 @@ public class Parser {
 			if (!currentScope.addId(match(TokenType.ID))) {			//adds ID to buffer
 				error("invalid ID");
 			}
-			Scope lower = currentScope = new Scope(currentScope);	//creates new scope and enters
+			Scope lower = currentScope = new Scope(currentScope);	//creates new scope and enters, trigers argument mode
 			arguments();
 			match(TokenType.COLON);
 			currentScope = lower.getParent();						//enter into parent set type and add into parent scope
