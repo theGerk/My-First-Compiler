@@ -1,6 +1,6 @@
 /dist/
 /build/
-**.SDD/*.synctex.gz
-**.SDD/*.aux
-**.SDD/*.log
+**SDD/*.synctex.gz
+**SDD/*.aux
+**SDD/*.log
 /src/scanner/Scanner.java~
