@@ -32,7 +32,7 @@ comment		= \{[^\}]*\}
 	return(new Token(yytext()));
 }
 
-{real}		{
+{number}		{
 	System.out.println("Found a number: " + yytext());
 	return(new Token(Double.parseDouble(yytext()), yytext()));
 }
