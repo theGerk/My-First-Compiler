@@ -177,13 +177,14 @@ public class Parser {
 	}
 
 	/**
-	 * parses a single function or procedure
+	 * parses a single function or procedure, exits procedure at end
 	 */
 	public void subprogramDeclaration() {
 		subprogramHead();
 		declarations();
 		subprogramDeclarations();
 		compoundStatement();
+		currentScope = currentScope.getParent();
 	}
 
 	/**
