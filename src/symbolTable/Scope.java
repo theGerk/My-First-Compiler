@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package symbolTable;
+package symboltable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,6 @@ public class Scope {
 	 */
 	public Scope() {
 		parentScope = null;
-		bufferingArguments = false;
 	}
 
 	/**
@@ -32,23 +31,19 @@ public class Scope {
 	 */
 	public Scope(Scope parent) {
 		parentScope = parent;
-		parent.set(this);
-		parent.argumentBuffer = new ArrayList<>();
-		bufferingArguments = true;
 	}
 
+	/**
+	 * getter for parent Scope
+	 *
+	 * @return parent Scope
+	 */
 	public Scope getParent() {
 		return parentScope;
 	}
 
 	final private Scope parentScope;
 	private final HashMap<String, Symbol> map = new HashMap<>();
-	private final ArrayList<String> buffer = new ArrayList<>();
-	private IdentifierKind bufferKind = null;
-	private TokenType bufferType = null;
-	private Scope bufferScope = null;
-	public boolean bufferingArguments;						//when constructing a function there is a phase where arguments are being buffered
-	private ArrayList<Symbol> argumentBuffer = null;		//when constructing a function we will buffer it's arguments as well
 
 	/**
 	 * Finds a variable in the current scope from the string representation.
@@ -88,10 +83,21 @@ public class Scope {
 	 */
 	private static class Symbol {
 
+		final public String name;
 		final public IdentifierKind kind;
-		final public TokenType type;
-		final public Scope local;					//only used in procedures, functions (and programs)
-		final private ArrayList<Symbol> arguments;	//only used in procedures, and functions
+		public TokenType type;
+		public Scope local;					//only used in procedures & functions (and programs)
+
+		/**
+		 * trivial constructor
+		 *
+		 * @param name identifier string
+		 * @param kind kind of identifier it is
+		 */
+		public Symbol(String name, IdentifierKind kind) {
+			this.name = name;
+			this.kind = kind;
+		}
 
 		@Override
 		public String toString() {
@@ -112,34 +118,7 @@ public class Scope {
 				output.append(kind.toString());
 			}
 
-			if (arguments != null) {
-				t = t + '\t';
-				for (Symbol s : arguments) {
-					output.append('\n').append(s.toString(t));
-				}
-			}
-
 			return output.toString();
-		}
-
-		/**
-		 * constructor for all types
-		 *
-		 * @param kind kind of identifier it is
-		 * @param type type of identifier (returned by function, or type of
-		 * array)
-		 * @param scope scope, only used if function or program
-		 * @param args Argument List, only used if function
-		 */
-		public Symbol(IdentifierKind kind, TokenType type, Scope scope, ArrayList<Symbol> args) {
-			this.kind = kind;
-			this.type = type;
-			this.local = scope;
-			this.arguments = args;
-		}
-
-		public final ArrayList<Symbol> getArgList() {
-			return arguments;
 		}
 	}
 
@@ -150,96 +129,18 @@ public class Scope {
 	 * @return
 	 */
 	public boolean isValidId(String name) {
-		return !(map.containsKey(name) || buffer.contains(name));	//TODO check if it is a reserved keyword
+		return !(map.containsKey(name));
 	}
 
-	/**
-	 * buffers the ID if it is valid
-	 *
-	 * @param name ID name
-	 * @return if name is valid
-	 */
-	public boolean addId(String name) {
-		boolean output = isValidId(name);
-		if (output) {
-			buffer.add(name);
-		}
-		return output;
+	public void put(String id, IdentifierKind kind) {
+		map.put(id, new Symbol(id, kind));
 	}
 
-	/**
-	 * flushes buffer into table, with set parameters.
-	 *
-	 * @throws Exception If kind is not set
-	 */
-	public void flushBuffer() throws Exception {
-
-		//Would be used to implement overloading functions -- needs way more to be able to work, deemed not worth it.
-//		//makes fully qualified string for functions
-//		if (argumentBuffer != null) {
-//			StringBuilder qualification = new StringBuilder(" ");	//all function's have a space after their ID to identify them by.
-//			for (Symbol s : argumentBuffer) {
-//				qualification.append(s.toString());
-//			}
-//			for (int i = 0; i < buffer.size(); i++) {
-//				buffer.set(i, buffer.get(i) + qualification.toString());
-//			}
-//		}
-		//check for kind being set
-		if (bufferKind == null) {
-			throw new Exception("Kind not set");
-		} else {
-
-			//does stuff
-			if (bufferingArguments) {
-
-				//flushing when buffering arguments
-				for (String s : buffer) {
-					Symbol tmp = new Symbol(bufferKind, bufferType, bufferScope, argumentBuffer);
-					parentScope.argumentBuffer.add(tmp);
-					map.put(s, tmp);
-				}
-			} else {
-
-				//normal flushing
-				for (String s : buffer) {
-					map.put(s, new Symbol(bufferKind, bufferType, bufferScope, argumentBuffer));
-				}
-			}
-
-			//clear all buffer stuff
-			buffer.clear();
-			bufferKind = null;
-			bufferType = null;
-			bufferScope = null;
-			argumentBuffer = null;
-		}
+	public void set(String id, TokenType type) {
+		map.get(id).type = type;
 	}
 
-	/**
-	 * sets kind for IDs in buffer
-	 *
-	 * @param kind
-	 */
-	public void set(IdentifierKind kind) {
-		bufferKind = kind;
-	}
-
-	/**
-	 * sets type for IDs in buffer
-	 *
-	 * @param type
-	 */
-	public void set(TokenType type) {
-		bufferType = type;
-	}
-
-	/**
-	 * sets the scope for a function in the buffer.
-	 *
-	 * @param scope
-	 */
-	public void set(Scope scope) {
-		bufferScope = scope;
+	public void set(String id, Scope scope) {
+		map.get(id).local = scope;
 	}
 }

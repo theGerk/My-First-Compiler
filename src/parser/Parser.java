@@ -5,8 +5,8 @@
  */
 package parser;
 
-import symbolTable.Scope;
-import symbolTable.Scope.IdentifierKind;
+import symboltable.Scope;
+import symboltable.Scope.IdentifierKind;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
