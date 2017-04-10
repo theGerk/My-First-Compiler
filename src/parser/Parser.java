@@ -357,7 +357,7 @@ public class Parser {
 				match(TokenType.RIGHTSQUAREBRACKET);
 				break;
 			default:
-				error("Need to use array or variable as array");
+				error("Invalid ID");
 		}
 	}
 
@@ -390,6 +390,7 @@ public class Parser {
 	public void expression() {
 		simpleExpression();
 		if (relop()) {
+			match(lookAhead.getType());
 			simpleExpression();
 		}
 	}
@@ -439,26 +440,33 @@ public class Parser {
 	 * eats a factor
 	 */
 	public void factor() {
-		if (lookAhead.equals(TokenType.ID)) {
-			match(TokenType.ID);
-			if (lookAhead.equals(TokenType.LEFTSQUAREBRACKET)) {
-				match(TokenType.LEFTSQUAREBRACKET);
-				expression();
-				match(TokenType.RIGHTSQUAREBRACKET);
-			} else if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
+		switch (lookAhead.getType()) {
+			case ID:
+				match(TokenType.ID);
+				if (lookAhead.equals(TokenType.LEFTSQUAREBRACKET)) {
+					match(TokenType.LEFTSQUAREBRACKET);
+					expression();
+					match(TokenType.RIGHTSQUAREBRACKET);
+				} else if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
+					match(TokenType.LEFTPARANTHESIS);
+					expressionList();
+					match(TokenType.RIGHTPARANTHESIS);
+				}
+				break;
+			case NUM:
+				match(TokenType.NUM);
+				break;
+			case LEFTPARANTHESIS:
 				match(TokenType.LEFTPARANTHESIS);
-				expressionList();
+				expression();
 				match(TokenType.RIGHTPARANTHESIS);
-			}
-		} else if (lookAhead.equals(TokenType.NUM)) {
-			match(TokenType.NUM);
-		} else if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
-			match(TokenType.LEFTPARANTHESIS);
-			expression();
-			match(TokenType.RIGHTPARANTHESIS);
-		} else {
-			match(TokenType.NOT);
-			factor();
+				break;
+			case NOT:
+				match(TokenType.NOT);
+				factor();
+				break;
+			default:
+				error("invalid factor");
 		}
 	}
 
