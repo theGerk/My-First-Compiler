@@ -4,3 +4,4 @@
 **/SDD/*.aux
 **/SDD/*.log
 /src/scanner/Scanner.java~
+/.idea/
