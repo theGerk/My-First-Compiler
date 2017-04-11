@@ -11,9 +11,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.util.Pair;
+
 import scanner.Scanner;
 import scanner.Token;
 import scanner.TokenType;
+import syntaxtree.*;
 
 /**
  * Parser for program, parses from a stream
@@ -85,56 +91,86 @@ public class Parser {
 	}
 
 	/**
-	 * Eats a program
+	 * Parses a program into a ProgramNode
+	 *
+	 * @return Program node with all useful information
 	 */
-	public void program() {
+	public ProgramNode program() {
+		ProgramNode output;
 		match(TokenType.PROGRAM);
-		match(TokenType.ID);	//TODO maybe add symbol table reference
+		output = new ProgramNode(match(TokenType.ID));	//TODO maybe add symbol table reference
 		match(TokenType.SEMICOLON);
-		declarations();
-		subprogramDeclarations();
-		compoundStatement();
+		output.getVariables(declarations());
+		output.setFunctions(subprogramDeclarations());
+		output.getMain(compoundStatement());
 		match(TokenType.PERIOD);
+		return output;
 	}
 
 	/**
-	 * Adds ID names to currentScope buffer.
+	 * Adds list of IDs to symbol table
+	 *
+	 * @return list of identifier strings
 	 */
-	public void identifierList() {
-		if (!currentScope.addId(match(TokenType.ID))) {
-			error("invalid ID");
+	public ArrayList<String> identifierList() {
+		ArrayList<String> output = new ArrayList<>();
+		String id = match(TokenType.ID);
+		try {
+			currentScope.put(id);
+			output.add(id);
+		} catch (Exception ex) {
+			error("used ID");
 		}
-		if (lookAhead.equals(TokenType.COMMA)) {
+		while (lookAhead.equals(TokenType.COMMA)) {
 			match(TokenType.COMMA);
-			identifierList();	//recursion
+			id = match(TokenType.ID);
+			try {
+				currentScope.put(id);
+				output.add(id);
+			} catch (Exception ex) {
+				error(id + " already in use");
+			}
 		}
+		return output;
 	}
 
 	/**
 	 * Adds declared variables to currentScope.
+	 *
+	 * @return Declarations node
 	 */
-	public void declarations() {
-		if (lookAhead.equals(TokenType.VAR)) {
+	public DeclarationsNode declarations() {
+		DeclarationsNode output = new DeclarationsNode();
+		while (lookAhead.equals(TokenType.VAR)) {
 			match(TokenType.VAR);
-			identifierList();
+			ArrayList<String> identifierList = identifierList();
 			match(TokenType.COLON);
-			type();
-			match(TokenType.SEMICOLON);
-			try {
-				currentScope.flushBuffer();
-			} catch (Exception ex) {
-				error(ex.getMessage());
+			Pair<TokenType, IdentifierKind> info = type();
+			for (String identifier : identifierList) {
+				try {
+					currentScope.set(identifier, info.getKey());
+				} catch (Exception ex) {
+					error(identifier + " type already set");
+				}
+				try {
+					currentScope.set(identifier, info.getValue());
+				} catch (Exception ex) {
+					error(identifier + " info already set");
+				}
+				output.addVariable(new VariableNode(identifier));
 			}
-			declarations();		//recursion;
+			match(TokenType.SEMICOLON);
 		}
+		return output;
 	}
 
 	/**
 	 * sets type (and kind if array) for currentScope buffer.
+	 *
+	 * @return
 	 */
-	public void type() {
+	public Pair<TokenType, IdentifierKind> type() {
 		if (lookAhead.equals(TokenType.ARRAY)) {
-			currentScope.set(IdentifierKind.ARR);
 			match(TokenType.ARRAY);
 			match(TokenType.LEFTSQUAREBRACKET);
 			match(TokenType.NUM);
@@ -142,45 +178,48 @@ public class Parser {
 			match(TokenType.NUM);
 			match(TokenType.RIGHTSQUAREBRACKET);
 			match(TokenType.OF);
-			standardType();
+			return new Pair<>(standardType(), IdentifierKind.ARR);
 		} else {
-			currentScope.set(IdentifierKind.VAR);
-			standardType();
+			return new Pair<>(standardType(), IdentifierKind.VAR);
 		}
 	}
 
 	/**
-	 * sets type for currentScope buffer.
+	 * parses out a type
+	 *
+	 * @return Type of something
 	 */
-	public void standardType() {
+	public TokenType standardType() {
 		if (lookAhead.equals(TokenType.INTEGER)) {
 			match(TokenType.INTEGER);
-			currentScope.set(TokenType.INTEGER);
+			return TokenType.INTEGER;
 		} else {
 			match(TokenType.REAL);
-			currentScope.set(TokenType.REAL);
+			return TokenType.REAL;
 		}
 	}
 
 	/**
 	 * parses functions and procedures
+	 *
+	 * @return Node
 	 */
-	public void subprogramDeclarations() {
-		if (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
-			subprogramDeclaration();
-			if (lookAhead.equals(TokenType.SEMICOLON)) {
-				match(TokenType.SEMICOLON);
-			} else {
-				subprogramDeclarations();	//recursion
-			}
+	public SubProgramDeclarationsNode subprogramDeclarations() {
+		SubProgramDeclarationsNode output = new SubProgramDeclarationsNode();
+		while (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
+			output.addSubProgramDeclaration(subprogramDeclaration());
+			match(TokenType.SEMICOLON);
 		}
+		return output;
 	}
 
 	/**
-	 * parses a single function or procedure, exits procedure at end
+	 * parses a single function or procedure
+	 *
+	 * @return Node with function's information
 	 */
-	public void subprogramDeclaration() {
-		subprogramHead();
+	public SubProgramNode subprogramDeclaration() {
+		subprogramHead();		//enters child scope in here
 		declarations();
 		subprogramDeclarations();
 		compoundStatement();

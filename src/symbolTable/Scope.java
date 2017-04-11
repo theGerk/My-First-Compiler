@@ -84,7 +84,7 @@ public class Scope {
 	private static class Symbol {
 
 		final public String name;
-		final public IdentifierKind kind;
+		public IdentifierKind kind;
 		public TokenType type;
 		public Scope local;					//only used in procedures & functions (and programs)
 
@@ -94,7 +94,7 @@ public class Scope {
 		 * @param name identifier string
 		 * @param kind kind of identifier it is
 		 */
-		public Symbol(String name, IdentifierKind kind) {
+		public Symbol(String name) {
 			this.name = name;
 			this.kind = kind;
 		}
@@ -132,15 +132,34 @@ public class Scope {
 		return !(map.containsKey(name));
 	}
 
-	public void put(String id, IdentifierKind kind) {
-		map.put(id, new Symbol(id, kind));
+	public void put(String id) throws Exception {
+		if (!isValidId(id)) {
+			throw new Exception("Invalid ID");
+		}
+		map.put(id, new Symbol(id));
 	}
 
-	public void set(String id, TokenType type) {
-		map.get(id).type = type;
+	public void set(String id, TokenType type) throws Exception {
+		Symbol s = map.get(id);
+		if (s.type == null) {
+			throw new Exception("type already set");
+		}
+		s.type = type;
 	}
 
-	public void set(String id, Scope scope) {
-		map.get(id).local = scope;
+	public void set(String id, Scope scope) throws Exception {
+		Symbol s = map.get(id);
+		if (s.type == null) {
+			throw new Exception("scope is already set");
+		}
+		s.local = scope;
+	}
+
+	public void set(String id, IdentifierKind kind) throws Exception {
+		Symbol s = map.get(id);
+		if (s.kind == null) {
+			throw new Exception("kind is already set");
+		}
+		s.kind = kind;
 	}
 }

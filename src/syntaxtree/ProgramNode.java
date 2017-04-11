@@ -6,14 +6,13 @@ package syntaxtree;
  * @author Erik Steinmetz
  */
 public class ProgramNode extends SyntaxTreeNode {
-    
-    
+
     private String name;
     private DeclarationsNode variables;
     private SubProgramDeclarationsNode functions;
     private CompoundStatementNode main;
     
-    public ProgramNode( String aName) {
+    public ProgramNode(String aName) {
         this.name = aName;
     }
 

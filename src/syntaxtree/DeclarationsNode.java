@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class DeclarationsNode extends SyntaxTreeNode {
     
-    private ArrayList<VariableNode> vars = new ArrayList<VariableNode>();
+    protected ArrayList<VariableNode> vars = new ArrayList<VariableNode>();
     
     public void addVariable( VariableNode aVariable) {
         vars.add( aVariable);

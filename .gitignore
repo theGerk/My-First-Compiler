@@ -5,3 +5,4 @@
 **/SDD/*.log
 /src/scanner/Scanner.java~
 /.idea/
+/.editorconfig
