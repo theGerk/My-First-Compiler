@@ -11,15 +11,25 @@ package syntaxtree;
  */
 public class SubProgramNode extends SyntaxTreeNode {
 
-	private String id;
-	private SubProgramDeclarationsNode subProcs;
-	private DeclarationsNode arguments;
-	private CompoundStatementNode instructions;
+	public final String name;
+	public SubProgramDeclarationsNode subFunctions;
+	public DeclarationsNode arguments;
+	public DeclarationsNode variables;
+	public CompoundStatementNode instructions;
+
+	public SubProgramNode(String name) {
+		this.name = name;
+	}
 
 	//TODO impliment this
 	@Override
 	public String indentedToString(int level) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		StringBuilder answer = new StringBuilder(this.indentation(level));
+		answer.append("Program: ").append(name).append("\n");
+		answer.append(arguments.indentedToString(level + 1));
+		answer.append(variables.indentedToString(level + 1));
+		answer.append(subFunctions.indentedToString(level + 1));
+		answer.append(instructions.indentedToString(level + 1));
+		return answer.toString();
 	}
-
 }

@@ -219,56 +219,67 @@ public class Parser {
 	 * @return Node with function's information
 	 */
 	public SubProgramNode subprogramDeclaration() {
-		subprogramHead();		//enters child scope in here
-		declarations();
-		subprogramDeclarations();
-		compoundStatement();
+		SubProgramNode output = subprogramHead(); //enters child scope in here
+		output.variables = declarations();
+		output.subFunctions = subprogramDeclarations();
+		output.instructions = compoundStatement();
 		currentScope = currentScope.getParent();
 	}
 
 	/**
 	 * parses a function or procedure signature, creates new scope for it,
 	 * enters scope, and adds itself to parent scope.
+	 *
+	 * @return node with information about the function
 	 */
-	public void subprogramHead() {
-		currentScope.set(IdentifierKind.FUNC);
+	public SubProgramNode subprogramHead() {
+		SubProgramNode output;
 		if (lookAhead.equals(TokenType.FUNCTION)) {
 			match(TokenType.FUNCTION);
-			if (!currentScope.addId(match(TokenType.ID))) {			//adds ID to buffer
-				error("invalid ID");
-			}
-			Scope lower = currentScope = new Scope(currentScope);	//creates new scope and enters, trigers argument mode
-			arguments();
-			match(TokenType.COLON);
-			currentScope = lower.getParent();						//enter into parent set type and add into parent scope
-			standardType();											//set type of function (the return type)
+			output = new SubProgramNode(match(TokenType.ID));
 			try {
-				currentScope.flushBuffer();							//flush buffer (Add function to scope)
+				currentScope.put(output.name);
 			} catch (Exception ex) {
-				error(ex.getMessage());
+				error(output.name + ": invalid ID");
 			}
-			currentScope = lower;									//enter lower scope again
+			try {
+				currentScope.set(output.name, IdentifierKind.FUNC);
+			} catch (Exception ex) {
+				error(output.name + ": already has kind");
+			}
+			currentScope = new Scope(currentScope);	//creates new scope and enters
+			output.arguments = arguments();
+			match(TokenType.COLON);
+			try {
+				currentScope.getParent().set(output.name, standardType());
+			} catch (Exception ex) {
+				error(output.name + ": already has type set");
+			}
 			match(TokenType.SEMICOLON);
 		} else {
 			match(TokenType.PROCEDURE);
-			if (!currentScope.addId(match(TokenType.ID))) {			//adds ID to buffer
-				error("invalid ID");
-			}
-			currentScope = new Scope(currentScope);					//creates new scope and enters
+			output = new SubProgramNode(match(TokenType.ID));
 			try {
-				currentScope.getParent().flushBuffer();				//flush parent scope's buffer (Add procedure to parent scope)
+				currentScope.put(output.name);
 			} catch (Exception ex) {
-				error(ex.getMessage());
+				error(output.name + ": invalid ID");
 			}
-			arguments();
+			try {
+				currentScope.set(output.name, IdentifierKind.FUNC);
+			} catch (Exception ex) {
+				error(": already has kind set");
+			}
+			currentScope = new Scope(currentScope);
+			output.arguments = arguments();
 			match(TokenType.SEMICOLON);
 		}
+		return output;
 	}
 
 	/**
 	 * parses arguments for procedure or function
 	 */
-	public void arguments() {
+	public DeclarationsNode arguments() {
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
 			parameterList();

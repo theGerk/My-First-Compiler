@@ -1,52 +1,52 @@
-
 package syntaxtree;
 
 /**
  * Represents a Pascal Program
+ *
  * @author Erik Steinmetz
  */
 public class ProgramNode extends SyntaxTreeNode {
 
-    private String name;
-    private DeclarationsNode variables;
-    private SubProgramDeclarationsNode functions;
-    private CompoundStatementNode main;
-    
-    public ProgramNode(String aName) {
-        this.name = aName;
-    }
+	private final String name;
+	private DeclarationsNode variables;
+	private SubProgramDeclarationsNode functions;
+	private CompoundStatementNode main;
 
-    public DeclarationsNode getVariables() {
-        return variables;
-    }
+	public ProgramNode(String aName) {
+		this.name = aName;
+	}
 
-    public void setVariables(DeclarationsNode variables) {
-        this.variables = variables;
-    }
+	public DeclarationsNode getVariables() {
+		return variables;
+	}
 
-    public SubProgramDeclarationsNode getFunctions() {
-        return functions;
-    }
+	public void setVariables(DeclarationsNode variables) {
+		this.variables = variables;
+	}
 
-    public void setFunctions(SubProgramDeclarationsNode functions) {
-        this.functions = functions;
-    }
+	public SubProgramDeclarationsNode getFunctions() {
+		return functions;
+	}
 
-    public CompoundStatementNode getMain() {
-        return main;
-    }
+	public void setFunctions(SubProgramDeclarationsNode functions) {
+		this.functions = functions;
+	}
 
-    public void setMain(CompoundStatementNode main) {
-        this.main = main;
-    }
-    
-    @Override
-    public String indentedToString( int level) {
-        String answer = this.indentation( level);
-        answer += "Program: " + name + "\n";
-        answer += variables.indentedToString( level + 1);
-        answer += functions.indentedToString( level + 1);
-        answer += main.indentedToString( level + 1);
-        return answer;
-    }
+	public CompoundStatementNode getMain() {
+		return main;
+	}
+
+	public void setMain(CompoundStatementNode main) {
+		this.main = main;
+	}
+
+	@Override
+	public String indentedToString(int level) {
+		String answer = this.indentation(level);
+		answer += "Program: " + name + "\n";
+		answer += variables.indentedToString(level + 1);
+		answer += functions.indentedToString(level + 1);
+		answer += main.indentedToString(level + 1);
+		return answer;
+	}
 }
