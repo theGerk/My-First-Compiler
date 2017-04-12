@@ -100,9 +100,9 @@ public class Parser {
 		match(TokenType.PROGRAM);
 		output = new ProgramNode(match(TokenType.ID));	//TODO maybe add symbol table reference
 		match(TokenType.SEMICOLON);
-		output.getVariables(declarations());
+		output.setVariables(declarations());
 		output.setFunctions(subprogramDeclarations());
-		output.getMain(compoundStatement());
+		output.setMain(compoundStatement());
 		match(TokenType.PERIOD);
 		return output;
 	}
@@ -224,6 +224,7 @@ public class Parser {
 		output.subFunctions = subprogramDeclarations();
 		output.instructions = compoundStatement();
 		currentScope = currentScope.getParent();
+		return output;
 	}
 
 	/**
@@ -278,49 +279,68 @@ public class Parser {
 
 	/**
 	 * parses arguments for procedure or function
+	 *
+	 * @return
 	 */
 	public DeclarationsNode arguments() {
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
-			parameterList();
+			DeclarationsNode output = parameterList();
 			match(TokenType.RIGHTPARANTHESIS);
+			return output;
 		}
+		return new DeclarationsNode();
 	}
 
 	/**
 	 * parses parameters for procedure or function
+	 *
+	 * @return parameter list
 	 */
-	public void parameterList() {
-		identifierList();
-		match(TokenType.COLON);
-		type();
-		try {
-			currentScope.flushBuffer();				//flushes currentScope buffer
-		} catch (Exception ex) {
-			error("wouldn't happen, would it?");
-		}
-		if (lookAhead.equals(TokenType.SEMICOLON)) {
+	public DeclarationsNode parameterList() {		//TODO check to make sure the grammer is right here
+		DeclarationsNode output = new DeclarationsNode();
+		while (true) {
+			ArrayList<String> ids = identifierList();
+			match(TokenType.COLON);
+			Pair<TokenType, IdentifierKind> info = type();
+			for (String id : ids) {
+				output.addVariable(new VariableNode(id));
+				try {
+					currentScope.set(id, info.getKey());
+				} catch (Exception ex) {
+					error(id + ": type already set");
+				}
+				try {
+					currentScope.set(id, info.getValue());
+				} catch (Exception ex) {
+					error(id + ": kind already set");
+				}
+			}
+			if (!lookAhead.equals(TokenType.SEMICOLON)) {
+				return output;
+			}
 			match(TokenType.SEMICOLON);
-			parameterList();	//recursion
 		}
 	}
 
 	/**
 	 * eats a compound statement
 	 */
-	public void compoundStatement() {
+	public CompoundStatementNode compoundStatement() {
 		match(TokenType.BEGIN);
-		optionalStatements();
+		CompoundStatementNode output = optionalStatements();
 		match(TokenType.END);
+		return output;
 	}
 
 	/**
 	 * eats an optional statements
 	 */
-	public void optionalStatements() {
-		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {
-			statementList();
+	public CompoundStatementNode optionalStatements() {
+		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {	//TODO double check grammer here
+			return statementList();
 		}
+		return null;
 	}
 
 	/**
