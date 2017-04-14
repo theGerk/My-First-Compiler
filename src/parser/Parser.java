@@ -145,7 +145,7 @@ public class Parser {
 			for (String identifier : identifierList) {
 				currentScope.set(identifier, info.getKey());
 				currentScope.set(identifier, info.getValue());
-				output.addVariable(new VariableNode(identifier, currentScope.getType(identifier)));
+				output.addVariable(new VariableNode(identifier, currentScope));
 			}
 			match(TokenType.SEMICOLON);
 		}
@@ -296,9 +296,9 @@ public class Parser {
 			match(TokenType.COLON);
 			Pair<TokenType, IdentifierKind> info = type();
 			for (String id : ids) {
-				output.addVariable(new VariableNode(id, info.getKey()));
 				currentScope.set(id, info.getKey());
 				currentScope.set(id, info.getValue());
+				output.addVariable(new VariableNode(id, currentScope));
 			}
 			if (!lookAhead.equals(TokenType.SEMICOLON)) {
 				return output;
@@ -399,11 +399,11 @@ public class Parser {
 		String id = match(TokenType.ID);
 		switch (currentScope.getKind(id)) {
 			case VAR:
-				output = new VariableNode(id, currentScope.getType(id));
+				output = new VariableNode(id, currentScope);
 				break;
 			case ARR:
 				match(TokenType.LEFTSQUAREBRACKET);
-				output = new ArrayVarNode(id, expression(), currentScope.getType(id));
+				output = new ArrayVarNode(id, expression(), currentScope);
 				match(TokenType.RIGHTSQUAREBRACKET);
 				break;
 			default:
@@ -512,9 +512,10 @@ public class Parser {
 			match(type);
 			ExpressionNode expr = factor();
 			Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = termPart();
-			if(tokenTypeExpressionNodePair!=null)
+			if (tokenTypeExpressionNodePair != null) {
 				expr = new BinaryOperationNode(expr, tokenTypeExpressionNodePair.getKey(), tokenTypeExpressionNodePair.getValue());
-			return new Pair<>(type,expr);
+			}
+			return new Pair<>(type, expr);
 		} else {
 			return null;
 		}
@@ -525,30 +526,36 @@ public class Parser {
 	 */
 	public ExpressionNode factor() throws Exception {
 		switch (lookAhead.getType()) {
-			case ID:
-				match(TokenType.ID);
+			case ID: {
+				String id = match(TokenType.ID);
 				if (lookAhead.equals(TokenType.LEFTSQUAREBRACKET)) {
 					match(TokenType.LEFTSQUAREBRACKET);
-					expression();
+					ExpressionNode expression = expression();
 					match(TokenType.RIGHTSQUAREBRACKET);
+					return new ArrayVarNode(id, expression, currentScope);
 				} else if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 					match(TokenType.LEFTPARANTHESIS);
-					expressionList();
+					ArrayList<ExpressionNode> expressionList = expressionList();
 					match(TokenType.RIGHTPARANTHESIS);
+					return new FunctionExpressionNode(id, expressionList, currentScope);
+				} else {
+					return new VariableNode(id, currentScope);
 				}
-				break;
-			case NUM:
-				match(TokenType.NUM);
-				break;
-			case LEFTPARANTHESIS:
+			}
+			case NUM: {
+				return new ValueNode(match(TokenType.NUM));
+			}
+			case LEFTPARANTHESIS: {
 				match(TokenType.LEFTPARANTHESIS);
-				expression();
+				ExpressionNode expression = expression();
 				match(TokenType.RIGHTPARANTHESIS);
-				break;
-			case NOT:
+				return expression;
+			}
+			case NOT: {
 				match(TokenType.NOT);
-				factor();
-				break;
+				ExpressionNode factor = factor();
+				return new UnaryOperationNode(TokenType.NOT, factor);
+			}
 			default:
 				throw new Exception("invalid factor");
 		}
@@ -563,7 +570,7 @@ public class Parser {
 			match(type);
 			return type;
 		} else {
-			throw new Exception("you done fucked boi");
+			throw new Exception("not even sure how this happened, you should have had a sign instead of " + lookAhead.getLexeme());
 		}
 	}
 

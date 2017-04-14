@@ -52,5 +52,14 @@ public class UnaryOperationNode extends ExpressionNode {
 	public String indentedToString(int level) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-
+	
+	/**
+	 * checks for if code folding is possible
+	 *
+	 * @return if the node can be folded
+	 */
+	@Override
+	public boolean foldable() {
+		return expression.foldable();
+	}
 }

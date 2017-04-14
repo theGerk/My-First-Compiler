@@ -1,6 +1,7 @@
 package syntaxtree;
 
 import scanner.TokenType;
+import symboltable.Scope;
 
 import java.util.ArrayList;
 
@@ -9,8 +10,9 @@ import java.util.ArrayList;
  */
 public class FunctionExpressionNode extends VariableNode {
 
-	public FunctionExpressionNode(String id, TokenType returnType, ArrayList<ExpressionNode> params, ArrayList<TokenType> argTypes) throws Exception {
-		super(id, returnType);
+	public FunctionExpressionNode(String id,  ArrayList<ExpressionNode> params, Scope containingScope) throws Exception {
+		super(id, validateID(id, containingScope));
+		ArrayList<TokenType> argTypes = containingScope.getArgsTypes(id);
 		if (params.size() != argTypes.size()) {
 			throw new Exception("number of pramaters do not match");
 		}
@@ -21,8 +23,20 @@ public class FunctionExpressionNode extends VariableNode {
 		}
 		parametersList = params;
 	}
+	
+	protected FunctionExpressionNode(String id, ArrayList<ExpressionNode> params, TokenType type) {
+		super(id, type);
+		parametersList = params;
+	}
 
 	protected final ArrayList<ExpressionNode> parametersList;
+	
+	private static TokenType validateID(String id, Scope scope) throws Exception {
+		if(scope.getKind(id) == Scope.IdentifierKind.FUNC)
+			return scope.getType(id);
+		else
+			throw new Exception(id + " is not a FUNCTION");
+	}
 
 	/**
 	 * Creates a String representation of this node and its children.

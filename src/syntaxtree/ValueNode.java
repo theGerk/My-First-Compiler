@@ -5,10 +5,11 @@
  */
 package syntaxtree;
 
+import scanner.LookUp;
 import scanner.TokenType;
 
 /**
- * Represents a value or number in an expression.
+ * Represents a value or number literal in an expression.
  *
  * @author Erik Steinmetz
  */
@@ -24,8 +25,8 @@ public class ValueNode extends ExpressionNode {
 	 *
 	 * @param attr The attribute for this value node.
 	 */
-	public ValueNode(String attr, TokenType type) {
-		super(type);
+	public ValueNode(String attr) {
+		super(LookUp.LOOKUP.get(attr));
 		this.attribute = attr;
 	}
 
@@ -65,5 +66,15 @@ public class ValueNode extends ExpressionNode {
 			}
 		}
 		return answer;
+	}
+	
+	/**
+	 * checks for if code folding is possible
+	 *
+	 * @return if the node can be folded
+	 */
+	@Override
+	public boolean foldable() {
+		return true;
 	}
 }

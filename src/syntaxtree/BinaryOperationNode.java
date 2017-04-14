@@ -101,7 +101,7 @@ public class BinaryOperationNode extends ExpressionNode {
 	 * @return operation output
 	 */
 	private static TokenType outType(TokenType op, TokenType left, TokenType right) throws Exception {
-		Exception expt = new Exception(String.format(OUT_TYPE_EXCEPTION_FORMATE_STRING, left.toString(), LookUp.LOOKUP.teg(op), right.toString()));
+		Exception expt = new Exception(String.format(OUT_TYPE_EXCEPTION_FORMAT_STRING, left.toString(), LookUp.LOOKUP.teg(op), right.toString()));
 		switch (op) {
 			// integer operations (including bitwise)
 			// int, int -> int
@@ -151,5 +151,15 @@ public class BinaryOperationNode extends ExpressionNode {
 		}
 	}
 
-	private static final String OUT_TYPE_EXCEPTION_FORMATE_STRING = "%s %s %s is not valid";
+	private static final String OUT_TYPE_EXCEPTION_FORMAT_STRING = "%s %s %s is not valid";
+	
+	/**
+	 * checks for if code folding is possible
+	 *
+	 * @return if the node can be folded
+	 */
+	@Override
+	public boolean foldable() {
+		return left.foldable() && right.foldable();
+	}
 }

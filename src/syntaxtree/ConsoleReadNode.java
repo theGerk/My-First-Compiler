@@ -16,7 +16,17 @@ public class ConsoleReadNode extends ExpressionNode {
 	public ConsoleReadNode(TokenType returnType) {
 		super(returnType);
 	}
-
+	
+	/**
+	 * checks for if code folding is possible
+	 *
+	 * @return if the node can be folded
+	 */
+	@Override
+	public boolean foldable() {
+		return false;
+	}
+	
 	@Override
 	public String indentedToString(int level) {
 		return indentation(level) + "read " + returnType + " from console";

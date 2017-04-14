@@ -1,6 +1,7 @@
 package syntaxtree;
 
 import scanner.TokenType;
+import symboltable.Scope;
 
 /**
  * Represents a variable in the syntax tree.
@@ -17,13 +18,25 @@ public class VariableNode extends ExpressionNode {
 	/**
 	 * Creates a ValueNode with the given attribute.
 	 *
-	 * @param attr The attribute for this value node.
+	 * @param id The attribute for this value node.
 	 */
-	public VariableNode(String attr, TokenType type) {
-		super(type);
-		this.name = attr;
+	public VariableNode(String id, Scope containingScope) throws Exception {
+		super(validateID(id, containingScope));
+		this.name = id;
 	}
 	
+	protected VariableNode(String id, TokenType type){
+		super(type);
+		name = id;
+	}
+	
+	private static TokenType validateID(String id, Scope scope) throws Exception {
+		if(scope.getKind(id) == Scope.IdentifierKind.VAR)
+			return scope.getType(id);
+		else
+			throw new Exception("Expected " + id + " to be a VAR");
+	}
+
 	/**
 	 * Returns the name of the variable of this node.
 	 *
@@ -60,5 +73,15 @@ public class VariableNode extends ExpressionNode {
 			}
 		}
 		return answer;
+	}
+	
+	/**
+	 * checks for if code folding is possible
+	 *
+	 * @return if the node can be folded
+	 */
+	@Override
+	public boolean foldable() {
+		return false;
 	}
 }

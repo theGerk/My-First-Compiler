@@ -31,4 +31,11 @@ public abstract class ExpressionNode extends SyntaxTreeNode {
 	ExpressionNode(TokenType returnType) {
 		this.returnType = returnType;
 	}
+
+	/**
+	 * checks for if code folding is possible
+	 *
+	 * @return if the node can be folded
+	 */
+	public abstract boolean foldable();
 }
