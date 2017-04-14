@@ -14,7 +14,10 @@ import java.util.HashMap;
  * @author Benji
  */
 @SuppressWarnings("serial")
-public class LookUp extends HashMap<String, TokenType> {
+public class LookUp {
+
+	private HashMap<String, TokenType> lookup;
+	private HashMap<TokenType, String> reverseLookup;
 
 	/**
 	 * An array of strings corresponding to the TokenType enumerable.
@@ -29,11 +32,31 @@ public class LookUp extends HashMap<String, TokenType> {
 	 * Private default constructor, set's up the map.
 	 */
 	private LookUp() {
+		TokenType[] values = TokenType.values();
 
 		//init the lookup
 		for (int i = 0; i < KEYWORD_ARRAY.length; i++) {
-			put(KEYWORD_ARRAY[i], TokenType.values()[i]);
+			lookup.put(KEYWORD_ARRAY[i], values[i]);
+			reverseLookup.put(values[i], KEYWORD_ARRAY[i]);
 		}
+	}
+
+	/**
+	 *
+	 * @param key Keyword or Symbol
+	 * @return TokenType associated with it
+	 */
+	public TokenType get(String key) {
+		return lookup.get(key);
+	}
+
+	/**
+	 *
+	 * @param key TokenType
+	 * @return String of symbol that was read to get the token type
+	 */
+	public String teg(TokenType key) {
+		return reverseLookup.get(key);
 	}
 
 	/**

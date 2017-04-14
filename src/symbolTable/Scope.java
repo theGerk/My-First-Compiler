@@ -7,6 +7,8 @@ package symboltable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javafx.util.Pair;
 import scanner.TokenType;
 
 /**
@@ -46,29 +48,62 @@ public class Scope {
 	private final HashMap<String, Symbol> map = new HashMap<>();
 
 	/**
-	 * Finds a variable in the current scope from the string representation.
+	 * returns a symbol that is accessible in the current scope by it's name
 	 *
-	 * @param name string of identifier
-	 * @return the kind of the variable if it exists, otherwise null
+	 * @param name the identifier
+	 * @return the symbol, null if it does not exist
 	 */
-	public IdentifierKind getKind(String name) {
+	private Symbol getSymbol(String name) {
 		Scope current = this;
 		Symbol output = null;
 		do {
 			output = current.map.get(name);
 			current = current.parentScope;
 		} while (output == null && current != null);
-		return (output != null) ? output.kind : null;
+		return output;
+	}
+
+	/**
+	 * returns the kind associated with an identifier
+	 *
+	 * @param name the identifier
+	 * @return the kind, null if it does not exist
+	 */
+	public IdentifierKind getKind(String name) {
+		Symbol output = getSymbol(name);
+		return output == null ? null : output.kind;
+	}
+
+	/**
+	 * returns the type associated with an identifier
+	 *
+	 * @param name the identifier
+	 * @return the type, null if it does not exist
+	 */
+	public TokenType getType(String name) {
+		Symbol output = getSymbol(name);
+		return output == null ? null : output.type;
+	}
+
+	/**
+	 * returns the scope associated with an identifier
+	 *
+	 * @param name the identifier
+	 * @return the scope, null if it does not exist
+	 */
+	public Scope getScope(String name) {
+		Symbol output = getSymbol(name);
+		return output == null ? null : output.scope;
 	}
 
 	/**
 	 * Returns if there a variable with this name that exists.
 	 *
 	 * @param name identifier name
-	 * @return
+	 * @return a variable with this name exists
 	 */
 	public boolean exists(String name) {
-		return getKind(name) != null;
+		return getSymbol(name) != null;
 	}
 
 	/**
@@ -86,7 +121,8 @@ public class Scope {
 		final public String name;
 		public IdentifierKind kind;
 		public TokenType type;
-		public Scope local;					//only used in procedures & functions (and programs)
+		public Scope scope;					//only used in procedures & functions (and programs)
+		public ArrayList<Pair<String, TokenType>> args = null;
 
 		/**
 		 * trivial constructor
@@ -99,6 +135,11 @@ public class Scope {
 			this.kind = kind;
 		}
 
+		/**
+		 * To string override
+		 *
+		 * @return string representation of Symbol
+		 */
 		@Override
 		public String toString() {
 			return toString("");
@@ -117,7 +158,11 @@ public class Scope {
 			} else {
 				output.append(kind.toString());
 			}
-
+			if (args != null) {
+				for (Pair<String, TokenType> arg : args) {
+					output.append(scope.getSymbol(arg.getKey()).toString(t + '\t'));
+				}
+			}
 			return output.toString();
 		}
 	}
@@ -134,32 +179,61 @@ public class Scope {
 
 	public void put(String id) throws Exception {
 		if (!isValidId(id)) {
-			throw new Exception("Invalid ID");
+			throw new Exception("Invalid id: " + id);
 		}
 		map.put(id, new Symbol(id));
 	}
 
 	public void set(String id, TokenType type) throws Exception {
 		Symbol s = map.get(id);
-		if (s.type == null) {
-			throw new Exception("type already set");
+		if (s.type != null) {
+			throw new Exception("type already set: " + id);
 		}
 		s.type = type;
 	}
 
 	public void set(String id, Scope scope) throws Exception {
 		Symbol s = map.get(id);
-		if (s.type == null) {
-			throw new Exception("scope is already set");
+		if (s.type != null) {
+			throw new Exception("scope is already set: " + id);
 		}
-		s.local = scope;
+		s.scope = scope;
 	}
 
 	public void set(String id, IdentifierKind kind) throws Exception {
 		Symbol s = map.get(id);
-		if (s.kind == null) {
-			throw new Exception("kind is already set");
+		if (s.kind != null) {
+			throw new Exception("kind is already set: " + id);
 		}
 		s.kind = kind;
+		if (kind == IdentifierKind.FUNC) {
+			s.args = new ArrayList<>();
+		}
+	}
+
+	public void addArg(String funcID, String argID, TokenType argType) throws Exception {
+		Symbol s = map.get(funcID);
+		if (s == null || s.kind != IdentifierKind.FUNC) {
+			throw new Exception(funcID + " is not a function");
+		} else if (s.args.contains(argID)) {
+			throw new Exception(argID + " already exists in scope");
+		} else {
+			s.args.add(new Pair<>(argID, argType));
+		}
+	}
+
+	public ArrayList<TokenType> getArgsTypes(String id) throws Exception {
+		Symbol s = getSymbol(id);
+		if (s == null) {
+			throw new Exception(id + " is not an identifier");
+		} else if (s.args == null) {
+			throw new Exception(id + " is not a function");
+		} else {
+			ArrayList<TokenType> output = new ArrayList();
+			for (Pair<String, TokenType> p : s.args) {
+				output.add(p.getValue());
+			}
+			return output;
+		}
 	}
 }

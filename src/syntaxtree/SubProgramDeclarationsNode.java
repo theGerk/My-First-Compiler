@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class SubProgramDeclarationsNode extends SyntaxTreeNode {
 
-	private ArrayList<SubProgramNode> procs = new ArrayList<SubProgramNode>();
+	private ArrayList<SubProgramNode> procs = new ArrayList<>();
 
 	public void addSubProgramDeclaration(SubProgramNode aSubProgram) {
 		procs.add(aSubProgram);

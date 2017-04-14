@@ -12,8 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javafx.util.Pair;
 
 import scanner.Scanner;
@@ -96,15 +95,20 @@ public class Parser {
 	 * @return Program node with all useful information
 	 */
 	public ProgramNode program() {
-		ProgramNode output;
-		match(TokenType.PROGRAM);
-		output = new ProgramNode(match(TokenType.ID));	//TODO maybe add symbol table reference
-		match(TokenType.SEMICOLON);
-		output.setVariables(declarations());
-		output.setFunctions(subprogramDeclarations());
-		output.setMain(compoundStatement());
-		match(TokenType.PERIOD);
-		return output;
+		try {
+			ProgramNode output;
+			match(TokenType.PROGRAM);
+			output = new ProgramNode(match(TokenType.ID));	//TODO maybe add symbol table reference
+			match(TokenType.SEMICOLON);
+			output.setVariables(declarations());
+			output.setFunctions(subprogramDeclarations());
+			output.setMain(compoundStatement());
+			match(TokenType.PERIOD);
+			return output;
+		} catch (Exception ex) {
+			error(ex.getMessage());
+			return null;
+		}
 	}
 
 	/**
@@ -112,24 +116,16 @@ public class Parser {
 	 *
 	 * @return list of identifier strings
 	 */
-	public ArrayList<String> identifierList() {
+	public ArrayList<String> identifierList() throws Exception {
 		ArrayList<String> output = new ArrayList<>();
 		String id = match(TokenType.ID);
-		try {
-			currentScope.put(id);
-			output.add(id);
-		} catch (Exception ex) {
-			error("used ID");
-		}
+		currentScope.put(id);
+		output.add(id);
 		while (lookAhead.equals(TokenType.COMMA)) {
 			match(TokenType.COMMA);
 			id = match(TokenType.ID);
-			try {
-				currentScope.put(id);
-				output.add(id);
-			} catch (Exception ex) {
-				error(id + " already in use");
-			}
+			currentScope.put(id);
+			output.add(id);
 		}
 		return output;
 	}
@@ -139,7 +135,7 @@ public class Parser {
 	 *
 	 * @return Declarations node
 	 */
-	public DeclarationsNode declarations() {
+	public DeclarationsNode declarations() throws Exception {
 		DeclarationsNode output = new DeclarationsNode();
 		while (lookAhead.equals(TokenType.VAR)) {
 			match(TokenType.VAR);
@@ -147,17 +143,9 @@ public class Parser {
 			match(TokenType.COLON);
 			Pair<TokenType, IdentifierKind> info = type();
 			for (String identifier : identifierList) {
-				try {
-					currentScope.set(identifier, info.getKey());
-				} catch (Exception ex) {
-					error(identifier + " type already set");
-				}
-				try {
-					currentScope.set(identifier, info.getValue());
-				} catch (Exception ex) {
-					error(identifier + " info already set");
-				}
-				output.addVariable(new VariableNode(identifier));
+				currentScope.set(identifier, info.getKey());
+				currentScope.set(identifier, info.getValue());
+				output.addVariable(new VariableNode(identifier, currentScope.getType(identifier)));
 			}
 			match(TokenType.SEMICOLON);
 		}
@@ -204,7 +192,7 @@ public class Parser {
 	 *
 	 * @return Node
 	 */
-	public SubProgramDeclarationsNode subprogramDeclarations() {
+	public SubProgramDeclarationsNode subprogramDeclarations() throws Exception {
 		SubProgramDeclarationsNode output = new SubProgramDeclarationsNode();
 		while (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
 			output.addSubProgramDeclaration(subprogramDeclaration());
@@ -218,7 +206,7 @@ public class Parser {
 	 *
 	 * @return Node with function's information
 	 */
-	public SubProgramNode subprogramDeclaration() {
+	public SubProgramNode subprogramDeclaration() throws Exception {
 		SubProgramNode output = subprogramHead(); //enters child scope in here
 		output.variables = declarations();
 		output.subFunctions = subprogramDeclarations();
@@ -233,45 +221,49 @@ public class Parser {
 	 *
 	 * @return node with information about the function
 	 */
-	public SubProgramNode subprogramHead() {
+	public SubProgramNode subprogramHead() throws Exception {
 		SubProgramNode output;
 		if (lookAhead.equals(TokenType.FUNCTION)) {
+			//set up function
 			match(TokenType.FUNCTION);
+
+			//add name to symbol table
 			output = new SubProgramNode(match(TokenType.ID));
-			try {
-				currentScope.put(output.name);
-			} catch (Exception ex) {
-				error(output.name + ": invalid ID");
-			}
-			try {
-				currentScope.set(output.name, IdentifierKind.FUNC);
-			} catch (Exception ex) {
-				error(output.name + ": already has kind");
-			}
+			currentScope.put(output.name);
+			currentScope.set(output.name, IdentifierKind.FUNC);
 			currentScope = new Scope(currentScope);	//creates new scope and enters
+
+			//set arguments in syntax tree
 			output.arguments = arguments();
-			match(TokenType.COLON);
-			try {
-				currentScope.getParent().set(output.name, standardType());
-			} catch (Exception ex) {
-				error(output.name + ": already has type set");
+
+			//set arguments in symbol table
+			for (VariableNode var : output.arguments.getVars()) {
+				currentScope.getParent().addArg(output.name, var.getName(), var.getType());
 			}
+
+			match(TokenType.COLON);
+
+			//set type in symbol table
+			currentScope.getParent().set(output.name, standardType());
 			match(TokenType.SEMICOLON);
 		} else {
+
 			match(TokenType.PROCEDURE);
+
+			//add name to symbol table
 			output = new SubProgramNode(match(TokenType.ID));
-			try {
-				currentScope.put(output.name);
-			} catch (Exception ex) {
-				error(output.name + ": invalid ID");
-			}
-			try {
-				currentScope.set(output.name, IdentifierKind.FUNC);
-			} catch (Exception ex) {
-				error(": already has kind set");
-			}
+			currentScope.put(output.name);
+			//add kind to symbol table
+			currentScope.set(output.name, IdentifierKind.FUNC);
+
 			currentScope = new Scope(currentScope);
 			output.arguments = arguments();
+
+			//add arguments to symbol table
+			for (VariableNode var : output.arguments.getVars()) {
+				currentScope.getParent().addArg(output.name, var.getName(), var.getType());
+			}
+
 			match(TokenType.SEMICOLON);
 		}
 		return output;
@@ -282,7 +274,7 @@ public class Parser {
 	 *
 	 * @return
 	 */
-	public DeclarationsNode arguments() {
+	public DeclarationsNode arguments() throws Exception {
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
 			DeclarationsNode output = parameterList();
@@ -297,24 +289,16 @@ public class Parser {
 	 *
 	 * @return parameter list
 	 */
-	public DeclarationsNode parameterList() {		//TODO check to make sure the grammer is right here
+	public DeclarationsNode parameterList() throws Exception {		//TODO check to make sure the grammer is right here
 		DeclarationsNode output = new DeclarationsNode();
 		while (true) {
 			ArrayList<String> ids = identifierList();
 			match(TokenType.COLON);
 			Pair<TokenType, IdentifierKind> info = type();
 			for (String id : ids) {
-				output.addVariable(new VariableNode(id));
-				try {
-					currentScope.set(id, info.getKey());
-				} catch (Exception ex) {
-					error(id + ": type already set");
-				}
-				try {
-					currentScope.set(id, info.getValue());
-				} catch (Exception ex) {
-					error(id + ": kind already set");
-				}
+				output.addVariable(new VariableNode(id, info.getKey()));
+				currentScope.set(id, info.getKey());
+				currentScope.set(id, info.getValue());
 			}
 			if (!lookAhead.equals(TokenType.SEMICOLON)) {
 				return output;
@@ -326,7 +310,7 @@ public class Parser {
 	/**
 	 * eats a compound statement
 	 */
-	public CompoundStatementNode compoundStatement() {
+	public CompoundStatementNode compoundStatement() throws Exception {
 		match(TokenType.BEGIN);
 		CompoundStatementNode output = optionalStatements();
 		match(TokenType.END);
@@ -336,181 +320,210 @@ public class Parser {
 	/**
 	 * eats an optional statements
 	 */
-	public CompoundStatementNode optionalStatements() {
+	public CompoundStatementNode optionalStatements() throws Exception {
 		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {	//TODO double check grammer here
 			return statementList();
 		}
-		return null;
+		return new CompoundStatementNode();
 	}
 
 	/**
 	 * eats a statement list
 	 */
-	public void statementList() {
-		statement();
-		if (lookAhead.equals(TokenType.SEMICOLON)) {
+	public CompoundStatementNode statementList() throws Exception {
+		CompoundStatementNode output = new CompoundStatementNode();
+		output.addStatement(statement());
+		while (lookAhead.equals(TokenType.SEMICOLON)) {
 			match(TokenType.SEMICOLON);
-			statementList();
+			output.addStatement(statement());
 		}
+		return output;
 	}
 
 	/**
 	 * eats a statement
 	 */
-	public void statement() {
+	public StatementNode statement() throws Exception {
 		switch (lookAhead.getType()) {
 			case ID:
 				switch (currentScope.getKind(lookAhead.getLexeme())) {
 					case VAR:
 					case ARR:
-						variable();
+						VariableNode var = variable();
 						match(TokenType.ASSIGNOP);
-						expression();
-						break;
+						ExpressionNode expr = expression();
+						return new AssignmentStatementNode(var, expr);
 					case FUNC:
-						procedureStatement();
-						break;
+						return procedureStatement();
 					default:
-						error("You done goofed");
+						throw new Exception("You done goofed up");
 				}
-				break;
 			case BEGIN:
-				compoundStatement();
-				break;
+				return compoundStatement();
 			case IF:
 				match(TokenType.IF);
-				expression();
+				ExpressionNode condition = expression();
 				match(TokenType.THEN);
-				statement();
+				StatementNode onTrue = statement();
 				match(TokenType.ELSE);
-				statement();
-				break;
+				StatementNode onFalse = statement();
+				return new IfStatementNode(condition, onTrue, onFalse);
 			case WHILE:
 				match(TokenType.WHILE);
-				expression();
+				condition = expression();
 				match(TokenType.DO);
-				statement();
-				break;
+				StatementNode execute = statement();
+				return new WhileLoopNode(condition, execute);
 			case READ:
 				match(TokenType.READ);
 				match(TokenType.LEFTPARANTHESIS);
-				variable();		//breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.
-
-//				if (currentScope.getKind(lookAhead.getLexeme()) == Scope.IdentifierKind.VAR) {
-//					match(TokenType.ID);		//TODO check it is a valid type
-//				} else {
-//					error("can only read variables");
-//				}
+				VariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO get permision
 				match(TokenType.RIGHTPARANTHESIS);
-				break;
+				return new AssignmentStatementNode(variable, new ConsoleReadNode(variable.getType()));
 			case WRITE:
 				match(TokenType.WRITE);
 				match(TokenType.LEFTPARANTHESIS);
-				expression();
+				ExpressionNode expression = expression();
 				match(TokenType.RIGHTPARANTHESIS);
-				break;
+				return new ConsoleWriteNode(expression);
 			default:
-				error("You done goofed");
+				throw new Exception("You done goofed up");
 		}
 	}
 
 	/**
-	 * parses a variable, possibly one in an array, confirms that the Identifier
-	 * is of an array or variable
+	 * parses a variable, possibly one in an array
 	 */
-	public void variable() {
-		switch (currentScope.getKind(match(TokenType.ID))) {
+	public VariableNode variable() throws Exception {
+		VariableNode output;
+		String id = match(TokenType.ID);
+		switch (currentScope.getKind(id)) {
 			case VAR:
+				output = new VariableNode(id, currentScope.getType(id));
 				break;
 			case ARR:
 				match(TokenType.LEFTSQUAREBRACKET);
-				expression();
+				output = new ArrayVarNode(id, expression(), currentScope.getType(id));
 				match(TokenType.RIGHTSQUAREBRACKET);
 				break;
 			default:
-				error("Invalid ID");
+				throw new Exception("Invalid id");
 		}
+		return output;
 	}
 
 	/**
 	 * eats a procedure statement
 	 */
-	public void procedureStatement() {
-		match(TokenType.ID);
+	public ProcedureStatementNode procedureStatement() throws Exception {
+		ArrayList<ExpressionNode> parameters = new ArrayList<>();
+		String id = match(TokenType.ID);
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
-			expressionList();
+			parameters = expressionList();
 			match(TokenType.RIGHTPARANTHESIS);
 		}
+		return new ProcedureStatementNode(id, parameters, currentScope);
 	}
 
 	/**
 	 * eats an expression list
 	 */
-	public void expressionList() {
-		expression();
-		if (lookAhead.equals(TokenType.COMMA)) {
+	public ArrayList<ExpressionNode> expressionList() throws Exception {
+		ArrayList<ExpressionNode> output = new ArrayList<>();
+		output.add(expression());
+		while (lookAhead.equals(TokenType.COMMA)) {
 			match(TokenType.COMMA);
-			expressionList();
+			output.add(expression());
 		}
+		return output;
 	}
 
 	/**
 	 * eats an expression
 	 */
-	public void expression() {
-		simpleExpression();
+	public ExpressionNode expression() throws Exception {
+		ExpressionNode firstPart = simpleExpression();
 		if (relop()) {
-			match(lookAhead.getType());
-			simpleExpression();
+			TokenType operator = lookAhead.getType();
+			match(operator);
+			ExpressionNode secondPart = simpleExpression();
+			return new BinaryOperationNode(firstPart, operator, secondPart);
+		} else {
+			return firstPart;
 		}
 	}
 
 	/**
 	 * eats a simple expression
 	 */
-	public void simpleExpression() {
+	public ExpressionNode simpleExpression() throws Exception {
+		ExpressionNode output;
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
-			sign();
+			TokenType sign = sign();
+			output = term();
+			output = new UnaryOperationNode(sign, output);
+		} else {
+			output = term();
 		}
-		term();
-		simplePart();
+		Pair<TokenType, ExpressionNode> simplePart = simplePart();
+		if (simplePart != null) {
+			output = new BinaryOperationNode(output, simplePart.getKey(), simplePart.getValue());
+		}
+		return output;
 	}
 
 	/**
-	 * eats a simple part
+	 * May return null, need to check for that
 	 */
-	public void simplePart() {
+	public Pair<TokenType, ExpressionNode> simplePart() throws Exception {
 		if (addop()) {
-			match(lookAhead.getType());
-			term();
-			simplePart();
+			TokenType type = lookAhead.getType();
+			match(type);
+			ExpressionNode expr = term();
+			Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = simplePart();
+			if (tokenTypeExpressionNodePair != null) {
+				expr = new BinaryOperationNode(expr, tokenTypeExpressionNodePair.getKey(), tokenTypeExpressionNodePair.getValue());
+			}
+			return new Pair<>(type, expr);
+		} else {
+			return null;
 		}
 	}
 
 	/**
 	 * eats a term
 	 */
-	public void term() {
-		factor();
-		termPart();
+	public ExpressionNode term() throws Exception {
+		ExpressionNode output = factor();
+		Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = termPart();
+		if (tokenTypeExpressionNodePair != null) {
+			output = new BinaryOperationNode(output, tokenTypeExpressionNodePair.getKey(), tokenTypeExpressionNodePair.getValue());
+		}
+		return output;
 	}
 
 	/**
-	 * eats a term part
+	 * May return null, need to check for that
 	 */
-	public void termPart() {
+	public Pair<TokenType, ExpressionNode> termPart() throws Exception {
 		if (mulop()) {
-			match(lookAhead.getType());
-			factor();
-			termPart();
+			TokenType type = lookAhead.getType();
+			match(type);
+			ExpressionNode expr = factor();
+			Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = termPart();
+			if(tokenTypeExpressionNodePair!=null)
+				expr = new BinaryOperationNode(expr, tokenTypeExpressionNodePair.getKey(), tokenTypeExpressionNodePair.getValue());
+			return new Pair<>(type,expr);
+		} else {
+			return null;
 		}
 	}
 
 	/**
-	 * eats a factor
+	 * returns a factor
 	 */
-	public void factor() {
+	public ExpressionNode factor() throws Exception {
 		switch (lookAhead.getType()) {
 			case ID:
 				match(TokenType.ID);
@@ -537,16 +550,20 @@ public class Parser {
 				factor();
 				break;
 			default:
-				error("invalid factor");
+				throw new Exception("invalid factor");
 		}
 	}
 
 	/**
 	 * eats a sign
 	 */
-	public void sign() {
+	public TokenType sign() throws Exception {
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
-			match(lookAhead.getType());
+			TokenType type = lookAhead.getType();
+			match(type);
+			return type;
+		} else {
+			throw new Exception("you done fucked boi");
 		}
 	}
 
