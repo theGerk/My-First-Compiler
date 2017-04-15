@@ -1,5 +1,6 @@
 package syntaxtree;
 
+import com.sun.org.apache.regexp.internal.RE;
 import scanner.LookUp;
 import scanner.TokenType;
 
@@ -159,7 +160,21 @@ public class BinaryOperationNode extends ExpressionNode {
 	 * @return if the node can be folded
 	 */
 	@Override
-	public boolean isFoldable() {
-		return left.isFoldable() && right.isFoldable();
+	public LiteralNode fold() {
+		LiteralNode leftInput = left.fold();
+		LiteralNode RightInput = right.fold();
+
+		if(leftInput == null || RightInput == null){
+			return null;
+		} else {
+			switch(leftInput.getType()){
+				case REAL:{
+					RealLiteralNode leftVal = (RealLiteralNode)leftInput;
+				}
+				case INTEGER:{
+					IntLiteralNode leftVal = (IntLiteralNode)leftInput;
+				}
+			}
+		}
 	}
 }

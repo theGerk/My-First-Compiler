@@ -11,7 +11,7 @@ import symboltable.Scope;
 public class VariableNode extends IdentifierNodeBase {
 
 	/**
-	 * Creates a ValueNode with the given attribute.
+	 * Creates a LiteralNode with the given attribute.
 	 *
 	 * @param id The attribute for this value node.
 	 */
@@ -47,15 +47,5 @@ public class VariableNode extends IdentifierNodeBase {
 			}
 		}
 		return answer;
-	}
-	
-	/**
-	 * checks for if code folding is possible
-	 *
-	 * @return if the node can be folded
-	 */
-	@Override
-	public boolean isFoldable() {
-		return false;
 	}
 }

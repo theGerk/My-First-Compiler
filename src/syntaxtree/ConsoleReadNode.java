@@ -23,7 +23,7 @@ public class ConsoleReadNode extends ExpressionNode {
 	 * @return if the node can be folded
 	 */
 	@Override
-	public boolean isFoldable() {
+	public boolean fold() {
 		return false;
 	}
 	

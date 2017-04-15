@@ -37,5 +37,5 @@ public abstract class ExpressionNode extends SyntaxTreeNode {
 	 *
 	 * @return if the node can be folded
 	 */
-	public abstract boolean isFoldable();
+	public abstract LiteralNode fold();
 }

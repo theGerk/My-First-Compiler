@@ -548,12 +548,10 @@ public class Parser {
 					return new VariableNode(id, currentScope);
 				}
 			}
-			case REAL_LITERAL:{
-				LiteralRealNode output = new LiteralRealNode(Float.parseFloat(match(TokenType.REAL_LITERAL)));
-			}
-			case INT_LITERAL: {
-				LiteralIntNode output = new LiteralIntNode(Integer.parseInt(match(TokenType.INT_LITERAL)));
-			}
+			case REAL_LITERAL:
+				return new RealLiteralNode(Float.parseFloat(match(TokenType.REAL_LITERAL)));
+			case INT_LITERAL:
+				return new IntLiteralNode(Integer.parseInt(match(TokenType.INT_LITERAL)));
 			case LEFTPARANTHESIS: {
 				match(TokenType.LEFTPARANTHESIS);
 				ExpressionNode expression = expression();

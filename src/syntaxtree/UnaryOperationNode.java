@@ -24,7 +24,7 @@ public class UnaryOperationNode extends ExpressionNode {
 	}
 
 	private static TokenType outType(TokenType op, TokenType expr) throws Exception {
-		Exception expt = new Exception(String.format(OUT_TYPE_EXCEPTION_FORMATE_STRING, LookUp.LOOKUP.teg(op), expr));
+		Exception expt = new Exception(String.format(OUT_TYPE_EXCEPTION_FORMAT_STRING, LookUp.LOOKUP.teg(op), expr));
 		switch (op) {
 			//bitwise operations
 			// int -> int
@@ -46,7 +46,7 @@ public class UnaryOperationNode extends ExpressionNode {
 				throw new Exception(LookUp.LOOKUP.teg(op) + " is not a valid unary operator");
 		}
 	}
-	private static final String OUT_TYPE_EXCEPTION_FORMATE_STRING = "%s %s is not valid";
+	private static final String OUT_TYPE_EXCEPTION_FORMAT_STRING = "%s %s is not valid";
 
 	@Override
 	public String indentedToString(int level) {
@@ -54,12 +54,38 @@ public class UnaryOperationNode extends ExpressionNode {
 	}
 	
 	/**
-	 * checks for if code folding is possible
+	 * folds code, returns value node if possible, null otherwise
 	 *
-	 * @return if the node can be folded
+	 * @return the folded value, null if not possible
 	 */
 	@Override
-	public boolean isFoldable() {
-		return expression.isFoldable();
+	public LiteralNode fold() {
+		LiteralNode input = expression.fold();
+		if(input == null) {
+			return null;
+		} else {
+			switch (input.getType()){
+				case REAL:{
+					RealLiteralNode val = (RealLiteralNode)input;
+					switch (operator){
+						case PLUS:
+							return val;
+						case MINUS:
+							return new RealLiteralNode(-val.getValue());
+					}
+				}
+				case INTEGER:{
+					IntLiteralNode val = (IntLiteralNode)input;
+					switch (operator){
+						case NOT:
+							return new IntLiteralNode(~val.getValue());
+						case PLUS:
+							return val;
+						case MINUS:
+							return new IntLiteralNode(-val.getValue());
+					}
+				}
+			}
+		}
 	}
 }

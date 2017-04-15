@@ -27,4 +27,9 @@ public abstract class IdentifierNodeBase extends ExpressionNode{
 	public String getName() {
 		return (this.name);
 	}
+
+	@Override
+	public LiteralNode fold(){
+		return null;
+	}
 }

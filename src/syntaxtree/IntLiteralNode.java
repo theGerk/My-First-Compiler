@@ -1,18 +1,16 @@
 package syntaxtree;
 
 import scanner.TokenType;
-import symboltable.Scope;
 
 /**
  * Created by Benji on 4/15/2017.
  */
-public class LiteralRealNode extends ValueNode {
+public class IntLiteralNode extends LiteralNode {
+	private final int value;
 
-	private final float value;
-
-	public LiteralRealNode(float value) {
-		super(TokenType.REAL);
-		this.value = value;
+	public IntLiteralNode(int input) {
+		super(TokenType.INTEGER);
+		value = input;
 	}
 
 	/**
@@ -25,5 +23,13 @@ public class LiteralRealNode extends ValueNode {
 	@Override
 	public String indentedToString(int level) {
 		return indentation(level) + value;
+	}
+
+	/**
+	 * gets value associated with node
+	 * @return the value
+	 */
+	public int getValue() {
+		return value;
 	}
 }

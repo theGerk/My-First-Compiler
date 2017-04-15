@@ -12,14 +12,14 @@ import scanner.TokenType;
  *
  * @author Erik Steinmetz
  */
-public abstract class ValueNode extends ExpressionNode {	//TODO add folding
+public abstract class LiteralNode extends ExpressionNode {	//TODO add folding
 
 	/**
-	 * Creates a ValueNode with the given attribute.
+	 * Creates a LiteralNode with the given attribute.
 	 *
 	 * @param type The type of node it is
 	 */
-	public ValueNode(TokenType type) {
+	public LiteralNode(TokenType type) {
 		super(type);
 	}
 
@@ -29,7 +29,7 @@ public abstract class ValueNode extends ExpressionNode {	//TODO add folding
 	 * @return if the node can be folded
 	 */
 	@Override
-	public boolean isFoldable() {
+	public boolean fold() {
 		return true;
 	}
 }
