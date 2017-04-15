@@ -265,7 +265,7 @@ public class Scanner {
    *
    * @return      <code>false</code>, iff there was new input.
    * 
-   * @exception   java.io.IOException  if any I/O-Error occurs
+   * @exception   java.io.IOException  if any IntLiteralNode/O-Error occurs
    */
   private boolean zzRefill() throws java.io.IOException {
 
@@ -456,10 +456,10 @@ public class Scanner {
 
   /**
    * Resumes scanning until the next regular expression is matched,
-   * the end of input is encountered or an I/O-Error occurs.
+   * the end of input is encountered or an IntLiteralNode/O-Error occurs.
    *
    * @return      the next token
-   * @exception   java.io.IOException  if any I/O-Error occurs
+   * @exception   java.io.IOException  if any IntLiteralNode/O-Error occurs
    */
   public Token nextToken() throws java.io.IOException {
     int zzInput;
@@ -508,7 +508,7 @@ public class Scanner {
             zzCurrentPos  = zzCurrentPosL;
             zzMarkedPos   = zzMarkedPosL;
             boolean eof = zzRefill();
-            // get translated positions and possibly new buffer
+            // getValue translated positions and possibly new buffer
             zzCurrentPosL  = zzCurrentPos;
             zzMarkedPosL   = zzMarkedPos;
             zzBufferL      = zzBuffer;

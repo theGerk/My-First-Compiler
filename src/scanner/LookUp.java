@@ -25,7 +25,7 @@ public class LookUp {
 	private static final String[] KEYWORD_ARRAY = new String[]{
 		"and", "array", "begin", "div", "do", "else", "end", "function", "if", "integer", "mod", "not", "of", "or", "procedure", "program", "real", "then", "var", "while",
 		";", ",", ".", ":", "[", "]", "(", ")", "+", "-", "=", "<>", "<", ">", "<=", ">=", "*", "/", ":=",
-		"read", "write" //not sure I want these here, but I think it will work.
+		"read", "write" //not sure IntLiteralNode want these here, but IntLiteralNode think it will work.
 	};
 
 	/**
@@ -51,9 +51,9 @@ public class LookUp {
 	}
 
 	/**
-	 *reverse of get
+	 *reverse of getValue
 	 * @param key TokenType
-	 * @return String of symbol that was read to get the token type
+	 * @return String of symbol that was read to getValue the token type
 	 */
 	public String teg(TokenType key) {
 		return reverseLookup.get(key);

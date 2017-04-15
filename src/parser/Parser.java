@@ -61,7 +61,7 @@ public class Parser {
 		try {
 			lookAhead = scanner.nextToken();
 		} catch (IOException ex) {
-			error("Could not get next token");
+			error("Could not getValue next token");
 		}
 	}
 
@@ -81,7 +81,7 @@ public class Parser {
 					this.lookAhead = new Token("");//not sure if this is valid
 				}
 			} catch (IOException ex) {
-				error("cannot get next token");
+				error("cannot getValue next token");
 			}
 		} else {
 			error("invalid match. expected " + expected + " recived " + this.lookAhead.getType());
@@ -380,7 +380,7 @@ public class Parser {
 			case READ:
 				match(TokenType.READ);
 				match(TokenType.LEFTPARANTHESIS);
-				VariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO get permission
+				VariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO getValue permission
 				match(TokenType.RIGHTPARANTHESIS);
 				return new VariableAssignmentStatementNode(variable, new ConsoleReadNode(variable.getType()));
 			case WRITE:

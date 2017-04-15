@@ -30,16 +30,4 @@ public class DeclarationsNode extends SyntaxTreeNode {
 		return answer;
 	}
 
-	/**
-	 * Adds offset for all symbols in symbol table that need it
-	 *
-	 * @param symbolTable the current scope
-	 * @param indent      tabs
-	 *
-	 * @return Mips assembly
-	 */
-	@Override
-	protected String toMips(Scope symbolTable, String indent) {
-		int offset
-	}
 }
