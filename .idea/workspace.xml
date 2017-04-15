@@ -1,0 +1,1792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4fef48a5-d5a9-4da6-8d48-6238ceaa6099" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/syntaxtree/FunctionAssignmentStatementNode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/Parser.java" afterPath="$PROJECT_DIR$/src/parser/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scanner/LookUp.java" afterPath="$PROJECT_DIR$/src/scanner/LookUp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symbolTable/Scope.java" afterPath="$PROJECT_DIR$/src/symbolTable/Scope.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ValueNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ValueNode.java" />
+    </list>
+    <ignored path="Compiler.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Compiler" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="SubProgramDeclarationsNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationsNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AssignmentStatementNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="23" column="9" lean-forward="false" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubProgramNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+              <folding>
+                <marker date="1492199555117" expanded="true" signature="1098:1274" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ValueNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/ValueNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#ValueNode#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExpressionNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UnaryOperationNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/UnaryOperationNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="546">
+              <caret line="62" column="36" lean-forward="false" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
+              <folding>
+                <element signature="docComment;method#foldable#0;class#UnaryOperationNode#0" expanded="true" />
+                <element signature="e#1575#1576#0" expanded="true" />
+                <element signature="e#1610#1611#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SyntaxTreeNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+              <folding>
+                <element signature="docComment;method#toMips#0;class#SyntaxTreeNode#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BinaryOperationNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="156" column="45" lean-forward="false" selection-start-line="156" selection-start-column="45" selection-end-line="156" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="142" column="45" lean-forward="false" selection-start-line="142" selection-start-column="45" selection-end-line="142" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#error#0;class#Parser#0" expanded="true" />
+                <element signature="method#error#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#Parser#0;class#Parser#0" expanded="true" />
+                <element signature="method#Parser#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#match#0;class#Parser#0" expanded="true" />
+                <element signature="method#match#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#program#0;class#Parser#0" expanded="true" />
+                <element signature="method#program#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#identifierList#0;class#Parser#0" expanded="true" />
+                <element signature="method#identifierList#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#declarations#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#type#0;class#Parser#0" expanded="true" />
+                <element signature="method#type#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#standardType#0;class#Parser#0" expanded="true" />
+                <element signature="method#standardType#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
+                <element signature="method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+                <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#subprogramHead#0;class#Parser#0" expanded="true" />
+                <element signature="method#subprogramHead#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#arguments#0;class#Parser#0" expanded="true" />
+                <element signature="method#arguments#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#parameterList#0;class#Parser#0" expanded="true" />
+                <element signature="method#parameterList#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#compoundStatement#0;class#Parser#0" expanded="true" />
+                <element signature="method#compoundStatement#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#optionalStatements#0;class#Parser#0" expanded="true" />
+                <element signature="method#optionalStatements#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#statementList#0;class#Parser#0" expanded="true" />
+                <element signature="method#statementList#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#statement#0;class#Parser#0" expanded="true" />
+                <element signature="method#statement#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#variable#0;class#Parser#0" expanded="true" />
+                <element signature="method#variable#0;class#Parser#0" expanded="true" />
+                <element signature="method#procedureStatement#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#expressionList#0;class#Parser#0" expanded="true" />
+                <element signature="method#expressionList#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#expression#0;class#Parser#0" expanded="true" />
+                <element signature="method#expression#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#simpleExpression#0;class#Parser#0" expanded="true" />
+                <element signature="method#simpleExpression#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#simplePart#0;class#Parser#0" expanded="true" />
+                <element signature="method#simplePart#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#termPart#0;class#Parser#0" expanded="true" />
+                <element signature="method#termPart#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#factor#0;class#Parser#0" expanded="true" />
+                <element signature="method#factor#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#sign#0;class#Parser#0" expanded="true" />
+                <element signature="method#sign#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#relop#0;class#Parser#0" expanded="true" />
+                <marker date="1492201655936" expanded="true" signature="11298:11301" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>FactorNode</find>
+      <find>DIAMOND</find>
+      <find>error</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>throw new Exception</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/syntaxtree/IdentifierListNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ExpressionBaseNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/LiteralNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/RealNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/NotFactorNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Temp1_syntaxtree.zip/syntaxtree/ValueNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/FunctionReturnNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/VariableDeclareNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationsNode.java" />
+        <option value="$PROJECT_DIR$/src/scanner/TokenType.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/OperationNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/IfStatementNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/WhileLoopNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ConsoleWriteNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ProcedureStatementNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/FactorNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ArrayVarNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/VariableNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ConsoleReadNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ValueNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/UnaryOperationNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java" />
+        <option value="$PROJECT_DIR$/src/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationHeaderNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramHeaderNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" />
+        <option value="$PROJECT_DIR$/src/scanner/LookUp.java" />
+        <option value="$PROJECT_DIR$/src/symboltable/Scope.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNode.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="syntaxtree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Bendy\Documents\SchoolCode\Compilers\Compiler\src\syntaxtree" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="true" />
+      <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Compiler" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="GAPID_DISABLE_PCS" value="false" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4fef48a5-d5a9-4da6-8d48-6238ceaa6099" name="Default" comment="" />
+      <created>1491907419973</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1491907419973</updated>
+      <workItem from="1491907422405" duration="4183000" />
+      <workItem from="1491913153992" duration="44000" />
+      <workItem from="1491914625223" duration="1002000" />
+      <workItem from="1491915655801" duration="226000" />
+      <workItem from="1491915933082" duration="1687000" />
+      <workItem from="1491920286064" duration="4399000" />
+      <workItem from="1491976610858" duration="1973000" />
+      <workItem from="1492016728578" duration="10884000" />
+      <workItem from="1492103198867" duration="20267000" />
+      <workItem from="1492140342641" duration="25376000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="70041000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18313642" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/StatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding>
+            <element signature="docComment;class#StatementNode#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2046">
+          <caret line="106" column="29" lean-forward="false" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#error#0;class#Parser#0" expanded="true" />
+            <element signature="method#error#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#Parser#0;class#Parser#0" expanded="true" />
+            <element signature="method#Parser#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#match#0;class#Parser#0" expanded="true" />
+            <element signature="method#match#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#program#0;class#Parser#0" expanded="true" />
+            <element signature="method#program#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#identifierList#0;class#Parser#0" expanded="true" />
+            <element signature="method#identifierList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#declarations#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#type#0;class#Parser#0" expanded="true" />
+            <element signature="method#type#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#standardType#0;class#Parser#0" expanded="true" />
+            <element signature="method#standardType#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
+            <element signature="method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+            <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#subprogramHead#0;class#Parser#0" expanded="true" />
+            <element signature="method#subprogramHead#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#arguments#0;class#Parser#0" expanded="true" />
+            <element signature="method#arguments#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#parameterList#0;class#Parser#0" expanded="true" />
+            <element signature="method#parameterList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#compoundStatement#0;class#Parser#0" expanded="true" />
+            <element signature="method#compoundStatement#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#optionalStatements#0;class#Parser#0" expanded="true" />
+            <element signature="method#optionalStatements#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#statementList#0;class#Parser#0" expanded="true" />
+            <element signature="method#statementList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#statement#0;class#Parser#0" expanded="true" />
+            <element signature="method#statement#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#variable#0;class#Parser#0" expanded="true" />
+            <element signature="method#variable#0;class#Parser#0" expanded="true" />
+            <element signature="method#procedureStatement#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#expressionList#0;class#Parser#0" expanded="true" />
+            <element signature="method#expressionList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#expression#0;class#Parser#0" expanded="true" />
+            <element signature="method#expression#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#simpleExpression#0;class#Parser#0" expanded="true" />
+            <element signature="method#simpleExpression#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#simplePart#0;class#Parser#0" expanded="true" />
+            <element signature="method#simplePart#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#termPart#0;class#Parser#0" expanded="true" />
+            <element signature="method#termPart#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#factor#0;class#Parser#0" expanded="true" />
+            <element signature="method#factor#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#sign#0;class#Parser#0" expanded="true" />
+            <element signature="method#sign#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#relop#0;class#Parser#0" expanded="true" />
+            <marker date="1492201655936" expanded="true" signature="11298:11301" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/IdentifierListNode.java" />
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ProgramNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VariableNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symboltable/Scope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2134">
+          <caret line="113" column="38" lean-forward="false" selection-start-line="113" selection-start-column="38" selection-end-line="113" selection-end-column="38" />
+          <folding>
+            <element signature="class#IdentifierKind#0;class#Scope#0" expanded="false" />
+            <element signature="e#3779#3780#0" expanded="true" />
+            <element signature="e#3807#3808#0" expanded="true" />
+            <element signature="method#toString#1;class#Symbol#0;class#Scope#0" expanded="true" />
+            <element signature="docComment;method#set#0;class#Scope#0" expanded="true" />
+            <element signature="method#set#1;class#Scope#0" expanded="true" />
+            <marker date="1492195389769" expanded="true" signature="5397:5495" ph="{...}" />
+            <marker date="1492195389769" expanded="true" signature="5582:6305" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/syntaxtree.DeclarationsNode">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>syntaxtree.DeclarationsNode</OriginalElement>
+          <nodes>
+            <node x="5.5" y="0.0">syntaxtree.SyntaxTreeNode</node>
+            <node x="0.0" y="86.0">syntaxtree.DeclarationsNode</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="syntaxtree.DeclarationsNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="0.0" y="18.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-227.0" y="-121.0" />
+          <SelectedNodes>
+            <node>syntaxtree.DeclarationsNode</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/IdentifierListNode.java" />
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/CompoundStatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="50" lean-forward="false" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VariableNodeBaseImpl.java" />
+    <entry file="uml://JAVA/">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement />
+          <nodes>
+            <node x="227.0" y="0.0">syntaxtree</node>
+            <node x="179.0" y="324.0">com</node>
+            <node x="212.0" y="81.0">netscape</node>
+            <node x="195.0" y="162.0">oracle</node>
+            <node x="172.0" y="405.0">org</node>
+            <node x="340.0" y="405.0">sun</node>
+            <node x="0.0" y="0.0">symboltable</node>
+            <node x="0.0" y="81.0">META-INF</node>
+            <node x="0.0" y="486.0">jdk</node>
+            <node x="0.0" y="405.0">java</node>
+            <node x="0.0" y="243.0">parser</node>
+            <node x="0.0" y="324.0">javax</node>
+            <node x="0.0" y="162.0">scanner</node>
+            <node x="186.0" y="243.0">javafx</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="-316.0" y="77.0" />
+          <SelectedNodes>
+            <node>syntaxtree</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MODULES/mdl-Compiler">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MODULES</ID>
+          <OriginalElement>mdl-Compiler</OriginalElement>
+          <nodes>
+            <node x="" y="">mdl-Compiler</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="82.0" y="18.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VariableNodeBase.java" />
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/LiteralNode.java" />
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/RealNode.java" />
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ExpressionBaseNode.java" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_syntaxtree.zip/syntaxtree/ValueNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/FunctionReturnNode.java" />
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VariableNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/NotFactorNode.java" />
+    <entry file="file://$PROJECT_DIR$/src/scanner/TokenType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#698#0" expanded="false" />
+            <element signature="docComment;class#TokenType#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scanner/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#1971#0" expanded="false" />
+            <element signature="docComment;class#Token#0" expanded="false" />
+            <element signature="docComment;field#type#0;class#Token#0" expanded="false" />
+            <element signature="docComment;field#input#0;class#Token#0" expanded="false" />
+            <element signature="docComment;method#Token#0;class#Token#0" expanded="false" />
+            <element signature="method#Token#0;class#Token#0" expanded="false" />
+            <element signature="docComment;method#Token#1;class#Token#0" expanded="false" />
+            <element signature="method#Token#1;class#Token#0" expanded="false" />
+            <element signature="docComment;method#getLexeme#0;class#Token#0" expanded="false" />
+            <element signature="e#1104#1105#0" expanded="false" />
+            <element signature="e#1123#1124#0" expanded="false" />
+            <element signature="docComment;method#toString#0;class#Token#0" expanded="false" />
+            <element signature="e#1273#1274#0" expanded="false" />
+            <element signature="e#1309#1310#0" expanded="false" />
+            <element signature="docComment;method#getType#0;class#Token#0" expanded="false" />
+            <element signature="e#1419#1420#0" expanded="false" />
+            <element signature="e#1437#1438#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#Token#0" expanded="false" />
+            <element signature="e#1659#1660#0" expanded="false" />
+            <element signature="e#1700#1701#0" expanded="false" />
+            <element signature="docComment;method#equals#1;class#Token#0" expanded="false" />
+            <element signature="method#equals#1;class#Token#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/OperationNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/StatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding>
+            <element signature="docComment;class#StatementNode#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ConsoleRead.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/IfStatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="17" column="75" lean-forward="false" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
+          <folding>
+            <element signature="docComment;class#IfStatementNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#IfStatementNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/WhileLoopNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="19" column="31" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#indentedToString#0;class#WhileLoopNode#0" expanded="true" />
+            <element signature="e#731#732#0" expanded="true" />
+            <element signature="e#749#750#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ConsoleWriteNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding>
+            <element signature="docComment;class#ConsoleWriteNode#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#264#265#0" expanded="true" />
+            <element signature="docComment;method#indentedToString#0;class#ConsoleWriteNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#ConsoleWriteNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/FactorNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ConsoleReadNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding>
+            <element signature="docComment;method#foldable#0;class#ConsoleReadNode#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#542#543#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayVarNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ArrayVarNode#0" expanded="true" />
+            <element signature="docComment;method#indentedToString#0;class#ArrayVarNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#ArrayVarNode#0" expanded="true" />
+            <element signature="docComment;method#ArrayVarNode#0;class#ArrayVarNode#0" expanded="true" />
+            <element signature="method#ArrayVarNode#0;class#ArrayVarNode#0" expanded="true" />
+            <element signature="docComment;method#ArrayVarNode#1;class#ArrayVarNode#0" expanded="true" />
+            <element signature="method#ArrayVarNode#1;class#ArrayVarNode#0" expanded="true" />
+            <element signature="method#validateID#0;class#ArrayVarNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VariableNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="717">
+          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#VariableNode#0" expanded="true" />
+            <element signature="docComment;field#name#0;class#VariableNode#0" expanded="true" />
+            <element signature="docComment;method#VariableNode#0;class#VariableNode#0" expanded="true" />
+            <element signature="method#VariableNode#0;class#VariableNode#0" expanded="true" />
+            <element signature="method#VariableNode#1;class#VariableNode#0" expanded="true" />
+            <element signature="method#validateID#0;class#VariableNode#0" expanded="true" />
+            <element signature="docComment;method#getName#0;class#VariableNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#VariableNode#0" expanded="true" />
+            <element signature="method#equals#0;class#VariableNode#0" expanded="true" />
+            <element signature="docComment;method#foldable#0;class#VariableNode#0" expanded="true" />
+            <element signature="e#1741#1742#0" expanded="true" />
+            <element signature="e#1760#1761#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ProcedureStatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ProcedureStatementNode#0" expanded="true" />
+            <element signature="docComment;method#ProcedureStatementNode#0;class#ProcedureStatementNode#0" expanded="true" />
+            <element signature="docComment;method#indentedToString#0;class#ProcedureStatementNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#ProcedureStatementNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramHeaderNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="76" lean-forward="false" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="docComment;method#toMips#0;class#SyntaxTreeNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/UnaryOperationNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="62" column="36" lean-forward="false" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
+          <folding>
+            <element signature="docComment;method#foldable#0;class#UnaryOperationNode#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+            <element signature="e#1610#1611#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="156" column="45" lean-forward="false" selection-start-line="156" selection-start-column="45" selection-end-line="156" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <marker date="1492199555117" expanded="true" signature="1098:1274" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ValueNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ValueNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/syntaxtree">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>syntaxtree</OriginalElement>
+          <nodes>
+            <node x="1860.0" y="192.0">syntaxtree.BinaryOperationNode</node>
+            <node x="319.0" y="192.0">syntaxtree.ConsoleWriteNode</node>
+            <node x="785.9999999999999" y="192.0">syntaxtree.IfStatementNode</node>
+            <node x="790.4999999999999" y="96.0">syntaxtree.StatementNode</node>
+            <node x="507.4999999999999" y="96.0">syntaxtree.SubProgramDeclarationsNode</node>
+            <node x="2669.0" y="192.0">syntaxtree.FunctionExpressionNode</node>
+            <node x="2386.0" y="96.0">syntaxtree.ProgramNode</node>
+            <node x="2464.0" y="192.0">syntaxtree.ConsoleReadNode</node>
+            <node x="1414.5" y="0.0">syntaxtree.SyntaxTreeNode</node>
+            <node x="1686.0" y="278.0">syntaxtree.ArrayVarNode</node>
+            <node x="2309.0" y="192.0">syntaxtree.ValueNode</node>
+            <node x="1424.0" y="192.0">syntaxtree.AssignmentStatementNode</node>
+            <node x="525.9999999999999" y="192.0">syntaxtree.CompoundStatementNode</node>
+            <node x="307.5" y="96.0">syntaxtree.SubProgramNode</node>
+            <node x="1610.0" y="96.0">syntaxtree.SubProgramHeadNode</node>
+            <node x="2086.0" y="192.0">syntaxtree.UnaryOperationNode</node>
+            <node x="980.9999999999999" y="192.0">syntaxtree.WhileLoopNode</node>
+            <node x="2198.0" y="96.0">syntaxtree.ExpressionNode</node>
+            <node x="0.0" y="192.0">syntaxtree.FunctionAssignmentStatementNode</node>
+            <node x="1171.0" y="192.0">syntaxtree.ProcedureStatementNode</node>
+            <node x="1687.0" y="192.0">syntaxtree.VariableNode</node>
+            <node x="1409.0" y="96.0">syntaxtree.DeclarationsNode</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="syntaxtree.ConsoleWriteNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-18.0" />
+              <point x="412.5" y="162.0" />
+              <point x="826.0714285714284" y="162.0" />
+              <point x="-47.428571428571445" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.SubProgramDeclarationsNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="638.9999999999999" y="66.0" />
+              <point x="1450.928571428571" y="66.0" />
+              <point x="-48.57142857142867" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.IfStatementNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-18.0" />
+              <point x="0.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.SubProgramNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="397.5" y="56.0" />
+              <point x="1426.6428571428569" y="56.0" />
+              <point x="-72.85714285714289" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.VariableNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-18.0" />
+              <point x="1763.5" y="152.0" />
+              <point x="2212.0" y="152.0" />
+              <point x="-70.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.AssignmentStatementNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-18.0" />
+              <point x="1545.5" y="152.0" />
+              <point x="944.642857142857" y="152.0" />
+              <point x="71.14285714285711" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.UnaryOperationNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-18.0" />
+              <point x="2187.5" y="172.0" />
+              <point x="2268.0" y="172.0" />
+              <point x="-14.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.SubProgramHeadNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="1718.0" y="76.0" />
+              <point x="1523.7857142857142" y="76.0" />
+              <point x="24.28571428571422" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.ConsoleReadNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-18.0" />
+              <point x="2556.5" y="162.0" />
+              <point x="2324.0" y="162.0" />
+              <point x="42.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.ProgramNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="2463.5" y="56.0" />
+              <point x="1572.3571428571427" y="56.0" />
+              <point x="72.85714285714289" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.WhileLoopNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-18.0" />
+              <point x="1066.0" y="172.0" />
+              <point x="897.2142857142856" y="172.0" />
+              <point x="23.714285714285666" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.StatementNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="873.4999999999999" y="76.0" />
+              <point x="1475.2142857142858" y="76.0" />
+              <point x="-24.28571428571422" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.ProcedureStatementNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-18.0" />
+              <point x="1287.5" y="162.0" />
+              <point x="920.9285714285713" y="162.0" />
+              <point x="47.428571428571445" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.ArrayVarNode" target="syntaxtree.VariableNode">
+              <point x="0.0" y="-18.0" />
+              <point x="0.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.ValueNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-18.0" />
+              <point x="2376.5" y="172.0" />
+              <point x="2296.0" y="172.0" />
+              <point x="14.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.DeclarationsNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="0.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.ExpressionNode" target="syntaxtree.SyntaxTreeNode">
+              <point x="0.0" y="-18.0" />
+              <point x="2282.0" y="66.0" />
+              <point x="1548.0714285714284" y="66.0" />
+              <point x="48.57142857142867" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.FunctionAssignmentStatementNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-18.0" />
+              <point x="149.5" y="152.0" />
+              <point x="802.3571428571428" y="152.0" />
+              <point x="-71.14285714285711" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.BinaryOperationNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-18.0" />
+              <point x="1963.0" y="162.0" />
+              <point x="2240.0" y="162.0" />
+              <point x="-42.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.FunctionExpressionNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-18.0" />
+              <point x="2781.0" y="152.0" />
+              <point x="2352.0" y="152.0" />
+              <point x="70.0" y="18.0" />
+            </edge>
+            <edge source="syntaxtree.CompoundStatementNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-18.0" />
+              <point x="645.9999999999999" y="172.0" />
+              <point x="849.7857142857142" y="172.0" />
+              <point x="-23.714285714285666" y="18.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.2" x="1908.0" y="170.50018927564292" />
+          <SelectedNodes>
+            <node>syntaxtree.FunctionExpressionNode</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="method#FunctionExpressionNode#0;class#FunctionExpressionNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ProgramNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="54" column="73" lean-forward="false" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="73" />
+          <folding>
+            <element signature="method#ProgramNode#0;class#ProgramNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#ProgramNode#0" expanded="true" />
+            <element signature="docComment;method#toMips#0;class#ProgramNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symboltable/Scope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-231">
+          <caret line="249" column="62" lean-forward="true" selection-start-line="249" selection-start-column="62" selection-end-line="249" selection-end-column="62" />
+          <folding>
+            <element signature="class#IdentifierKind#0;class#Scope#0" expanded="false" />
+            <element signature="e#3779#3780#0" expanded="true" />
+            <element signature="e#3807#3808#0" expanded="true" />
+            <element signature="method#toString#1;class#Symbol#0;class#Scope#0" expanded="true" />
+            <element signature="docComment;method#set#0;class#Scope#0" expanded="true" />
+            <element signature="method#set#1;class#Scope#0" expanded="true" />
+            <marker date="1492195389769" expanded="true" signature="5397:5495" ph="{...}" />
+            <marker date="1492195389769" expanded="true" signature="5582:6305" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="23" column="9" lean-forward="false" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scanner/LookUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationsNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/FunctionAssignmentStatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#372#373#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="142" column="45" lean-forward="false" selection-start-line="142" selection-start-column="45" selection-end-line="142" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#error#0;class#Parser#0" expanded="true" />
+            <element signature="method#error#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#Parser#0;class#Parser#0" expanded="true" />
+            <element signature="method#Parser#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#match#0;class#Parser#0" expanded="true" />
+            <element signature="method#match#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#program#0;class#Parser#0" expanded="true" />
+            <element signature="method#program#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#identifierList#0;class#Parser#0" expanded="true" />
+            <element signature="method#identifierList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#declarations#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#type#0;class#Parser#0" expanded="true" />
+            <element signature="method#type#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#standardType#0;class#Parser#0" expanded="true" />
+            <element signature="method#standardType#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
+            <element signature="method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+            <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#subprogramHead#0;class#Parser#0" expanded="true" />
+            <element signature="method#subprogramHead#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#arguments#0;class#Parser#0" expanded="true" />
+            <element signature="method#arguments#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#parameterList#0;class#Parser#0" expanded="true" />
+            <element signature="method#parameterList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#compoundStatement#0;class#Parser#0" expanded="true" />
+            <element signature="method#compoundStatement#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#optionalStatements#0;class#Parser#0" expanded="true" />
+            <element signature="method#optionalStatements#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#statementList#0;class#Parser#0" expanded="true" />
+            <element signature="method#statementList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#statement#0;class#Parser#0" expanded="true" />
+            <element signature="method#statement#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#variable#0;class#Parser#0" expanded="true" />
+            <element signature="method#variable#0;class#Parser#0" expanded="true" />
+            <element signature="method#procedureStatement#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#expressionList#0;class#Parser#0" expanded="true" />
+            <element signature="method#expressionList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#expression#0;class#Parser#0" expanded="true" />
+            <element signature="method#expression#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#simpleExpression#0;class#Parser#0" expanded="true" />
+            <element signature="method#simpleExpression#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#simplePart#0;class#Parser#0" expanded="true" />
+            <element signature="method#simplePart#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#termPart#0;class#Parser#0" expanded="true" />
+            <element signature="method#termPart#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#factor#0;class#Parser#0" expanded="true" />
+            <element signature="method#factor#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#sign#0;class#Parser#0" expanded="true" />
+            <element signature="method#sign#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#relop#0;class#Parser#0" expanded="true" />
+            <marker date="1492201655936" expanded="true" signature="11298:11301" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Compiler</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>jflex-1.6.1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
