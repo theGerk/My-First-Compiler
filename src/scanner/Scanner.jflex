@@ -17,7 +17,8 @@ whitespace	= [ \n\t]|\r\n
 letter		= [A-Za-z_]
 digit		= [0-9]
 word		= ({letter})({letter}|{digit})*
-number		= ({digit}+\.{digit}+)|{digit}+
+integer     = {digit}+
+real		= {digit}+\.{digit}+
 symbol		= <>|<=|>=|:=|[;,.:\[\]()+\-=*<>/]
 comment		= \{[^\}]*\}
 
@@ -32,9 +33,14 @@ comment		= \{[^\}]*\}
 	return(new Token(yytext()));
 }
 
-{number}		{
-	System.out.println("Found a number: " + yytext());
-	return(new Token(Double.parseDouble(yytext()), yytext()));
+{integer}   {
+    System.out.println("found a int: " + yytext());
+    return(new Token(Integer.parseInt(yytext()), yytext()));
+}
+
+{real}		{
+	System.out.println("Found a real: " + yytext());
+	return(new Token(Float.parseFloat(yytext()), yytext()));
 }
 
 {symbol}	{

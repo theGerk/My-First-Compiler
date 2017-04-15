@@ -35,14 +35,26 @@ public class Token {
 	}
 
 	/**
-	 * Sets a number token, by passing in a number and the string version that
+	 * Sets an int literal token, by passing in a number and the string version that
+	 * was read.
+	 *
+	 * @param key        Could be any number, supposed to be the number that was read
+	 * @param stringForm String version of the number
+	 */
+	public Token(int key, String stringForm){
+		type = TokenType.INT_LITERAL;
+		input = stringForm;
+	}
+
+	/**
+	 * Sets a real literal token, by passing in a number and the string version that
 	 * was read.
 	 *
 	 * @param key Could be any number, supposed to be the number that was read
 	 * @param stringForm String version of the number
 	 */
-	public Token(double key, String stringForm) {
-		type = TokenType.NUM;
+	public Token(float key, String stringForm) {
+		type = TokenType.REAL_LITERAL;
 		input = stringForm;
 	}
 

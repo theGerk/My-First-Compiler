@@ -40,6 +40,6 @@ public class DeclarationsNode extends SyntaxTreeNode {
 	 */
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
-
+		int offset
 	}
 }

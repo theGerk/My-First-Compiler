@@ -5,7 +5,6 @@
  */
 package syntaxtree;
 
-import scanner.LookUp;
 import scanner.TokenType;
 
 /**
@@ -13,59 +12,15 @@ import scanner.TokenType;
  *
  * @author Erik Steinmetz
  */
-public class ValueNode extends ExpressionNode {	//TODO add folding
-
-	/**
-	 * The attribute associated with this node.
-	 */
-	String attribute;
+public abstract class ValueNode extends ExpressionNode {	//TODO add folding
 
 	/**
 	 * Creates a ValueNode with the given attribute.
 	 *
-	 * @param attr The attribute for this value node.
+	 * @param type The type of node it is
 	 */
-	public ValueNode(String attr) {
-		super(LookUp.LOOKUP.get(attr));
-		this.attribute = attr;
-	}
-
-	/**
-	 * Returns the attribute of this node.
-	 *
-	 * @return The attribute of this ValueNode.
-	 */
-	public String getAttribute() {
-		return (this.attribute);
-	}
-
-	/**
-	 * Returns the attribute as the description of this node.
-	 *
-	 * @return The attribute String of this node.
-	 */
-	@Override
-	public String toString() {
-		return (attribute);
-	}
-
-	@Override
-	public String indentedToString(int level) {
-		String answer = this.indentation(level);
-		answer += "Value: " + this.attribute + "\n";
-		return answer;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		boolean answer = false;
-		if (o instanceof ValueNode) {
-			ValueNode other = (ValueNode) o;
-			if (this.attribute.equals(other.attribute)) {
-				answer = true;
-			}
-		}
-		return answer;
+	public ValueNode(TokenType type) {
+		super(type);
 	}
 
 	/**
@@ -74,7 +29,7 @@ public class ValueNode extends ExpressionNode {	//TODO add folding
 	 * @return if the node can be folded
 	 */
 	@Override
-	public boolean foldable() {
+	public boolean isFoldable() {
 		return true;
 	}
 }

@@ -162,9 +162,9 @@ public class Parser {
 		if (lookAhead.equals(TokenType.ARRAY)) {
 			match(TokenType.ARRAY);
 			match(TokenType.LEFTSQUAREBRACKET);
-			match(TokenType.NUM);
+			match(TokenType.INT_LITERAL);
 			match(TokenType.COLON);
-			match(TokenType.NUM);
+			match(TokenType.INT_LITERAL);
 			match(TokenType.RIGHTSQUAREBRACKET);
 			match(TokenType.OF);
 			return new Pair<>(standardType(), IdentifierKind.ARR);
@@ -548,8 +548,11 @@ public class Parser {
 					return new VariableNode(id, currentScope);
 				}
 			}
-			case NUM: {
-				return new ValueNode(match(TokenType.NUM));
+			case REAL_LITERAL:{
+				LiteralRealNode output = new LiteralRealNode(Float.parseFloat(match(TokenType.REAL_LITERAL)));
+			}
+			case INT_LITERAL: {
+				LiteralIntNode output = new LiteralIntNode(Integer.parseInt(match(TokenType.INT_LITERAL)));
 			}
 			case LEFTPARANTHESIS: {
 				match(TokenType.LEFTPARANTHESIS);

@@ -159,7 +159,7 @@ public class BinaryOperationNode extends ExpressionNode {
 	 * @return if the node can be folded
 	 */
 	@Override
-	public boolean foldable() {
-		return left.foldable() && right.foldable();
+	public boolean isFoldable() {
+		return left.isFoldable() && right.isFoldable();
 	}
 }

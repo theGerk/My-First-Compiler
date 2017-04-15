@@ -59,7 +59,7 @@ public class UnaryOperationNode extends ExpressionNode {
 	 * @return if the node can be folded
 	 */
 	@Override
-	public boolean foldable() {
-		return expression.foldable();
+	public boolean isFoldable() {
+		return expression.isFoldable();
 	}
 }
