@@ -24,10 +24,22 @@ public class DeclarationsNode extends SyntaxTreeNode {
 	@Override
 	public String indentedToString(int level) {
 		String answer = this.indentation(level);
-		for (VariableNode variable : vars) {
-			answer += variable.indentedToString(level + 1);
+		for (String variable : vars) {
+			answer += variable;
 		}
 		return answer;
 	}
 
+	/**
+	 * Adds offset for all symbols in symbol table that need it
+	 *
+	 * @param symbolTable the current scope
+	 * @param indent      tabs
+	 *
+	 * @return Mips assembly
+	 */
+	@Override
+	protected String toMips(Scope symbolTable, String indent) {
+
+	}
 }

@@ -35,7 +35,7 @@ public abstract class SyntaxTreeNode {
 	}
 	
 	/**
-	 * Writes component into assembly with tabbing for readability
+	 * Writes component into assembly with tabbing for readability and sets up symbol table where needed.
 	 * @param symbolTable the current scope
 	 * @param indent tabs
 	 * @return Mips assembly
