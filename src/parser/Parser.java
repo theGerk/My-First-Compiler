@@ -244,8 +244,10 @@ public class Parser {
 
 			//match type
 			TokenType type = standardType();
+			currentScope.getParent().set(name, type);
+
 			match(TokenType.SEMICOLON);
-			return new SubProgramNode(name, arguments, type);
+			return new SubProgramHeadNode(name, arguments);
 		} else {
 
 			match(TokenType.PROCEDURE);
@@ -259,14 +261,13 @@ public class Parser {
 
 			//match arguments
 			DeclarationsNode arguments = arguments();
-			for (VariableNode var : arguments.getVars()) {
-				currentScope.getParent().addArg(name, var.getName(), var.getType());
+			for (String var : arguments.getVars()) {
+				currentScope.getParent().addArg(name, var, currentScope.getType(var));
 			}
 
 			match(TokenType.SEMICOLON);
-			return new SubProgramNode(name, arguments);
+			return new SubProgramHeadNode(name, arguments);
 		}
-		return name;
 	}
 
 	/**

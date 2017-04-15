@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fef48a5-d5a9-4da6-8d48-6238ceaa6099" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNodeBase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/syntaxtree/IdentifierNodeBase.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/VariableAssignmentStatementNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/Parser.java" afterPath="$PROJECT_DIR$/src/parser/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symbolTable/Scope.java" afterPath="$PROJECT_DIR$/src/symbolTable/Scope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ArrayVarNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ArrayVarNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/FunctionAssignmentStatementNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/FunctionAssignmentStatementNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IfStatementNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IfStatementNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/VariableNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/VariableNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" />
     </list>
     <ignored path="Compiler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -228,6 +219,10 @@
       </content>
     </window>
   </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Compiler" />
@@ -237,9 +232,10 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+            <state relative-caret-position="909">
+              <caret line="249" column="53" lean-forward="false" selection-start-line="249" selection-start-column="53" selection-end-line="249" selection-end-column="53" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Parser#0" expanded="true" />
                 <element signature="docComment;method#error#0;class#Parser#0" expanded="true" />
                 <element signature="method#error#0;class#Parser#0" expanded="true" />
@@ -262,7 +258,6 @@
                 <element signature="docComment;method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
                 <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
                 <element signature="docComment;method#subprogramHead#0;class#Parser#0" expanded="true" />
-                <element signature="method#subprogramHead#0;class#Parser#0" expanded="true" />
                 <element signature="docComment;method#arguments#0;class#Parser#0" expanded="true" />
                 <element signature="method#arguments#0;class#Parser#0" expanded="true" />
                 <element signature="docComment;method#parameterList#0;class#Parser#0" expanded="true" />
@@ -294,6 +289,31 @@
                 <element signature="docComment;method#sign#0;class#Parser#0" expanded="true" />
                 <element signature="method#sign#0;class#Parser#0" expanded="true" />
                 <element signature="docComment;method#relop#0;class#Parser#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubProgramHeadNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <folding>
+                <element signature="docComment;class#SubProgramHeadNode#0" expanded="true" />
+                <element signature="method#indentedToString#0;class#SubProgramHeadNode#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubProgramNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="26" column="11" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+              <folding>
+                <element signature="method#SubProgramNode#0;class#SubProgramNode#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -351,7 +371,6 @@
         <option value="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationHeaderNode.java" />
-        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramHeaderNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" />
         <option value="$PROJECT_DIR$/src/scanner/LookUp.java" />
@@ -362,13 +381,15 @@
         <option value="$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/IdentifierNodeBase.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNode.java" />
-        <option value="$PROJECT_DIR$/src/parser/Parser.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/ProcedureStatementNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/AssignmentStatementNodeBase.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/FunctionAssignmentStatementNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/VariableAssignmentStatementNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/IfStatementNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" />
+        <option value="$PROJECT_DIR$/src/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" />
       </list>
     </option>
   </component>
@@ -377,6 +398,9 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1920" />
@@ -509,28 +533,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="altmancompiler">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="altmancompiler">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="parser">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -1034,12 +1036,12 @@
       <workItem from="1492016728578" duration="10884000" />
       <workItem from="1492103198867" duration="20267000" />
       <workItem from="1492140342641" duration="25376000" />
-      <workItem from="1492228362775" duration="6966000" />
+      <workItem from="1492228362775" duration="7733000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77007000" />
+    <option name="totallyTimeSpent" value="77774000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1061,7 +1063,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1069,7 +1071,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.114605546" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="-360" y="53" width="342" height="1043" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16474757" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="480" y="790" width="1006" height="204" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.24946696" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1413,14 +1415,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/symboltable/Scope.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1586,11 +1580,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationsNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="204">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="method#FunctionExpressionNode#0;class#FunctionExpressionNode#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1768,39 +1782,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationsNode.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <caret line="26" column="11" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#SubProgramNode#0;class#SubProgramNode#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/FunctionExpressionNode.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="238">
+          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding>
-            <element signature="method#FunctionExpressionNode#0;class#FunctionExpressionNode#0" expanded="true" />
+            <element signature="docComment;class#SubProgramHeadNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#SubProgramHeadNode#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state relative-caret-position="909">
+          <caret line="249" column="53" lean-forward="false" selection-start-line="249" selection-start-column="53" selection-end-line="249" selection-end-column="53" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="docComment;class#Parser#0" expanded="true" />
             <element signature="docComment;method#error#0;class#Parser#0" expanded="true" />
             <element signature="method#error#0;class#Parser#0" expanded="true" />
@@ -1823,7 +1831,6 @@
             <element signature="docComment;method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
             <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
             <element signature="docComment;method#subprogramHead#0;class#Parser#0" expanded="true" />
-            <element signature="method#subprogramHead#0;class#Parser#0" expanded="true" />
             <element signature="docComment;method#arguments#0;class#Parser#0" expanded="true" />
             <element signature="method#arguments#0;class#Parser#0" expanded="true" />
             <element signature="docComment;method#parameterList#0;class#Parser#0" expanded="true" />
