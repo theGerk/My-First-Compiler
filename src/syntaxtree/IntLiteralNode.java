@@ -13,6 +13,11 @@ public class IntLiteralNode extends LiteralNode {
 		value = input;
 	}
 
+	public IntLiteralNode(boolean input) {
+		super(TokenType.INTEGER);
+		value = input ? 1 : 0;
+	}
+
 	/**
 	 * Creates a String representation of this node and its children.
 	 *

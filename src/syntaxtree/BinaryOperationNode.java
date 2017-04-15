@@ -1,6 +1,7 @@
 package syntaxtree;
 
 import com.sun.org.apache.regexp.internal.RE;
+import jdk.internal.util.xml.impl.Input;
 import scanner.LookUp;
 import scanner.TokenType;
 
@@ -29,9 +30,10 @@ public class BinaryOperationNode extends ExpressionNode {
 	/**
 	 * Creates an operation node given an operation token.
 	 *
-	 * @param op The token representing this node's math operation.
-	 * @param left The left expression
+	 * @param op    The token representing this node's math operation.
+	 * @param left  The left expression
 	 * @param right The right expression
+	 *
 	 * @throws java.lang.Exception if inputs are invalid
 	 */
 	public BinaryOperationNode(ExpressionNode left, TokenType op, ExpressionNode right) throws Exception {
@@ -96,9 +98,10 @@ public class BinaryOperationNode extends ExpressionNode {
 	 * throws if types aren't valid, otherwise returns the output type of the
 	 * operation
 	 *
-	 * @param op operation
-	 * @param left left expression return type
+	 * @param op    operation
+	 * @param left  left expression return type
 	 * @param right right expression return type
+	 *
 	 * @return operation output
 	 */
 	private static TokenType outType(TokenType op, TokenType left, TokenType right) throws Exception {
@@ -153,7 +156,7 @@ public class BinaryOperationNode extends ExpressionNode {
 	}
 
 	private static final String OUT_TYPE_EXCEPTION_FORMAT_STRING = "%s %s %s is not valid";
-	
+
 	/**
 	 * checks for if code folding is possible
 	 *
@@ -164,15 +167,104 @@ public class BinaryOperationNode extends ExpressionNode {
 		LiteralNode leftInput = left.fold();
 		LiteralNode RightInput = right.fold();
 
-		if(leftInput == null || RightInput == null){
+		if (leftInput == null || RightInput == null) {
 			return null;
 		} else {
-			switch(leftInput.getType()){
-				case REAL:{
-					RealLiteralNode leftVal = (RealLiteralNode)leftInput;
+			switch (leftInput.getType()) {
+				case REAL: {
+					RealLiteralNode leftVal = (RealLiteralNode) leftInput;
+					switch (RightInput.getType()) {
+						case REAL: {
+							RealLiteralNode rightVal = (RealLiteralNode) RightInput;
+							switch (operation) {
+								case PLUS:
+									return new RealLiteralNode(leftVal.getValue() + rightVal.getValue());
+								case MINUS:
+									return new RealLiteralNode(leftVal.getValue() - rightVal.getValue());
+								case ASTERISK:
+									return new RealLiteralNode(leftVal.getValue() * rightVal.getValue());
+								case DIAMOND:
+									return new IntLiteralNode(leftVal.getValue() != rightVal.getValue());
+								case LESSTHAN:
+									return new IntLiteralNode(leftVal.getValue() < rightVal.getValue());
+								case GREATERTHAN:
+									return new IntLiteralNode(leftVal.getValue() > rightVal.getValue());
+								case LESSTHANEQUALS:
+									return new IntLiteralNode(leftVal.getValue() <= rightVal.getValue());
+								case GREATERTHANEQUALS:
+									return new IntLiteralNode(leftVal.getValue() >= rightVal.getValue());
+								case EQUALS:
+									return new IntLiteralNode(leftVal.getValue() == rightVal.getValue());
+								case FORWARDSLASH:
+									return new RealLiteralNode(leftVal.getValue() / rightVal.getValue());
+							}
+						}
+						case INTEGER: {
+							IntLiteralNode rightVal = (IntLiteralNode) RightInput;
+							switch (operation) {
+								case PLUS:
+									return new RealLiteralNode(leftVal.getValue() + rightVal.getValue());
+								case MINUS:
+									return new RealLiteralNode(leftVal.getValue() - rightVal.getValue());
+								case ASTERISK:
+									return new RealLiteralNode(leftVal.getValue() * rightVal.getValue());
+								case DIAMOND:
+									return new IntLiteralNode(leftVal.getValue() != rightVal.getValue());
+								case LESSTHAN:
+									return new IntLiteralNode(leftVal.getValue() < rightVal.getValue());
+								case GREATERTHAN:
+									return new IntLiteralNode(leftVal.getValue() > rightVal.getValue());
+								case LESSTHANEQUALS:
+									return new IntLiteralNode(leftVal.getValue() <= rightVal.getValue());
+								case GREATERTHANEQUALS:
+									return new IntLiteralNode(leftVal.getValue() >= rightVal.getValue());
+								case EQUALS:
+									return new IntLiteralNode(leftVal.getValue() == rightVal.getValue());
+								case FORWARDSLASH:
+									return new RealLiteralNode(leftVal.getValue() / rightVal.getValue());
+
+							}
+						}
+					}
 				}
-				case INTEGER:{
-					IntLiteralNode leftVal = (IntLiteralNode)leftInput;
+				case INTEGER: {
+					IntLiteralNode leftVal = (IntLiteralNode) leftInput;
+					switch (RightInput.getType()) {
+						case REAL: {
+							RealLiteralNode rightVal = (RealLiteralNode) RightInput;
+							switch (operation) {
+								case PLUS:
+								case MINUS:
+								case ASTERISK:
+								case DIAMOND:
+								case LESSTHAN:
+								case GREATERTHAN:
+								case LESSTHANEQUALS:
+								case GREATERTHANEQUALS:
+								case EQUALS:
+								case FORWARDSLASH:
+							}
+						}
+						case INTEGER: {
+							IntLiteralNode rightVal = (IntLiteralNode) RightInput;
+							switch (operation) {
+								case AND:
+								case OR:
+								case DIV:
+								case MOD:
+								case PLUS:
+								case MINUS:
+								case ASTERISK:
+								case DIAMOND:
+								case LESSTHAN:
+								case GREATERTHAN:
+								case LESSTHANEQUALS:
+								case GREATERTHANEQUALS:
+								case EQUALS:
+								case FORWARDSLASH:
+							}
+						}
+					}
 				}
 			}
 		}

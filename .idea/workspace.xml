@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4fef48a5-d5a9-4da6-8d48-6238ceaa6099" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/syntaxtree/LiteralIntNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/syntaxtree/LiteralRealNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/RealLiteralNode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/syntaxtree/ValueNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/LiteralNode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/Parser.java" afterPath="$PROJECT_DIR$/src/parser/Parser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ConsoleReadNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ConsoleReadNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IdentifierNodeBase.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IdentifierNodeBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/UnaryOperationNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/UnaryOperationNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/VariableNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/VariableNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" />
     </list>
     <ignored path="Compiler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -368,18 +363,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BinaryOperationNode.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="942">
-              <caret line="171" column="73" lean-forward="true" selection-start-line="171" selection-start-column="73" selection-end-line="171" selection-end-column="73" />
-              <folding>
-                <element signature="docComment;method#fold#0;class#BinaryOperationNode#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="IdentifierNodeBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/syntaxtree/IdentifierNodeBase.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -390,6 +373,19 @@
                 <element signature="docComment;field#name#0;class#IdentifierNodeBase#0" expanded="true" />
                 <element signature="method#IdentifierNodeBase#0;class#IdentifierNodeBase#0" expanded="true" />
                 <element signature="docComment;method#getName#0;class#IdentifierNodeBase#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BinaryOperationNode.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="231" column="51" lean-forward="true" selection-start-line="231" selection-start-column="51" selection-end-line="231" selection-end-column="51" />
+              <folding>
+                <element signature="method#outType#0;class#BinaryOperationNode#0" expanded="true" />
+                <element signature="docComment;method#fold#0;class#BinaryOperationNode#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -486,8 +482,8 @@
         <option value="$PROJECT_DIR$/src/syntaxtree/VariableNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/IdentifierNodeBase.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/RealLiteralNode.java" />
-        <option value="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/UnaryOperationNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" />
       </list>
     </option>
@@ -672,7 +668,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -1138,12 +1134,12 @@
       <workItem from="1492016728578" duration="10884000" />
       <workItem from="1492103198867" duration="20267000" />
       <workItem from="1492140342641" duration="25376000" />
-      <workItem from="1492228362775" duration="13354000" />
+      <workItem from="1492228362775" duration="15693000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83395000" />
+    <option name="totallyTimeSpent" value="85734000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1159,29 +1155,30 @@
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="2898" y="177" width="274" height="584" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11727079" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="-360" y="53" width="342" height="1043" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1744907" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="480" y="790" width="1006" height="204" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949513" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21346325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.24946696" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="2898" y="177" width="274" height="584" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11727079" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="-360" y="53" width="342" height="1043" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1744907" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="480" y="790" width="1006" height="204" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21346325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1711,29 +1708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/RealLiteralNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-          <folding>
-            <element signature="method#RealLiteralNode#0;class#RealLiteralNode#0" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-          <folding>
-            <element signature="docComment;class#IntLiteralNode#0" expanded="true" />
-            <element signature="method#IntLiteralNode#0;class#IntLiteralNode#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://JAVA/syntaxtree">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1933,11 +1907,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/RealLiteralNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <element signature="method#RealLiteralNode#0;class#RealLiteralNode#0" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#650#651#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding>
+            <element signature="docComment;class#IntLiteralNode#0" expanded="true" />
+            <element signature="method#IntLiteralNode#0;class#IntLiteralNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="942">
-          <caret line="171" column="73" lean-forward="true" selection-start-line="171" selection-start-column="73" selection-end-line="171" selection-end-column="73" />
+        <state relative-caret-position="483">
+          <caret line="231" column="51" lean-forward="true" selection-start-line="231" selection-start-column="51" selection-end-line="231" selection-end-column="51" />
           <folding>
+            <element signature="method#outType#0;class#BinaryOperationNode#0" expanded="true" />
             <element signature="docComment;method#fold#0;class#BinaryOperationNode#0" expanded="true" />
           </folding>
         </state>
