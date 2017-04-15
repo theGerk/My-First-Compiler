@@ -15,9 +15,7 @@ import java.util.ArrayList;
 
 import javafx.util.Pair;
 
-import scanner.Scanner;
-import scanner.Token;
-import scanner.TokenType;
+import scanner.*;
 import syntaxtree.*;
 
 /**
@@ -96,15 +94,14 @@ public class Parser {
 	 */
 	public ProgramNode program() {
 		try {
-			ProgramNode output;
 			match(TokenType.PROGRAM);
-			output = new ProgramNode(match(TokenType.ID));	//TODO maybe add symbol table reference
+			String id = match(TokenType.ID);	//TODO maybe add symbol table reference
 			match(TokenType.SEMICOLON);
-			output.setVariables(declarations());
-			output.setFunctions(subprogramDeclarations());
-			output.setMain(compoundStatement());
+			DeclarationsNode declarations = declarations();
+			SubProgramDeclarationsNode subprogramDeclarations = subprogramDeclarations();
+			CompoundStatementNode compoundStatement = compoundStatement();
 			match(TokenType.PERIOD);
-			return output;
+			return new ProgramNode(id, declarations, subprogramDeclarations, compoundStatement);
 		} catch (Exception ex) {
 			error(ex.getMessage());
 			return null;
@@ -115,6 +112,7 @@ public class Parser {
 	 * Adds list of IDs to symbol table
 	 *
 	 * @return list of identifier strings
+	 * @throws java.lang.Exception error message
 	 */
 	public ArrayList<String> identifierList() throws Exception {
 		ArrayList<String> output = new ArrayList<>();
@@ -134,6 +132,7 @@ public class Parser {
 	 * Adds declared variables to currentScope.
 	 *
 	 * @return Declarations node
+	 * @throws java.lang.Exception error message
 	 */
 	public DeclarationsNode declarations() throws Exception {
 		DeclarationsNode output = new DeclarationsNode();
@@ -145,7 +144,7 @@ public class Parser {
 			for (String identifier : identifierList) {
 				currentScope.set(identifier, info.getKey());
 				currentScope.set(identifier, info.getValue());
-				output.addVariable(new VariableNode(identifier, currentScope));
+				output.addVariable(identifier);
 			}
 			match(TokenType.SEMICOLON);
 		}
@@ -207,12 +206,12 @@ public class Parser {
 	 * @return Node with function's information
 	 */
 	public SubProgramNode subprogramDeclaration() throws Exception {
-		SubProgramNode output = subprogramHead(); //enters child scope in here
-		output.variables = declarations();
-		output.subFunctions = subprogramDeclarations();
-		output.instructions = compoundStatement();
+		SubProgramHeadNode head = subprogramHead(); //enters child scope in here
+		DeclarationsNode variables = declarations();
+		SubProgramDeclarationsNode subFunctions = subprogramDeclarations();
+		CompoundStatementNode instructions = compoundStatement();
 		currentScope = currentScope.getParent();
-		return output;
+		return new SubProgramNode(head, variables, subFunctions, instructions);
 	}
 
 	/**
@@ -221,52 +220,51 @@ public class Parser {
 	 *
 	 * @return node with information about the function
 	 */
-	public SubProgramNode subprogramHead() throws Exception {
-		SubProgramNode output;
+	public SubProgramHeadNode subprogramHead() throws Exception {
 		if (lookAhead.equals(TokenType.FUNCTION)) {
-			//set up function
+			//Match function
 			match(TokenType.FUNCTION);
 
-			//add name to symbol table
-			output = new SubProgramNode(match(TokenType.ID));
-			currentScope.put(output.name);
-			currentScope.set(output.name, IdentifierKind.FUNC);
+			//match ID
+			String name = match(TokenType.ID);
+			currentScope.put(name);
+			currentScope.set(name, IdentifierKind.FUNC);
 			currentScope = new Scope(currentScope);	//creates new scope and enters
+			currentScope.getParent().set(name, currentScope);
 
-			//set arguments in syntax tree
-			output.arguments = arguments();
-
-			//set arguments in symbol table
-			for (VariableNode var : output.arguments.getVars()) {
-				currentScope.getParent().addArg(output.name, var.getName(), var.getType());
+			//match arguments
+			DeclarationsNode arguments = arguments();
+			for (String var : arguments.getVars()) {
+				currentScope.getParent().addArg(name, var, currentScope.getType(var));
 			}
 
 			match(TokenType.COLON);
 
-			//set type in symbol table
-			currentScope.getParent().set(output.name, standardType());
+			//match type
+			TokenType type = standardType();
 			match(TokenType.SEMICOLON);
+			return new SubProgramNode(name, arguments, type);
 		} else {
 
 			match(TokenType.PROCEDURE);
 
-			//add name to symbol table
-			output = new SubProgramNode(match(TokenType.ID));
-			currentScope.put(output.name);
-			//add kind to symbol table
-			currentScope.set(output.name, IdentifierKind.FUNC);
-
+			//match id
+			String name = match(TokenType.ID);
+			currentScope.put(name);
+			currentScope.set(name, IdentifierKind.FUNC);
 			currentScope = new Scope(currentScope);
-			output.arguments = arguments();
+			currentScope.getParent().set(name, currentScope);
 
-			//add arguments to symbol table
-			for (VariableNode var : output.arguments.getVars()) {
-				currentScope.getParent().addArg(output.name, var.getName(), var.getType());
+			//match arguments
+			DeclarationsNode arguments = arguments();
+			for (VariableNode var : arguments.getVars()) {
+				currentScope.getParent().addArg(name, var.getName(), var.getType());
 			}
 
 			match(TokenType.SEMICOLON);
+			return new SubProgramNode(name, arguments);
 		}
-		return output;
+		return name;
 	}
 
 	/**

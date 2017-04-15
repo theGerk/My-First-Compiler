@@ -5,6 +5,7 @@
  */
 package symboltable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,6 +24,7 @@ public class Scope {
 	 */
 	public Scope() {
 		parentScope = null;
+		level = 0;
 	}
 
 	/**
@@ -33,6 +35,7 @@ public class Scope {
 	 */
 	public Scope(Scope parent) {
 		parentScope = parent;
+		level = parent.level + 1;
 	}
 
 	/**
@@ -44,8 +47,9 @@ public class Scope {
 		return parentScope;
 	}
 
+	final private int level;
 	final private Scope parentScope;
-	private final HashMap<String, Symbol> map = new HashMap<>();
+	final private HashMap<String, Symbol> map = new HashMap<>();
 
 	/**
 	 * returns a symbol that is accessible in the current scope by it's name
@@ -53,7 +57,7 @@ public class Scope {
 	 * @param name the identifier
 	 * @return the symbol, null if it does not exist
 	 */
-	private Symbol getSymbol(String name) {
+	protected Symbol getSymbol(String name) {
 		Scope current = this;
 		Symbol output = null;
 		do {
@@ -97,6 +101,34 @@ public class Scope {
 	}
 
 	/**
+	 * gets what level of scope something is at. 0 is global 1 is in a function
+	 * that is global and so on. negative numbers are for errors. -1 =
+	 * identifier not found
+	 *
+	 * @param name symbol identifier
+	 * @return it's scope level.
+	 */
+	public int getLevel(String name) {
+		Scope ptr = this;
+		while (!ptr.map.containsKey(name)) {
+			ptr = ptr.parentScope;
+			if (ptr == null) {
+				return -1;
+			}
+		}
+		return level;
+	}
+
+	/**
+	 * getter for level
+	 *
+	 * @return the level this scope is at.
+	 */
+	public int getLevel() {
+		return level;
+	}
+
+	/**
 	 * Returns if there a variable with this name that exists.
 	 *
 	 * @param name identifier name
@@ -122,7 +154,8 @@ public class Scope {
 		public IdentifierKind kind;
 		public TokenType type;
 		public Scope scope;					//only used in procedures & functions (and programs)
-		public ArrayList<Pair<String, TokenType>> args = null;
+		public ArrayList<Pair<String, TokenType>> args;
+		public int offsetFromStackPointer;
 
 		/**
 		 * trivial constructor
@@ -176,14 +209,25 @@ public class Scope {
 	public boolean isValidId(String name) {
 		return !(map.containsKey(name));
 	}
-
+	
+	/**
+	 * adds new identifier
+	 * @param id
+	 * @throws Exception
+	 */
 	public void put(String id) throws Exception {
 		if (!isValidId(id)) {
 			throw new Exception("Invalid id: " + id);
 		}
 		map.put(id, new Symbol(id));
 	}
-
+	
+	/**
+	 *
+	 * @param id
+	 * @param type
+	 * @throws Exception
+	 */
 	public void set(String id, TokenType type) throws Exception {
 		Symbol s = map.get(id);
 		if (s.type != null) {
@@ -194,7 +238,7 @@ public class Scope {
 
 	public void set(String id, Scope scope) throws Exception {
 		Symbol s = map.get(id);
-		if (s.type != null) {
+		if (s.scope != null) {
 			throw new Exception("scope is already set: " + id);
 		}
 		s.scope = scope;

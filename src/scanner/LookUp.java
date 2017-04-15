@@ -42,7 +42,7 @@ public class LookUp {
 	}
 
 	/**
-	 *
+	 * Gets a symbol or keyword
 	 * @param key Keyword or Symbol
 	 * @return TokenType associated with it
 	 */
@@ -51,7 +51,7 @@ public class LookUp {
 	}
 
 	/**
-	 *
+	 *reverse of get
 	 * @param key TokenType
 	 * @return String of symbol that was read to get the token type
 	 */

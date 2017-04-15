@@ -13,7 +13,7 @@ import scanner.TokenType;
  *
  * @author Erik Steinmetz
  */
-public class ValueNode extends ExpressionNode {
+public class ValueNode extends ExpressionNode {	//TODO add folding
 
 	/**
 	 * The attribute associated with this node.
@@ -67,7 +67,7 @@ public class ValueNode extends ExpressionNode {
 		}
 		return answer;
 	}
-	
+
 	/**
 	 * checks for if code folding is possible
 	 *

@@ -18,7 +18,10 @@ public class AssignmentStatementNode extends StatementNode {
 		return expression;
 	}
 
-	public AssignmentStatementNode(VariableNode var, ExpressionNode expr) {
+	public AssignmentStatementNode(VariableNode var, ExpressionNode expr) throws Exception {
+		if (var.getType() != expr.getType()) {
+			throw new Exception(var.getName() + " can not be assigned a "  + expr.getType() + " expects " + var.getType());
+		}
 		variable = var;
 		expression = expr;
 	}

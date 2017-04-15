@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import symboltable.Scope;
+
 /**
  * The base class for all nodes in a syntax tree.
  *
@@ -31,5 +33,13 @@ public abstract class SyntaxTreeNode {
 		}
 		return (answer);
 	}
+	
+	/**
+	 * Writes component into assembly with tabbing for readability
+	 * @param symbolTable the current scope
+	 * @param indent tabs
+	 * @return Mips assembly
+	 */
+	protected abstract String toMips(Scope symbolTable, String indent);
 
 }

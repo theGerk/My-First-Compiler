@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import symboltable.Scope;
+
 import java.util.ArrayList;
 
 /**
@@ -9,13 +11,13 @@ import java.util.ArrayList;
  */
 public class DeclarationsNode extends SyntaxTreeNode {
 
-	protected ArrayList<VariableNode> vars = new ArrayList<>();
+	protected ArrayList<String> vars = new ArrayList<>();
 
-	public void addVariable(VariableNode aVariable) {
+	public void addVariable(String aVariable) {
 		vars.add(aVariable);
 	}
 
-	public ArrayList<VariableNode> getVars() {
+	public ArrayList<String> getVars() {
 		return vars;
 	}
 
@@ -27,4 +29,5 @@ public class DeclarationsNode extends SyntaxTreeNode {
 		}
 		return answer;
 	}
+
 }
