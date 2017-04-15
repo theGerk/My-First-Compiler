@@ -25,7 +25,7 @@ public class IfStatementNode extends StatementNode {
         return test;
     }
 
-   public StatementNode getThenStatement() {
+    public StatementNode getThenStatement() {
         return thenStatement;
     }
 

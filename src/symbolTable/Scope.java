@@ -140,7 +140,7 @@ public class Scope {
 	/**
 	 * kind of identifiers available.
 	 */
-	public static enum IdentifierKind {
+	public enum IdentifierKind {
 		PROG, VAR, ARR, FUNC
 	}
 

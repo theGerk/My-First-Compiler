@@ -8,10 +8,10 @@ import java.util.ArrayList;
 /**
  * Created by Benji on 4/12/2017.
  */
-public class FunctionExpressionNode extends ExpressionNode {
+public class FunctionExpressionNode extends IdentifierNodeBase {
 
 	public FunctionExpressionNode(String id, ArrayList<ExpressionNode> params, Scope containingScope) throws Exception {
-		super(validateID(id, containingScope));
+		super(id, validateID(id, containingScope));
 		if (containingScope.getKind(id) != Scope.IdentifierKind.FUNC) {
 			throw new Exception(id + " is not a function");
 		}
@@ -24,7 +24,6 @@ public class FunctionExpressionNode extends ExpressionNode {
 				throw new Exception("incorrect argument at index: " + i);
 			}
 		}
-		name = id;
 		parametersList = params;
 	}
 
@@ -33,7 +32,6 @@ public class FunctionExpressionNode extends ExpressionNode {
 		parametersList = params;
 	}
 
-	protected final String name;
 	protected final ArrayList<ExpressionNode> parametersList;
 
 	private static TokenType validateID(String id, Scope scope) throws Exception {

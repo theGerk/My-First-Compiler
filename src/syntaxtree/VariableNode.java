@@ -8,12 +8,7 @@ import symboltable.Scope;
  *
  * @author Erik Steinmetz
  */
-public class VariableNode extends ExpressionNode {
-
-	/**
-	 * The name of the variable associated with this node.
-	 */
-	String name;
+public class VariableNode extends IdentifierNodeBase {
 
 	/**
 	 * Creates a ValueNode with the given attribute.
@@ -21,13 +16,11 @@ public class VariableNode extends ExpressionNode {
 	 * @param id The attribute for this value node.
 	 */
 	public VariableNode(String id, Scope containingScope) throws Exception {
-		super(validateID(id, containingScope));
-		this.name = id;
+		super(id,validateID(id, containingScope));
 	}
 	
 	protected VariableNode(String id, TokenType type){
-		super(type);
-		name = id;
+		super(id,type);
 	}
 	
 	private static TokenType validateID(String id, Scope scope) throws Exception {
@@ -35,25 +28,6 @@ public class VariableNode extends ExpressionNode {
 			return scope.getType(id);
 		else
 			throw new Exception("Expected " + id + " to be a VAR");
-	}
-
-	/**
-	 * Returns the name of the variable of this node.
-	 *
-	 * @return The name of this VariableNode.
-	 */
-	public String getName() {
-		return (this.name);
-	}
-
-	/**
-	 * Returns the name of the variable as the description of this node.
-	 *
-	 * @return The attribute String of this node.
-	 */
-	@Override
-	public String toString() {
-		return (name);
 	}
 
 	@Override

@@ -5,18 +5,20 @@
  */
 package parser;
 
+import javafx.util.Pair;
+import scanner.Scanner;
+import scanner.Token;
+import scanner.TokenType;
 import symboltable.Scope;
 import symboltable.Scope.IdentifierKind;
+import syntaxtree.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import javafx.util.Pair;
-
-import scanner.*;
-import syntaxtree.*;
 
 /**
  * Parser for program, parses from a stream
@@ -287,7 +289,7 @@ public class Parser {
 	 *
 	 * @return parameter list
 	 */
-	public DeclarationsNode parameterList() throws Exception {		//TODO check to make sure the grammer is right here
+	public DeclarationsNode parameterList() throws Exception {
 		DeclarationsNode output = new DeclarationsNode();
 		while (true) {
 			ArrayList<String> ids = identifierList();
@@ -296,7 +298,7 @@ public class Parser {
 			for (String id : ids) {
 				currentScope.set(id, info.getKey());
 				currentScope.set(id, info.getValue());
-				output.addVariable(new VariableNode(id, currentScope));
+				output.addVariable(id);
 			}
 			if (!lookAhead.equals(TokenType.SEMICOLON)) {
 				return output;
@@ -319,7 +321,7 @@ public class Parser {
 	 * eats an optional statements
 	 */
 	public CompoundStatementNode optionalStatements() throws Exception {
-		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {	//TODO double check grammer here
+		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {
 			return statementList();
 		}
 		return new CompoundStatementNode();
@@ -346,13 +348,15 @@ public class Parser {
 			case ID:
 				switch (currentScope.getKind(lookAhead.getLexeme())) {
 					case VAR:
-					case ARR:
+					case ARR: {
 						VariableNode var = variable();
 						match(TokenType.ASSIGNOP);
 						ExpressionNode expr = expression();
-						return new AssignmentStatementNode(var, expr);
-					case FUNC:
+						return new VariableAssignmentStatementNode(var, expr);
+					}
+					case FUNC: {
 						return procedureStatement();
+					}
 					default:
 						throw new Exception("You done goofed up");
 				}
@@ -375,9 +379,9 @@ public class Parser {
 			case READ:
 				match(TokenType.READ);
 				match(TokenType.LEFTPARANTHESIS);
-				VariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO get permision
+				VariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO get permission
 				match(TokenType.RIGHTPARANTHESIS);
-				return new AssignmentStatementNode(variable, new ConsoleReadNode(variable.getType()));
+				return new VariableAssignmentStatementNode(variable, new ConsoleReadNode(variable.getType()));
 			case WRITE:
 				match(TokenType.WRITE);
 				match(TokenType.LEFTPARANTHESIS);
@@ -411,15 +415,18 @@ public class Parser {
 	}
 
 	/**
-	 * eats a procedure statement
+	 * determines if it is a procedure statement or if it is a function assignment statement, then returns accordingly
 	 */
-	public ProcedureStatementNode procedureStatement() throws Exception {
+	public StatementNode procedureStatement() throws Exception {
 		ArrayList<ExpressionNode> parameters = new ArrayList<>();
 		String id = match(TokenType.ID);
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
 			parameters = expressionList();
 			match(TokenType.RIGHTPARANTHESIS);
+		}else if(lookAhead.equals(TokenType.ASSIGNOP) && currentScope.getType(id) != null){ //TODO document this
+			ExpressionNode expression = expression();
+			return new FunctionAssignmentStatementNode(id, expression, currentScope);
 		}
 		return new ProcedureStatementNode(id, parameters, currentScope);
 	}
