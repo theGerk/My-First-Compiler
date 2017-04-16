@@ -7,7 +7,7 @@ import scanner.TokenType;
  *
  * @author erik
  */
-public abstract class ExpressionNode extends SyntaxTreeNode {
+public abstract class ExpressionNode extends SyntaxTreeBase {
 
 	/**
 	 * Type the expression returns

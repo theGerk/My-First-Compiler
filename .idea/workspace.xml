@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fef48a5-d5a9-4da6-8d48-6238ceaa6099" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Compiler/syntaxtree/ProgramNode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Compiler/syntaxtree/SyntaxTreeNode.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SyntaxTreeBase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.properties" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser/Parser.java" afterPath="$PROJECT_DIR$/src/parser/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scanner/LookUp.java" afterPath="$PROJECT_DIR$/src/scanner/LookUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scanner/Scanner.java" afterPath="$PROJECT_DIR$/src/scanner/Scanner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ConsoleReadNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ConsoleReadNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symbolTable/Scope.java" afterPath="$PROJECT_DIR$/src/symbolTable/Scope.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/LiteralNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/LiteralNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/StatementNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/StatementNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationsNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationsNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" afterPath="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" />
     </list>
     <ignored path="Compiler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,227 +60,185 @@
                     <ID>JAVA</ID>
                     <OriginalElement>syntaxtree</OriginalElement>
                     <nodes>
-                      <node x="2064.5" y="266.0">syntaxtree.BinaryOperationNode</node>
-                      <node x="440.0" y="299.0">syntaxtree.ConsoleWriteNode</node>
-                      <node x="1418.0" y="299.0">syntaxtree.IdentifierNodeBase</node>
-                      <node x="2086.0" y="89.0">syntaxtree.ProgramNode</node>
-                      <node x="1898.5" y="310.0">syntaxtree.ConsoleReadNode</node>
-                      <node x="1314.5833333333333" y="0.0">syntaxtree.SyntaxTreeNode</node>
-                      <node x="1513.5" y="534.0">syntaxtree.ArrayVarNode</node>
-                      <node x="638.0" y="299.0">syntaxtree.AssignmentStatementNodeBase</node>
-                      <node x="1685.0" y="433.0">syntaxtree.RealLiteralNode</node>
-                      <node x="1836.0" y="433.0">syntaxtree.IntLiteralNode</node>
-                      <node x="1296.0833333333333" y="111.0">syntaxtree.SubProgramHeadNode</node>
-                      <node x="1877.0" y="122.0">syntaxtree.ExpressionNode</node>
-                      <node x="235.0" y="288.0">syntaxtree.ProcedureStatementNode</node>
-                      <node x="497.25" y="433.0">syntaxtree.FunctionAssignmentStatementNode</node>
-                      <node x="1546.0" y="444.0">syntaxtree.VariableNode</node>
-                      <node x="758.25" y="433.0">syntaxtree.VariableAssignmentStatementNode</node>
-                      <node x="0.0" y="277.0">syntaxtree.IfStatementNode</node>
-                      <node x="572.5" y="133.0">syntaxtree.StatementNode</node>
-                      <node x="294.5" y="122.0">syntaxtree.SubProgramDeclarationsNode</node>
-                      <node x="1231.0" y="433.0">syntaxtree.FunctionExpressionNode</node>
-                      <node x="1123.0" y="299.0">syntaxtree.CompoundStatementNode</node>
-                      <node x="985.0833333333333" y="89.0">syntaxtree.SubProgramNode</node>
-                      <node x="1769.5" y="310.0">syntaxtree.LiteralNode</node>
-                      <node x="2317.5" y="277.0">syntaxtree.UnaryOperationNode</node>
-                      <node x="876.0" y="288.0">syntaxtree.WhileLoopNode</node>
-                      <node x="2299.0" y="122.0">syntaxtree.DeclarationsNode</node>
+                      <node x="2451.375" y="400.0">syntaxtree.BinaryOperationNode</node>
+                      <node x="859.9999999999999" y="521.0">syntaxtree.ConsoleWriteNode</node>
+                      <node x="1638.0" y="510.0">syntaxtree.IdentifierNodeBase</node>
+                      <node x="1582.208333333333" y="0.0">syntaxtree.SyntaxTreeBase</node>
+                      <node x="1091.7083333333333" y="155.0">syntaxtree.ProgramNode</node>
+                      <node x="2904.375" y="521.5">syntaxtree.ConsoleReadNode</node>
+                      <node x="1781.25" y="980.0">syntaxtree.ArrayVarNode</node>
+                      <node x="335.0" y="532.5">syntaxtree.AssignmentStatementNodeBase</node>
+                      <node x="2333.875" y="800.0">syntaxtree.RealLiteralNode</node>
+                      <node x="2119.875" y="789.0">syntaxtree.IntLiteralNode</node>
+                      <node x="1354.7083333333333" y="177.0">syntaxtree.SubProgramHeadNode</node>
+                      <node x="2196.875" y="188.0">syntaxtree.ExpressionNode</node>
+                      <node x="1433.0" y="510.0">syntaxtree.ProcedureStatementNode</node>
+                      <node x="452.75" y="811.0">syntaxtree.FunctionAssignmentStatementNode</node>
+                      <node x="1763.25" y="789.5">syntaxtree.VariableNode</node>
+                      <node x="196.75" y="811.0">syntaxtree.VariableAssignmentStatementNode</node>
+                      <node x="1098.0" y="466.0">syntaxtree.IfStatementNode</node>
+                      <node x="772.25" y="233.0">syntaxtree.StatementNode</node>
+                      <node x="2816.875" y="199.5">syntaxtree.SubProgramDeclarationsNode</node>
+                      <node x="1368.25" y="789.0">syntaxtree.FunctionExpressionNode</node>
+                      <node x="0.0" y="521.5">syntaxtree.CompoundStatementNode</node>
+                      <node x="2465.875" y="166.0">syntaxtree.SubProgramNode</node>
+                      <node x="2211.375" y="532.5">syntaxtree.LiteralNode</node>
+                      <node x="1851.0" y="477.0">syntaxtree.UnaryOperationNode</node>
+                      <node x="573.0" y="510.0">syntaxtree.WhileLoopNode</node>
+                      <node x="1577.708333333333" y="177.5">syntaxtree.DeclarationsNode</node>
                     </nodes>
                     <notes />
                     <edges>
-                      <edge source="syntaxtree.LiteralNode" target="syntaxtree.ExpressionNode">
-                        <point x="0.0" y="-14.5" />
-                        <point x="1824.0" y="246.0" />
-                        <point x="1933.7" y="246.0" />
-                        <point x="-37.799999999999955" y="25.5" />
+                      <edge source="syntaxtree.SubProgramHeadNode" target="syntaxtree.SyntaxTreeBase">
+                        <point x="0.0" y="-59.5" />
+                        <point x="1461.2083333333333" y="135.0" />
+                        <point x="1673.9940476190475" y="135.0" />
+                        <point x="-36.71428571428571" y="47.5" />
                       </edge>
                       <edge source="syntaxtree.ConsoleWriteNode" target="syntaxtree.StatementNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="529.0" y="246.0" />
-                        <point x="627.0833333333334" y="246.0" />
-                        <point x="-10.916666666666629" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.AssignmentStatementNodeBase" target="syntaxtree.StatementNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="747.0" y="246.0" />
-                        <point x="648.9166666666666" y="246.0" />
+                        <point x="0.0" y="-48.5" />
+                        <point x="968.9999999999999" y="380.0" />
+                        <point x="848.6666666666666" y="380.0" />
                         <point x="10.916666666666629" y="14.5" />
                       </edge>
+                      <edge source="syntaxtree.LiteralNode" target="syntaxtree.ExpressionNode">
+                        <point x="0.0" y="-37.0" />
+                        <point x="0.0" y="59.5" />
+                      </edge>
                       <edge source="syntaxtree.IfStatementNode" target="syntaxtree.StatementNode">
-                        <point x="0.0" y="-47.5" />
-                        <point x="107.5" y="226.0" />
-                        <point x="583.4166666666667" y="226.0" />
-                        <point x="-54.583333333333314" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.SubProgramNode" target="syntaxtree.SyntaxTreeNode">
-                        <point x="1.1368683772161603E-13" y="-58.5" />
-                        <point x="1130.5833333333335" y="69.0" />
-                        <point x="1362.4404761904761" y="69.0" />
-                        <point x="-19.14285714285711" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.IdentifierNodeBase" target="syntaxtree.ExpressionNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="1492.0" y="236.0" />
-                        <point x="1895.9" y="236.0" />
-                        <point x="-75.59999999999991" y="25.5" />
-                      </edge>
-                      <edge source="syntaxtree.UnaryOperationNode" target="syntaxtree.ExpressionNode">
-                        <point x="0.0" y="-47.5" />
-                        <point x="2425.5" y="236.0" />
-                        <point x="2047.1" y="236.0" />
-                        <point x="75.59999999999991" y="25.5" />
-                      </edge>
-                      <edge source="syntaxtree.FunctionExpressionNode" target="syntaxtree.IdentifierNodeBase">
-                        <point x="0.0" y="-25.5" />
-                        <point x="1378.5" y="408.0" />
-                        <point x="1455.0" y="408.0" />
-                        <point x="-37.0" y="25.5" />
-                      </edge>
-                      <edge source="syntaxtree.ConsoleReadNode" target="syntaxtree.ExpressionNode">
-                        <point x="0.0" y="-14.5" />
-                        <point x="0.0" y="25.5" />
-                      </edge>
-                      <edge source="syntaxtree.IntLiteralNode" target="syntaxtree.LiteralNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="1897.5" y="408.0" />
-                        <point x="1851.25" y="408.0" />
-                        <point x="27.25" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.RealLiteralNode" target="syntaxtree.LiteralNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="1750.5" y="408.0" />
-                        <point x="1796.75" y="408.0" />
-                        <point x="-27.25" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.VariableNode" target="syntaxtree.IdentifierNodeBase">
-                        <point x="0.0" y="-14.5" />
-                        <point x="1605.5" y="408.0" />
-                        <point x="1529.0" y="408.0" />
-                        <point x="37.0" y="25.5" />
-                      </edge>
-                      <edge source="syntaxtree.DeclarationsNode" target="syntaxtree.SyntaxTreeNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="2392.0" y="49.0" />
-                        <point x="1439.0119047619046" y="49.0" />
-                        <point x="57.42857142857133" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.FunctionAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
-                        <point x="0.0" y="-25.5" />
-                        <point x="617.75" y="408.0" />
-                        <point x="692.5" y="408.0" />
-                        <point x="-54.5" y="25.5" />
-                      </edge>
-                      <edge source="syntaxtree.CompoundStatementNode" target="syntaxtree.StatementNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="1260.5" y="226.0" />
-                        <point x="692.5833333333334" y="226.0" />
-                        <point x="54.58333333333337" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.SubProgramDeclarationsNode" target="syntaxtree.SyntaxTreeNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="423.5" y="49.0" />
-                        <point x="1324.154761904762" y="49.0" />
-                        <point x="-57.42857142857133" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.VariableAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
-                        <point x="0.0" y="-25.5" />
-                        <point x="876.25" y="408.0" />
-                        <point x="801.5" y="408.0" />
-                        <point x="54.5" y="25.5" />
-                      </edge>
-                      <edge source="syntaxtree.SubProgramHeadNode" target="syntaxtree.SyntaxTreeNode">
-                        <point x="0.0" y="-36.5" />
-                        <point x="0.0" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.WhileLoopNode" target="syntaxtree.StatementNode">
-                        <point x="0.0" y="-36.5" />
-                        <point x="989.5" y="236.0" />
-                        <point x="670.75" y="236.0" />
+                        <point x="0.0" y="-103.5" />
+                        <point x="1255.5" y="370.0" />
+                        <point x="870.5" y="370.0" />
                         <point x="32.75" y="14.5" />
                       </edge>
-                      <edge source="syntaxtree.ProgramNode" target="syntaxtree.SyntaxTreeNode">
-                        <point x="0.0" y="-58.5" />
-                        <point x="2182.5" y="59.0" />
-                        <point x="1419.8690476190475" y="59.0" />
-                        <point x="38.28571428571422" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.StatementNode" target="syntaxtree.SyntaxTreeNode">
-                        <point x="0.0" y="-14.5" />
-                        <point x="638.0" y="59.0" />
-                        <point x="1343.297619047619" y="59.0" />
-                        <point x="-38.28571428571422" y="14.5" />
-                      </edge>
-                      <edge source="syntaxtree.ProcedureStatementNode" target="syntaxtree.StatementNode">
-                        <point x="0.0" y="-36.5" />
-                        <point x="327.5" y="236.0" />
-                        <point x="605.25" y="236.0" />
+                      <edge source="syntaxtree.AssignmentStatementNodeBase" target="syntaxtree.StatementNode">
+                        <point x="0.0" y="-37.0" />
+                        <point x="444.0" y="370.0" />
+                        <point x="805.0" y="370.0" />
                         <point x="-32.75" y="14.5" />
                       </edge>
-                      <edge source="syntaxtree.ArrayVarNode" target="syntaxtree.VariableNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="0.0" y="14.5" />
+                      <edge source="syntaxtree.IdentifierNodeBase" target="syntaxtree.ExpressionNode">
+                        <point x="0.0" y="-59.5" />
+                        <point x="1734.5" y="370.0" />
+                        <point x="2221.775" y="370.0" />
+                        <point x="-99.59999999999991" y="59.5" />
                       </edge>
-                      <edge source="syntaxtree.ExpressionNode" target="syntaxtree.SyntaxTreeNode">
-                        <point x="0.0" y="-25.5" />
-                        <point x="1971.5" y="69.0" />
-                        <point x="1400.7261904761904" y="69.0" />
-                        <point x="19.14285714285711" y="14.5" />
+                      <edge source="syntaxtree.UnaryOperationNode" target="syntaxtree.ExpressionNode">
+                        <point x="0.0" y="-92.5" />
+                        <point x="1999.0" y="380.0" />
+                        <point x="2271.575" y="380.0" />
+                        <point x="-49.80000000000018" y="59.5" />
+                      </edge>
+                      <edge source="syntaxtree.FunctionExpressionNode" target="syntaxtree.IdentifierNodeBase">
+                        <point x="0.0" y="-70.5" />
+                        <point x="1555.75" y="764.0" />
+                        <point x="1686.25" y="764.0" />
+                        <point x="-48.25" y="59.5" />
+                      </edge>
+                      <edge source="syntaxtree.ConsoleReadNode" target="syntaxtree.ExpressionNode">
+                        <point x="0.0" y="-48.0" />
+                        <point x="3042.875" y="370.0" />
+                        <point x="2420.975" y="370.0" />
+                        <point x="99.59999999999991" y="59.5" />
+                      </edge>
+                      <edge source="syntaxtree.IntLiteralNode" target="syntaxtree.LiteralNode">
+                        <point x="0.0" y="-70.5" />
+                        <point x="2216.875" y="764.0" />
+                        <point x="2266.375" y="764.0" />
+                        <point x="-55.0" y="37.0" />
+                      </edge>
+                      <edge source="syntaxtree.RealLiteralNode" target="syntaxtree.LiteralNode">
+                        <point x="0.0" y="-59.5" />
+                        <point x="2425.875" y="764.0" />
+                        <point x="2376.375" y="764.0" />
+                        <point x="55.0" y="37.0" />
+                      </edge>
+                      <edge source="syntaxtree.DeclarationsNode" target="syntaxtree.SyntaxTreeBase">
+                        <point x="0.0" y="-70.0" />
+                        <point x="0.0" y="47.5" />
+                      </edge>
+                      <edge source="syntaxtree.VariableNode" target="syntaxtree.IdentifierNodeBase">
+                        <point x="0.0" y="-70.0" />
+                        <point x="1913.25" y="764.0" />
+                        <point x="1782.75" y="764.0" />
+                        <point x="48.25" y="59.5" />
+                      </edge>
+                      <edge source="syntaxtree.FunctionAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
+                        <point x="0.0" y="-48.5" />
+                        <point x="573.25" y="764.0" />
+                        <point x="498.5" y="764.0" />
+                        <point x="54.5" y="37.0" />
+                      </edge>
+                      <edge source="syntaxtree.CompoundStatementNode" target="syntaxtree.StatementNode">
+                        <point x="0.0" y="-48.0" />
+                        <point x="157.5" y="360.0" />
+                        <point x="783.1666666666666" y="360.0" />
+                        <point x="-54.58333333333337" y="14.5" />
+                      </edge>
+                      <edge source="syntaxtree.VariableAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
+                        <point x="-1.1368683772161603E-13" y="-48.5" />
+                        <point x="314.75" y="764.0" />
+                        <point x="389.5" y="764.0" />
+                        <point x="-54.5" y="37.0" />
+                      </edge>
+                      <edge source="syntaxtree.StatementNode" target="syntaxtree.SyntaxTreeBase">
+                        <point x="0.0" y="-14.5" />
+                        <point x="837.75" y="115.0" />
+                        <point x="1600.565476190476" y="115.0" />
+                        <point x="-110.14285714285714" y="47.5" />
+                      </edge>
+                      <edge source="syntaxtree.SubProgramDeclarationsNode" target="syntaxtree.SyntaxTreeBase">
+                        <point x="0.0" y="-48.0" />
+                        <point x="2965.875" y="115.0" />
+                        <point x="1820.8511904761904" y="115.0" />
+                        <point x="110.14285714285717" y="47.5" />
+                      </edge>
+                      <edge source="syntaxtree.WhileLoopNode" target="syntaxtree.StatementNode">
+                        <point x="0.0" y="-59.5" />
+                        <point x="706.5" y="380.0" />
+                        <point x="826.8333333333334" y="380.0" />
+                        <point x="-10.916666666666629" y="14.5" />
+                      </edge>
+                      <edge source="syntaxtree.ExpressionNode" target="syntaxtree.SyntaxTreeBase">
+                        <point x="0.0" y="-59.5" />
+                        <point x="2321.375" y="135.0" />
+                        <point x="1747.4226190476188" y="135.0" />
+                        <point x="36.71428571428572" y="47.5" />
+                      </edge>
+                      <edge source="syntaxtree.SubProgramNode" target="syntaxtree.SyntaxTreeBase">
+                        <point x="0.0" y="-81.5" />
+                        <point x="2631.375" y="125.0" />
+                        <point x="1784.1369047619046" y="125.0" />
+                        <point x="73.42857142857144" y="47.5" />
+                      </edge>
+                      <edge source="syntaxtree.ProcedureStatementNode" target="syntaxtree.StatementNode">
+                        <point x="0.0" y="-59.5" />
+                        <point x="1525.5" y="360.0" />
+                        <point x="892.3333333333333" y="360.0" />
+                        <point x="54.58333333333326" y="14.5" />
+                      </edge>
+                      <edge source="syntaxtree.ProgramNode" target="syntaxtree.SyntaxTreeBase">
+                        <point x="0.0" y="-92.5" />
+                        <point x="1218.2083333333333" y="125.0" />
+                        <point x="1637.2797619047617" y="125.0" />
+                        <point x="-73.42857142857142" y="47.5" />
+                      </edge>
+                      <edge source="syntaxtree.ArrayVarNode" target="syntaxtree.VariableNode">
+                        <point x="0.0" y="-70.5" />
+                        <point x="0.0" y="70.0" />
                       </edge>
                       <edge source="syntaxtree.BinaryOperationNode" target="syntaxtree.ExpressionNode">
-                        <point x="0.0" y="-58.5" />
-                        <point x="2181.0" y="246.0" />
-                        <point x="2009.3" y="246.0" />
-                        <point x="37.799999999999955" y="25.5" />
+                        <point x="0.0" y="-169.5" />
+                        <point x="2667.875" y="380.0" />
+                        <point x="2371.175" y="380.0" />
+                        <point x="49.80000000000018" y="59.5" />
                       </edge>
                     </edges>
-                    <settings layout="Hierarchic Group" zoom="0.8996137131820376" x="1729.0839336327667" y="141.18260880393734" />
+                    <settings layout="Hierarchic Group" zoom="0.7996137131820373" x="1454.4178743961356" y="408.4631642512079" />
                     <SelectedNodes />
                     <Categories />
                     <SCOPE>All</SCOPE>
                     <VISIBILITY>private</VISIBILITY>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="5">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Scope.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/symboltable/Scope.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="342">
-                    <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-                    <folding>
-                      <element signature="method#getSymbol#0;class#Scope#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="8">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="LiteralNode.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/syntaxtree/LiteralNode.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="300">
-                    <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-                    <folding>
-                      <element signature="docComment;method#LiteralNode#0;class#LiteralNode#0" expanded="true" />
-                      <element signature="e#548#549#0" expanded="true" />
-                      <element signature="e#566#567#0" expanded="true" />
-                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -291,7 +257,69 @@
     <favorites_list name="Compiler" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="SubProgramHeadNode.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="38" lean-forward="false" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#SubProgramHeadNode#0" expanded="true" />
+                <element signature="method#SubProgramHeadNode#0;class#SubProgramHeadNode#0" expanded="true" />
+                <element signature="docComment;method#indentedToString#0;class#SubProgramHeadNode#0" expanded="true" />
+                <element signature="e#914#915#0" expanded="true" />
+                <element signature="e#937#938#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProgramNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/ProgramNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+              <folding>
+                <element signature="method#ProgramNode#0;class#ProgramNode#0" expanded="true" />
+                <element signature="method#indentedToString#0;class#ProgramNode#0" expanded="true" />
+                <marker date="1492293553762" expanded="false" signature="869:957" ph="/**...*/" />
+                <marker date="1492293553762" expanded="true" signature="1493:1527" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="626">
+              <caret line="297" column="34" lean-forward="false" selection-start-line="297" selection-start-column="34" selection-end-line="297" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#program#0;class#Parser#0" expanded="true" />
+                <element signature="method#identifierList#0;class#Parser#0" expanded="true" />
+                <element signature="method#declarations#0;class#Parser#0" expanded="true" />
+                <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+                <element signature="method#arguments#0;class#Parser#0" expanded="true" />
+                <element signature="method#parameterList#0;class#Parser#0" expanded="true" />
+                <element signature="docComment;method#factor#0;class#Parser#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Scope.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/symboltable/Scope.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="603">
+              <caret line="303" column="16" lean-forward="false" selection-start-line="303" selection-start-column="16" selection-end-line="303" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -325,7 +353,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/syntaxtree/IdentifierListNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/ExpressionBaseNode.java" />
-        <option value="$PROJECT_DIR$/src/syntaxtree/LiteralNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/RealNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/NotFactorNode.java" />
         <option value="$USER_HOME$/AppData/Local/Temp/Temp1_syntaxtree.zip/syntaxtree/ValueNode.java" />
@@ -338,7 +365,6 @@
         <option value="$PROJECT_DIR$/src/syntaxtree/FactorNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramDeclarationHeaderNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramHeaderNode.java" />
-        <option value="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" />
         <option value="$PROJECT_DIR$/src/scanner/LookUp.java" />
         <option value="$PROJECT_DIR$/src/symboltable/Scope.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/Scope.java" />
@@ -351,7 +377,6 @@
         <option value="$PROJECT_DIR$/src/syntaxtree/VariableAssignmentStatementNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/IfStatementNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramNode.java" />
-        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java" />
         <option value="$PROJECT_DIR$/src/scanner/TokenType.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/ValueNode.java" />
@@ -359,7 +384,6 @@
         <option value="$PROJECT_DIR$/src/syntaxtree/LiteralIntNode.java" />
         <option value="$PROJECT_DIR$/src/scanner/Token.java" />
         <option value="$PROJECT_DIR$/src/scanner/Scanner.jflex" />
-        <option value="$PROJECT_DIR$/src/parser/Parser.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/ExpressionNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/VariableNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/IdentifierNodeBase.java" />
@@ -367,8 +391,12 @@
         <option value="$PROJECT_DIR$/src/syntaxtree/IntLiteralNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/RealLiteralNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java" />
-        <option value="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/ConsoleReadNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/LiteralNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ProgramNode.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java" />
+        <option value="$PROJECT_DIR$/src/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java" />
       </list>
     </option>
   </component>
@@ -382,8 +410,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1200" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -503,6 +533,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="altmancompiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="altmancompiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -552,7 +604,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -1018,12 +1070,12 @@
       <workItem from="1492016728578" duration="10884000" />
       <workItem from="1492103198867" duration="20267000" />
       <workItem from="1492140342641" duration="25376000" />
-      <workItem from="1492228362775" duration="17505000" />
+      <workItem from="1492228362775" duration="21514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87546000" />
+    <option name="totallyTimeSpent" value="91555000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1035,7 +1087,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1060,7 +1112,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11727079" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="-360" y="53" width="342" height="1043" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1744907" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="480" y="790" width="1006" height="204" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21346325" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23106425" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1087,7 +1139,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1318,32 +1370,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="docComment;class#SubProgramHeadNode#0" expanded="true" />
-            <element signature="method#indentedToString#0;class#SubProgramHeadNode#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SyntaxTreeNode.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SyntaxTreeBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="37" column="66" lean-forward="false" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="105" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symboltable/Scope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding>
-            <element signature="method#getSymbol#0;class#Scope#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1366,18 +1397,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/LiteralNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding>
-            <element signature="docComment;method#LiteralNode#0;class#LiteralNode#0" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-            <element signature="e#566#567#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scanner/Token.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8">
@@ -1391,69 +1410,6 @@
         <state relative-caret-position="629">
           <caret line="37" column="60" lean-forward="false" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="559" column="13" lean-forward="true" selection-start-line="559" selection-start-column="13" selection-end-line="559" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#error#0;class#Parser#0" expanded="true" />
-            <element signature="method#error#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#Parser#0;class#Parser#0" expanded="true" />
-            <element signature="method#Parser#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#match#0;class#Parser#0" expanded="true" />
-            <element signature="method#match#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#program#0;class#Parser#0" expanded="true" />
-            <element signature="method#program#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#identifierList#0;class#Parser#0" expanded="true" />
-            <element signature="method#identifierList#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#declarations#0;class#Parser#0" expanded="true" />
-            <element signature="method#declarations#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#type#0;class#Parser#0" expanded="true" />
-            <element signature="method#type#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#standardType#0;class#Parser#0" expanded="true" />
-            <element signature="method#standardType#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
-            <element signature="method#subprogramDeclarations#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
-            <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#subprogramHead#0;class#Parser#0" expanded="true" />
-            <element signature="method#subprogramHead#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#arguments#0;class#Parser#0" expanded="true" />
-            <element signature="method#arguments#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#parameterList#0;class#Parser#0" expanded="true" />
-            <element signature="method#parameterList#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#compoundStatement#0;class#Parser#0" expanded="true" />
-            <element signature="method#compoundStatement#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#optionalStatements#0;class#Parser#0" expanded="true" />
-            <element signature="method#optionalStatements#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#statementList#0;class#Parser#0" expanded="true" />
-            <element signature="method#statementList#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#statement#0;class#Parser#0" expanded="true" />
-            <element signature="method#statement#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#variable#0;class#Parser#0" expanded="true" />
-            <element signature="method#variable#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#procedureStatement#0;class#Parser#0" expanded="true" />
-            <element signature="method#procedureStatement#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#expressionList#0;class#Parser#0" expanded="true" />
-            <element signature="method#expressionList#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#expression#0;class#Parser#0" expanded="true" />
-            <element signature="method#expression#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#simpleExpression#0;class#Parser#0" expanded="true" />
-            <element signature="method#simpleExpression#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#simplePart#0;class#Parser#0" expanded="true" />
-            <element signature="method#simplePart#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#termPart#0;class#Parser#0" expanded="true" />
-            <element signature="method#termPart#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#factor#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#sign#0;class#Parser#0" expanded="true" />
-            <element signature="method#sign#0;class#Parser#0" expanded="true" />
-            <element signature="docComment;method#relop#0;class#Parser#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1517,18 +1473,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ProgramNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="8" column="3" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-          <folding>
-            <element signature="method#ProgramNode#0;class#ProgramNode#0" expanded="true" />
-            <element signature="method#indentedToString#0;class#ProgramNode#0" expanded="true" />
-            <element signature="method#toMips#0;class#ProgramNode#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/syntaxtree/BinaryOperationNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-316">
@@ -1587,13 +1531,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/LiteralNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding>
+            <element signature="docComment;method#LiteralNode#0;class#LiteralNode#0" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/syntaxtree/DeclarationsNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+            <element signature="e#421#422#0" expanded="true" />
             <element signature="method#indentedToString#0;class#DeclarationsNode#0" expanded="true" />
+            <element signature="docComment;method#toMips#0;class#DeclarationsNode#0" expanded="true" />
+            <element signature="method#toMips#0;class#DeclarationsNode#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ProgramNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+          <folding>
+            <element signature="method#ProgramNode#0;class#ProgramNode#0" expanded="true" />
+            <element signature="method#indentedToString#0;class#ProgramNode#0" expanded="true" />
+            <marker date="1492293553762" expanded="false" signature="869:957" ph="/**...*/" />
+            <marker date="1492293553762" expanded="true" signature="1493:1527" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symboltable/Scope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="303" column="16" lean-forward="false" selection-start-line="303" selection-start-column="16" selection-end-line="303" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="297" column="34" lean-forward="false" selection-start-line="297" selection-start-column="34" selection-end-line="297" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#program#0;class#Parser#0" expanded="true" />
+            <element signature="method#identifierList#0;class#Parser#0" expanded="true" />
+            <element signature="method#declarations#0;class#Parser#0" expanded="true" />
+            <element signature="method#subprogramDeclaration#0;class#Parser#0" expanded="true" />
+            <element signature="method#arguments#0;class#Parser#0" expanded="true" />
+            <element signature="method#parameterList#0;class#Parser#0" expanded="true" />
+            <element signature="docComment;method#factor#0;class#Parser#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/SubProgramHeadNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="38" lean-forward="false" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#SubProgramHeadNode#0" expanded="true" />
+            <element signature="method#SubProgramHeadNode#0;class#SubProgramHeadNode#0" expanded="true" />
+            <element signature="docComment;method#indentedToString#0;class#SubProgramHeadNode#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1604,181 +1617,181 @@
           <ID>JAVA</ID>
           <OriginalElement>syntaxtree</OriginalElement>
           <nodes>
-            <node x="2064.5" y="266.0">syntaxtree.BinaryOperationNode</node>
-            <node x="440.0" y="299.0">syntaxtree.ConsoleWriteNode</node>
-            <node x="1418.0" y="299.0">syntaxtree.IdentifierNodeBase</node>
-            <node x="2086.0" y="89.0">syntaxtree.ProgramNode</node>
-            <node x="1898.5" y="310.0">syntaxtree.ConsoleReadNode</node>
-            <node x="1314.5833333333333" y="0.0">syntaxtree.SyntaxTreeNode</node>
-            <node x="1513.5" y="534.0">syntaxtree.ArrayVarNode</node>
-            <node x="638.0" y="299.0">syntaxtree.AssignmentStatementNodeBase</node>
-            <node x="1685.0" y="433.0">syntaxtree.RealLiteralNode</node>
-            <node x="1836.0" y="433.0">syntaxtree.IntLiteralNode</node>
-            <node x="1296.0833333333333" y="111.0">syntaxtree.SubProgramHeadNode</node>
-            <node x="1877.0" y="122.0">syntaxtree.ExpressionNode</node>
-            <node x="235.0" y="288.0">syntaxtree.ProcedureStatementNode</node>
-            <node x="497.25" y="433.0">syntaxtree.FunctionAssignmentStatementNode</node>
-            <node x="1546.0" y="444.0">syntaxtree.VariableNode</node>
-            <node x="758.25" y="433.0">syntaxtree.VariableAssignmentStatementNode</node>
-            <node x="0.0" y="277.0">syntaxtree.IfStatementNode</node>
-            <node x="572.5" y="133.0">syntaxtree.StatementNode</node>
-            <node x="294.5" y="122.0">syntaxtree.SubProgramDeclarationsNode</node>
-            <node x="1231.0" y="433.0">syntaxtree.FunctionExpressionNode</node>
-            <node x="1123.0" y="299.0">syntaxtree.CompoundStatementNode</node>
-            <node x="985.0833333333333" y="89.0">syntaxtree.SubProgramNode</node>
-            <node x="1769.5" y="310.0">syntaxtree.LiteralNode</node>
-            <node x="2317.5" y="277.0">syntaxtree.UnaryOperationNode</node>
-            <node x="876.0" y="288.0">syntaxtree.WhileLoopNode</node>
-            <node x="2299.0" y="122.0">syntaxtree.DeclarationsNode</node>
+            <node x="2451.375" y="400.0">syntaxtree.BinaryOperationNode</node>
+            <node x="859.9999999999999" y="521.0">syntaxtree.ConsoleWriteNode</node>
+            <node x="1638.0" y="510.0">syntaxtree.IdentifierNodeBase</node>
+            <node x="1582.208333333333" y="0.0">syntaxtree.SyntaxTreeBase</node>
+            <node x="1091.7083333333333" y="155.0">syntaxtree.ProgramNode</node>
+            <node x="2904.375" y="521.5">syntaxtree.ConsoleReadNode</node>
+            <node x="1781.25" y="980.0">syntaxtree.ArrayVarNode</node>
+            <node x="335.0" y="532.5">syntaxtree.AssignmentStatementNodeBase</node>
+            <node x="2333.875" y="800.0">syntaxtree.RealLiteralNode</node>
+            <node x="2119.875" y="789.0">syntaxtree.IntLiteralNode</node>
+            <node x="1354.7083333333333" y="177.0">syntaxtree.SubProgramHeadNode</node>
+            <node x="2196.875" y="188.0">syntaxtree.ExpressionNode</node>
+            <node x="1433.0" y="510.0">syntaxtree.ProcedureStatementNode</node>
+            <node x="452.75" y="811.0">syntaxtree.FunctionAssignmentStatementNode</node>
+            <node x="1763.25" y="789.5">syntaxtree.VariableNode</node>
+            <node x="196.75" y="811.0">syntaxtree.VariableAssignmentStatementNode</node>
+            <node x="1098.0" y="466.0">syntaxtree.IfStatementNode</node>
+            <node x="772.25" y="233.0">syntaxtree.StatementNode</node>
+            <node x="2816.875" y="199.5">syntaxtree.SubProgramDeclarationsNode</node>
+            <node x="1368.25" y="789.0">syntaxtree.FunctionExpressionNode</node>
+            <node x="0.0" y="521.5">syntaxtree.CompoundStatementNode</node>
+            <node x="2465.875" y="166.0">syntaxtree.SubProgramNode</node>
+            <node x="2211.375" y="532.5">syntaxtree.LiteralNode</node>
+            <node x="1851.0" y="477.0">syntaxtree.UnaryOperationNode</node>
+            <node x="573.0" y="510.0">syntaxtree.WhileLoopNode</node>
+            <node x="1577.708333333333" y="177.5">syntaxtree.DeclarationsNode</node>
           </nodes>
           <notes />
           <edges>
-            <edge source="syntaxtree.LiteralNode" target="syntaxtree.ExpressionNode">
-              <point x="0.0" y="-14.5" />
-              <point x="1824.0" y="246.0" />
-              <point x="1933.7" y="246.0" />
-              <point x="-37.799999999999955" y="25.5" />
+            <edge source="syntaxtree.SubProgramHeadNode" target="syntaxtree.SyntaxTreeBase">
+              <point x="0.0" y="-59.5" />
+              <point x="1461.2083333333333" y="135.0" />
+              <point x="1673.9940476190475" y="135.0" />
+              <point x="-36.71428571428571" y="47.5" />
             </edge>
             <edge source="syntaxtree.ConsoleWriteNode" target="syntaxtree.StatementNode">
-              <point x="0.0" y="-25.5" />
-              <point x="529.0" y="246.0" />
-              <point x="627.0833333333334" y="246.0" />
-              <point x="-10.916666666666629" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.AssignmentStatementNodeBase" target="syntaxtree.StatementNode">
-              <point x="0.0" y="-25.5" />
-              <point x="747.0" y="246.0" />
-              <point x="648.9166666666666" y="246.0" />
+              <point x="0.0" y="-48.5" />
+              <point x="968.9999999999999" y="380.0" />
+              <point x="848.6666666666666" y="380.0" />
               <point x="10.916666666666629" y="14.5" />
             </edge>
+            <edge source="syntaxtree.LiteralNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-37.0" />
+              <point x="0.0" y="59.5" />
+            </edge>
             <edge source="syntaxtree.IfStatementNode" target="syntaxtree.StatementNode">
-              <point x="0.0" y="-47.5" />
-              <point x="107.5" y="226.0" />
-              <point x="583.4166666666667" y="226.0" />
-              <point x="-54.583333333333314" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.SubProgramNode" target="syntaxtree.SyntaxTreeNode">
-              <point x="1.1368683772161603E-13" y="-58.5" />
-              <point x="1130.5833333333335" y="69.0" />
-              <point x="1362.4404761904761" y="69.0" />
-              <point x="-19.14285714285711" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.IdentifierNodeBase" target="syntaxtree.ExpressionNode">
-              <point x="0.0" y="-25.5" />
-              <point x="1492.0" y="236.0" />
-              <point x="1895.9" y="236.0" />
-              <point x="-75.59999999999991" y="25.5" />
-            </edge>
-            <edge source="syntaxtree.UnaryOperationNode" target="syntaxtree.ExpressionNode">
-              <point x="0.0" y="-47.5" />
-              <point x="2425.5" y="236.0" />
-              <point x="2047.1" y="236.0" />
-              <point x="75.59999999999991" y="25.5" />
-            </edge>
-            <edge source="syntaxtree.FunctionExpressionNode" target="syntaxtree.IdentifierNodeBase">
-              <point x="0.0" y="-25.5" />
-              <point x="1378.5" y="408.0" />
-              <point x="1455.0" y="408.0" />
-              <point x="-37.0" y="25.5" />
-            </edge>
-            <edge source="syntaxtree.ConsoleReadNode" target="syntaxtree.ExpressionNode">
-              <point x="0.0" y="-14.5" />
-              <point x="0.0" y="25.5" />
-            </edge>
-            <edge source="syntaxtree.IntLiteralNode" target="syntaxtree.LiteralNode">
-              <point x="0.0" y="-25.5" />
-              <point x="1897.5" y="408.0" />
-              <point x="1851.25" y="408.0" />
-              <point x="27.25" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.RealLiteralNode" target="syntaxtree.LiteralNode">
-              <point x="0.0" y="-25.5" />
-              <point x="1750.5" y="408.0" />
-              <point x="1796.75" y="408.0" />
-              <point x="-27.25" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.VariableNode" target="syntaxtree.IdentifierNodeBase">
-              <point x="0.0" y="-14.5" />
-              <point x="1605.5" y="408.0" />
-              <point x="1529.0" y="408.0" />
-              <point x="37.0" y="25.5" />
-            </edge>
-            <edge source="syntaxtree.DeclarationsNode" target="syntaxtree.SyntaxTreeNode">
-              <point x="0.0" y="-25.5" />
-              <point x="2392.0" y="49.0" />
-              <point x="1439.0119047619046" y="49.0" />
-              <point x="57.42857142857133" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.FunctionAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
-              <point x="0.0" y="-25.5" />
-              <point x="617.75" y="408.0" />
-              <point x="692.5" y="408.0" />
-              <point x="-54.5" y="25.5" />
-            </edge>
-            <edge source="syntaxtree.CompoundStatementNode" target="syntaxtree.StatementNode">
-              <point x="0.0" y="-25.5" />
-              <point x="1260.5" y="226.0" />
-              <point x="692.5833333333334" y="226.0" />
-              <point x="54.58333333333337" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.SubProgramDeclarationsNode" target="syntaxtree.SyntaxTreeNode">
-              <point x="0.0" y="-25.5" />
-              <point x="423.5" y="49.0" />
-              <point x="1324.154761904762" y="49.0" />
-              <point x="-57.42857142857133" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.VariableAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
-              <point x="0.0" y="-25.5" />
-              <point x="876.25" y="408.0" />
-              <point x="801.5" y="408.0" />
-              <point x="54.5" y="25.5" />
-            </edge>
-            <edge source="syntaxtree.SubProgramHeadNode" target="syntaxtree.SyntaxTreeNode">
-              <point x="0.0" y="-36.5" />
-              <point x="0.0" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.WhileLoopNode" target="syntaxtree.StatementNode">
-              <point x="0.0" y="-36.5" />
-              <point x="989.5" y="236.0" />
-              <point x="670.75" y="236.0" />
+              <point x="0.0" y="-103.5" />
+              <point x="1255.5" y="370.0" />
+              <point x="870.5" y="370.0" />
               <point x="32.75" y="14.5" />
             </edge>
-            <edge source="syntaxtree.ProgramNode" target="syntaxtree.SyntaxTreeNode">
-              <point x="0.0" y="-58.5" />
-              <point x="2182.5" y="59.0" />
-              <point x="1419.8690476190475" y="59.0" />
-              <point x="38.28571428571422" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.StatementNode" target="syntaxtree.SyntaxTreeNode">
-              <point x="0.0" y="-14.5" />
-              <point x="638.0" y="59.0" />
-              <point x="1343.297619047619" y="59.0" />
-              <point x="-38.28571428571422" y="14.5" />
-            </edge>
-            <edge source="syntaxtree.ProcedureStatementNode" target="syntaxtree.StatementNode">
-              <point x="0.0" y="-36.5" />
-              <point x="327.5" y="236.0" />
-              <point x="605.25" y="236.0" />
+            <edge source="syntaxtree.AssignmentStatementNodeBase" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-37.0" />
+              <point x="444.0" y="370.0" />
+              <point x="805.0" y="370.0" />
               <point x="-32.75" y="14.5" />
             </edge>
-            <edge source="syntaxtree.ArrayVarNode" target="syntaxtree.VariableNode">
-              <point x="0.0" y="-25.5" />
-              <point x="0.0" y="14.5" />
+            <edge source="syntaxtree.IdentifierNodeBase" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-59.5" />
+              <point x="1734.5" y="370.0" />
+              <point x="2221.775" y="370.0" />
+              <point x="-99.59999999999991" y="59.5" />
             </edge>
-            <edge source="syntaxtree.ExpressionNode" target="syntaxtree.SyntaxTreeNode">
-              <point x="0.0" y="-25.5" />
-              <point x="1971.5" y="69.0" />
-              <point x="1400.7261904761904" y="69.0" />
-              <point x="19.14285714285711" y="14.5" />
+            <edge source="syntaxtree.UnaryOperationNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-92.5" />
+              <point x="1999.0" y="380.0" />
+              <point x="2271.575" y="380.0" />
+              <point x="-49.80000000000018" y="59.5" />
+            </edge>
+            <edge source="syntaxtree.FunctionExpressionNode" target="syntaxtree.IdentifierNodeBase">
+              <point x="0.0" y="-70.5" />
+              <point x="1555.75" y="764.0" />
+              <point x="1686.25" y="764.0" />
+              <point x="-48.25" y="59.5" />
+            </edge>
+            <edge source="syntaxtree.ConsoleReadNode" target="syntaxtree.ExpressionNode">
+              <point x="0.0" y="-48.0" />
+              <point x="3042.875" y="370.0" />
+              <point x="2420.975" y="370.0" />
+              <point x="99.59999999999991" y="59.5" />
+            </edge>
+            <edge source="syntaxtree.IntLiteralNode" target="syntaxtree.LiteralNode">
+              <point x="0.0" y="-70.5" />
+              <point x="2216.875" y="764.0" />
+              <point x="2266.375" y="764.0" />
+              <point x="-55.0" y="37.0" />
+            </edge>
+            <edge source="syntaxtree.RealLiteralNode" target="syntaxtree.LiteralNode">
+              <point x="0.0" y="-59.5" />
+              <point x="2425.875" y="764.0" />
+              <point x="2376.375" y="764.0" />
+              <point x="55.0" y="37.0" />
+            </edge>
+            <edge source="syntaxtree.DeclarationsNode" target="syntaxtree.SyntaxTreeBase">
+              <point x="0.0" y="-70.0" />
+              <point x="0.0" y="47.5" />
+            </edge>
+            <edge source="syntaxtree.VariableNode" target="syntaxtree.IdentifierNodeBase">
+              <point x="0.0" y="-70.0" />
+              <point x="1913.25" y="764.0" />
+              <point x="1782.75" y="764.0" />
+              <point x="48.25" y="59.5" />
+            </edge>
+            <edge source="syntaxtree.FunctionAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
+              <point x="0.0" y="-48.5" />
+              <point x="573.25" y="764.0" />
+              <point x="498.5" y="764.0" />
+              <point x="54.5" y="37.0" />
+            </edge>
+            <edge source="syntaxtree.CompoundStatementNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-48.0" />
+              <point x="157.5" y="360.0" />
+              <point x="783.1666666666666" y="360.0" />
+              <point x="-54.58333333333337" y="14.5" />
+            </edge>
+            <edge source="syntaxtree.VariableAssignmentStatementNode" target="syntaxtree.AssignmentStatementNodeBase">
+              <point x="-1.1368683772161603E-13" y="-48.5" />
+              <point x="314.75" y="764.0" />
+              <point x="389.5" y="764.0" />
+              <point x="-54.5" y="37.0" />
+            </edge>
+            <edge source="syntaxtree.StatementNode" target="syntaxtree.SyntaxTreeBase">
+              <point x="0.0" y="-14.5" />
+              <point x="837.75" y="115.0" />
+              <point x="1600.565476190476" y="115.0" />
+              <point x="-110.14285714285714" y="47.5" />
+            </edge>
+            <edge source="syntaxtree.SubProgramDeclarationsNode" target="syntaxtree.SyntaxTreeBase">
+              <point x="0.0" y="-48.0" />
+              <point x="2965.875" y="115.0" />
+              <point x="1820.8511904761904" y="115.0" />
+              <point x="110.14285714285717" y="47.5" />
+            </edge>
+            <edge source="syntaxtree.WhileLoopNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-59.5" />
+              <point x="706.5" y="380.0" />
+              <point x="826.8333333333334" y="380.0" />
+              <point x="-10.916666666666629" y="14.5" />
+            </edge>
+            <edge source="syntaxtree.ExpressionNode" target="syntaxtree.SyntaxTreeBase">
+              <point x="0.0" y="-59.5" />
+              <point x="2321.375" y="135.0" />
+              <point x="1747.4226190476188" y="135.0" />
+              <point x="36.71428571428572" y="47.5" />
+            </edge>
+            <edge source="syntaxtree.SubProgramNode" target="syntaxtree.SyntaxTreeBase">
+              <point x="0.0" y="-81.5" />
+              <point x="2631.375" y="125.0" />
+              <point x="1784.1369047619046" y="125.0" />
+              <point x="73.42857142857144" y="47.5" />
+            </edge>
+            <edge source="syntaxtree.ProcedureStatementNode" target="syntaxtree.StatementNode">
+              <point x="0.0" y="-59.5" />
+              <point x="1525.5" y="360.0" />
+              <point x="892.3333333333333" y="360.0" />
+              <point x="54.58333333333326" y="14.5" />
+            </edge>
+            <edge source="syntaxtree.ProgramNode" target="syntaxtree.SyntaxTreeBase">
+              <point x="0.0" y="-92.5" />
+              <point x="1218.2083333333333" y="125.0" />
+              <point x="1637.2797619047617" y="125.0" />
+              <point x="-73.42857142857142" y="47.5" />
+            </edge>
+            <edge source="syntaxtree.ArrayVarNode" target="syntaxtree.VariableNode">
+              <point x="0.0" y="-70.5" />
+              <point x="0.0" y="70.0" />
             </edge>
             <edge source="syntaxtree.BinaryOperationNode" target="syntaxtree.ExpressionNode">
-              <point x="0.0" y="-58.5" />
-              <point x="2181.0" y="246.0" />
-              <point x="2009.3" y="246.0" />
-              <point x="37.799999999999955" y="25.5" />
+              <point x="0.0" y="-169.5" />
+              <point x="2667.875" y="380.0" />
+              <point x="2371.175" y="380.0" />
+              <point x="49.80000000000018" y="59.5" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.8996137131820376" x="1729.0839336327667" y="141.18260880393734" />
+          <settings layout="Hierarchic Group" zoom="0.7996137131820373" x="1454.4178743961356" y="408.4631642512079" />
           <SelectedNodes />
           <Categories />
           <SCOPE>All</SCOPE>

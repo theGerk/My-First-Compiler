@@ -9,7 +9,7 @@ package syntaxtree;
  *
  * @author Benji
  */
-public class SubProgramNode extends SyntaxTreeNode {
+public class SubProgramNode extends SyntaxTreeBase {
 
 	private final SubProgramHeadNode header;
 	private final DeclarationsNode variables;
@@ -29,8 +29,10 @@ public class SubProgramNode extends SyntaxTreeNode {
 		this.variables = variables;
 		this.instructions = instructions;
 		this.subFunctions = subFunctions;
+		for (String var : header.getArguments()) {
+			this.variables.addVariable(var);
+		}
 	}
-
 
 	@Override
 	public String indentedToString(int level) {

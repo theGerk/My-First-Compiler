@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Erik Steinmetz
  */
-public class SubProgramDeclarationsNode extends SyntaxTreeNode {
+public class SubProgramDeclarationsNode extends SyntaxTreeBase {
 
 	private ArrayList<SubProgramNode> procs = new ArrayList<>();
 

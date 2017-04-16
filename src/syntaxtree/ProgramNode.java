@@ -7,7 +7,7 @@ import symboltable.Scope;
  *
  * @author Erik Steinmetz
  */
-public class ProgramNode extends SyntaxTreeNode {
+public class ProgramNode extends SyntaxTreeBase {
 
 	private final String name;
 	private final DeclarationsNode variables;
@@ -19,18 +19,6 @@ public class ProgramNode extends SyntaxTreeNode {
 		variables = globals;
 		this.functions = functions;
 		this.main = main;
-	}
-
-	public DeclarationsNode getVariables() {
-		return variables;
-	}
-
-	public SubProgramDeclarationsNode getFunctions() {
-		return functions;
-	}
-
-	public CompoundStatementNode getMain() {
-		return main;
 	}
 
 	@Override
@@ -47,6 +35,7 @@ public class ProgramNode extends SyntaxTreeNode {
 	 * generates MIPS assembly of program
 	 *
 	 * @param symbolTable global scope
+	 * @param indent indentation for formating
 	 * @return StringBuilder with entire program in it
 	 */
 	@Override
@@ -56,11 +45,11 @@ public class ProgramNode extends SyntaxTreeNode {
 		String functions = this.functions.toMips(symbolTable, indent + '\t');
 		String main = this.main.toMips(symbolTable, indent + '\t');
 		return indent + ".text\n"
-			+ indent + "main:\n"
-			+ declarations
-			+ main
-			+ functions
-			+ indent + '\t' + "li $v0, 10\n"
-			+ indent + '\t' + "syscall";
+				+ indent + "main:\n"
+				+ declarations
+				+ main
+				+ functions
+				+ indent + '\t' + "li $v0, 10\n"
+				+ indent + '\t' + "syscall";
 	}
 }

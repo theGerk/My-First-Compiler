@@ -29,7 +29,7 @@ public abstract class LiteralNode extends ExpressionNode {	//TODO add folding
 	 * @return if the node can be folded
 	 */
 	@Override
-	public boolean fold() {
-		return true;
+	public LiteralNode fold() {
+		return this;
 	}
 }

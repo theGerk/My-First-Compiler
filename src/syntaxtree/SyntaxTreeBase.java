@@ -7,7 +7,7 @@ import symboltable.Scope;
  *
  * @author Erik Steinmetz
  */
-public abstract class SyntaxTreeNode {
+public abstract class SyntaxTreeBase {
 
 	/**
 	 * Creates a String representation of this node and its children.

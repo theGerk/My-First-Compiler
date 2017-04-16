@@ -1,20 +1,19 @@
 package syntaxtree;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import scanner.TokenType;
-import symboltable.Scope;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Benji on 4/14/2017.
  */
-public class SubProgramHeadNode extends SyntaxTreeNode {
+public class SubProgramHeadNode extends SyntaxTreeBase {
 
 	private final String name;
-	private final DeclarationsNode arguments;
+	private final String[] arguments;
 
-	public SubProgramHeadNode(String name, DeclarationsNode arguments) {
+	public SubProgramHeadNode(String name, ArrayList<String> arguments) {
 		this.name = name;
-		this.arguments = arguments;
+		this.arguments = (String[]) arguments.toArray();
 	}
 
 	/**
@@ -25,9 +24,14 @@ public class SubProgramHeadNode extends SyntaxTreeNode {
 	 */
 	@Override
 	public String indentedToString(int level) {
-		return indentation(level) + name + " -> " + returnType
-				+ indentation(level) + "Arguments:\n"
-				+ arguments.indentedToString(level + 1);
+		StringBuilder build = new StringBuilder(indentation(level)).append("FUNCTION HEADER: ").append(name).append('\n');
+		for (String arg : arguments) {
+			build.append(indentation(level)).append(arg).append('\n');
+		}
+		return build.toString();
 	}
 
+	public final String[] getArguments() {
+		return arguments;
+	}
 }

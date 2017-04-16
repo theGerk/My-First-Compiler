@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-
 /**
  * Parser for program, parses from a stream
  *
@@ -116,7 +115,7 @@ public class Parser {
 	 * @return list of identifier strings
 	 * @throws java.lang.Exception error message
 	 */
-	public ArrayList<String> identifierList() throws Exception {
+	private ArrayList<String> identifierList() throws Exception {
 		ArrayList<String> output = new ArrayList<>();
 		String id = match(TokenType.ID);
 		currentScope.put(id);
@@ -136,16 +135,15 @@ public class Parser {
 	 * @return Declarations node
 	 * @throws java.lang.Exception error message
 	 */
-	public DeclarationsNode declarations() throws Exception {
+	private DeclarationsNode declarations() throws Exception {
 		DeclarationsNode output = new DeclarationsNode();
 		while (lookAhead.equals(TokenType.VAR)) {
 			match(TokenType.VAR);
 			ArrayList<String> identifierList = identifierList();
 			match(TokenType.COLON);
-			Pair<TokenType, IdentifierKind> info = type();
+			TypeReturn type = type();
 			for (String identifier : identifierList) {
-				currentScope.set(identifier, info.getKey());
-				currentScope.set(identifier, info.getValue());
+				type.set(identifier);
 				output.addVariable(identifier);
 			}
 			match(TokenType.SEMICOLON);
@@ -153,23 +151,54 @@ public class Parser {
 		return output;
 	}
 
+	private class TypeReturn {
+
+		public void set(String id) throws Exception {
+			currentScope.set(id, kind);
+			currentScope.set(id, type);
+			if (kind == IdentifierKind.ARR) {
+				currentScope.set(id, start, end);
+			}
+		}
+
+		public TypeReturn(TokenType type) {
+			this.type = type;
+			kind = IdentifierKind.VAR;
+			start = end = 0;
+		}
+
+		public TypeReturn(TokenType type, int start, int end) {
+			this.type = type;
+			this.kind = IdentifierKind.ARR;
+			this.start = start;
+			this.end = end;
+		}
+
+		final TokenType type;
+		final IdentifierKind kind;
+
+		//only used in array
+		final int start;
+		final int end;
+	}
+
 	/**
 	 * sets type (and kind if array) for currentScope buffer.
 	 *
 	 * @return
 	 */
-	public Pair<TokenType, IdentifierKind> type() {
+	private TypeReturn type() {
 		if (lookAhead.equals(TokenType.ARRAY)) {
 			match(TokenType.ARRAY);
 			match(TokenType.LEFTSQUAREBRACKET);
-			match(TokenType.INT_LITERAL);
+			int start = Integer.parseInt(match(TokenType.INT_LITERAL));
 			match(TokenType.COLON);
-			match(TokenType.INT_LITERAL);
+			int end = Integer.parseInt(match(TokenType.INT_LITERAL));
 			match(TokenType.RIGHTSQUAREBRACKET);
 			match(TokenType.OF);
-			return new Pair<>(standardType(), IdentifierKind.ARR);
+			return new TypeReturn(standardType(), start, end);
 		} else {
-			return new Pair<>(standardType(), IdentifierKind.VAR);
+			return new TypeReturn(standardType());
 		}
 	}
 
@@ -178,7 +207,7 @@ public class Parser {
 	 *
 	 * @return Type of something
 	 */
-	public TokenType standardType() {
+	private TokenType standardType() {
 		if (lookAhead.equals(TokenType.INTEGER)) {
 			match(TokenType.INTEGER);
 			return TokenType.INTEGER;
@@ -193,7 +222,7 @@ public class Parser {
 	 *
 	 * @return Node
 	 */
-	public SubProgramDeclarationsNode subprogramDeclarations() throws Exception {
+	private SubProgramDeclarationsNode subprogramDeclarations() throws Exception {
 		SubProgramDeclarationsNode output = new SubProgramDeclarationsNode();
 		while (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
 			output.addSubProgramDeclaration(subprogramDeclaration());
@@ -207,7 +236,7 @@ public class Parser {
 	 *
 	 * @return Node with function's information
 	 */
-	public SubProgramNode subprogramDeclaration() throws Exception {
+	private SubProgramNode subprogramDeclaration() throws Exception {
 		SubProgramHeadNode head = subprogramHead(); //enters child scope in here
 		DeclarationsNode variables = declarations();
 		SubProgramDeclarationsNode subFunctions = subprogramDeclarations();
@@ -222,7 +251,7 @@ public class Parser {
 	 *
 	 * @return node with information about the function
 	 */
-	public SubProgramHeadNode subprogramHead() throws Exception {
+	private SubProgramHeadNode subprogramHead() throws Exception {
 		if (lookAhead.equals(TokenType.FUNCTION)) {
 			//Match function
 			match(TokenType.FUNCTION);
@@ -235,8 +264,8 @@ public class Parser {
 			currentScope.getParent().set(name, currentScope);
 
 			//match arguments
-			DeclarationsNode arguments = arguments();
-			for (String var : arguments.getVars()) {
+			ArrayList<String> arguments = arguments();
+			for (String var : arguments) {
 				currentScope.getParent().addArg(name, var, currentScope.getType(var));
 			}
 
@@ -260,8 +289,8 @@ public class Parser {
 			currentScope.getParent().set(name, currentScope);
 
 			//match arguments
-			DeclarationsNode arguments = arguments();
-			for (String var : arguments.getVars()) {
+			ArrayList<String> arguments = arguments();
+			for (String var : arguments) {
 				currentScope.getParent().addArg(name, var, currentScope.getType(var));
 			}
 
@@ -275,14 +304,14 @@ public class Parser {
 	 *
 	 * @return
 	 */
-	public DeclarationsNode arguments() throws Exception {
+	private ArrayList<String> arguments() throws Exception {
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
-			DeclarationsNode output = parameterList();
+			ArrayList<String> output = parameterList();
 			match(TokenType.RIGHTPARANTHESIS);
 			return output;
 		}
-		return new DeclarationsNode();
+		return new ArrayList<String>();
 	}
 
 	/**
@@ -290,19 +319,16 @@ public class Parser {
 	 *
 	 * @return parameter list
 	 */
-	public DeclarationsNode parameterList() throws Exception {
-		DeclarationsNode output = new DeclarationsNode();
+	private ArrayList<String> parameterList() throws Exception {
 		while (true) {
 			ArrayList<String> ids = identifierList();
 			match(TokenType.COLON);
-			Pair<TokenType, IdentifierKind> info = type();
+			TypeReturn typeInfo = type();
 			for (String id : ids) {
-				currentScope.set(id, info.getKey());
-				currentScope.set(id, info.getValue());
-				output.addVariable(id);
+				typeInfo.set(id);
 			}
 			if (!lookAhead.equals(TokenType.SEMICOLON)) {
-				return output;
+				return ids;
 			}
 			match(TokenType.SEMICOLON);
 		}
@@ -311,7 +337,7 @@ public class Parser {
 	/**
 	 * eats a compound statement
 	 */
-	public CompoundStatementNode compoundStatement() throws Exception {
+	private CompoundStatementNode compoundStatement() throws Exception {
 		match(TokenType.BEGIN);
 		CompoundStatementNode output = optionalStatements();
 		match(TokenType.END);
@@ -321,7 +347,7 @@ public class Parser {
 	/**
 	 * eats an optional statements
 	 */
-	public CompoundStatementNode optionalStatements() throws Exception {
+	private CompoundStatementNode optionalStatements() throws Exception {
 		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {
 			return statementList();
 		}
@@ -331,7 +357,7 @@ public class Parser {
 	/**
 	 * eats a statement list
 	 */
-	public CompoundStatementNode statementList() throws Exception {
+	private CompoundStatementNode statementList() throws Exception {
 		CompoundStatementNode output = new CompoundStatementNode();
 		output.addStatement(statement());
 		while (lookAhead.equals(TokenType.SEMICOLON)) {
@@ -344,7 +370,7 @@ public class Parser {
 	/**
 	 * eats a statement
 	 */
-	public StatementNode statement() throws Exception {
+	private StatementNode statement() throws Exception {
 		switch (lookAhead.getType()) {
 			case ID:
 				switch (currentScope.getKind(lookAhead.getLexeme())) {
@@ -397,7 +423,7 @@ public class Parser {
 	/**
 	 * parses a variable, possibly one in an array
 	 */
-	public VariableNode variable() throws Exception {
+	private VariableNode variable() throws Exception {
 		VariableNode output;
 		String id = match(TokenType.ID);
 		switch (currentScope.getKind(id)) {
@@ -416,16 +442,17 @@ public class Parser {
 	}
 
 	/**
-	 * determines if it is a procedure statement or if it is a function assignment statement, then returns accordingly
+	 * determines if it is a procedure statement or if it is a function
+	 * assignment statement, then returns accordingly
 	 */
-	public StatementNode procedureStatement() throws Exception {
+	private StatementNode procedureStatement() throws Exception {
 		ArrayList<ExpressionNode> parameters = new ArrayList<>();
 		String id = match(TokenType.ID);
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
 			parameters = expressionList();
 			match(TokenType.RIGHTPARANTHESIS);
-		}else if(lookAhead.equals(TokenType.ASSIGNOP) && currentScope.getType(id) != null){ //TODO document this
+		} else if (lookAhead.equals(TokenType.ASSIGNOP) && currentScope.getType(id) != null) { //TODO document this
 			ExpressionNode expression = expression();
 			return new FunctionAssignmentStatementNode(id, expression, currentScope);
 		}
@@ -435,7 +462,7 @@ public class Parser {
 	/**
 	 * eats an expression list
 	 */
-	public ArrayList<ExpressionNode> expressionList() throws Exception {
+	private ArrayList<ExpressionNode> expressionList() throws Exception {
 		ArrayList<ExpressionNode> output = new ArrayList<>();
 		output.add(expression());
 		while (lookAhead.equals(TokenType.COMMA)) {
@@ -448,7 +475,7 @@ public class Parser {
 	/**
 	 * eats an expression
 	 */
-	public ExpressionNode expression() throws Exception {
+	private ExpressionNode expression() throws Exception {
 		ExpressionNode firstPart = simpleExpression();
 		if (relop()) {
 			TokenType operator = lookAhead.getType();
@@ -463,7 +490,7 @@ public class Parser {
 	/**
 	 * eats a simple expression
 	 */
-	public ExpressionNode simpleExpression() throws Exception {
+	private ExpressionNode simpleExpression() throws Exception {
 		ExpressionNode output;
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
 			TokenType sign = sign();
@@ -482,7 +509,7 @@ public class Parser {
 	/**
 	 * May return null, need to check for that
 	 */
-	public Pair<TokenType, ExpressionNode> simplePart() throws Exception {
+	private Pair<TokenType, ExpressionNode> simplePart() throws Exception {
 		if (addop()) {
 			TokenType type = lookAhead.getType();
 			match(type);
@@ -500,7 +527,7 @@ public class Parser {
 	/**
 	 * eats a term
 	 */
-	public ExpressionNode term() throws Exception {
+	private ExpressionNode term() throws Exception {
 		ExpressionNode output = factor();
 		Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = termPart();
 		if (tokenTypeExpressionNodePair != null) {
@@ -512,7 +539,7 @@ public class Parser {
 	/**
 	 * May return null, need to check for that
 	 */
-	public Pair<TokenType, ExpressionNode> termPart() throws Exception {
+	private Pair<TokenType, ExpressionNode> termPart() throws Exception {
 		if (mulop()) {
 			TokenType type = lookAhead.getType();
 			match(type);
@@ -530,7 +557,7 @@ public class Parser {
 	/**
 	 * returns a factor
 	 */
-	public ExpressionNode factor() throws Exception {
+	private ExpressionNode factor() throws Exception {
 		switch (lookAhead.getType()) {
 			case ID: {
 				String id = match(TokenType.ID);
@@ -571,7 +598,7 @@ public class Parser {
 	/**
 	 * eats a sign
 	 */
-	public TokenType sign() throws Exception {
+	private TokenType sign() throws Exception {
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
 			TokenType type = lookAhead.getType();
 			match(type);
@@ -586,7 +613,7 @@ public class Parser {
 	 *
 	 * @return if the next token is a relop
 	 */
-	public boolean relop() {
+	private boolean relop() {
 		return lookAhead.equals(TokenType.EQUALS)
 				|| lookAhead.equals(TokenType.DIAMOND)
 				|| lookAhead.equals(TokenType.LESSTHAN)
@@ -600,7 +627,7 @@ public class Parser {
 	 *
 	 * @return if the next token is a mulop
 	 */
-	public boolean mulop() {
+	private boolean mulop() {
 		return lookAhead.equals(TokenType.ASTERISK)
 				|| lookAhead.equals(TokenType.FORWARDSLASH)
 				|| lookAhead.equals(TokenType.DIV)
@@ -613,7 +640,7 @@ public class Parser {
 	 *
 	 * @return if the next token is an addop
 	 */
-	public boolean addop() {
+	private boolean addop() {
 		return lookAhead.equals(TokenType.PLUS)
 				|| lookAhead.equals(TokenType.MINUS)
 				|| lookAhead.equals(TokenType.OR);

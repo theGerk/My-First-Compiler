@@ -54,9 +54,10 @@ public class Scope {
 	 * returns a symbol that is accessible in the current scope by it's name
 	 *
 	 * @param name the identifier
+	 *
 	 * @return the symbol, null if it does not exist
 	 */
-	protected Symbol getSymbol(String name) {
+	private Symbol getSymbol(String name) {
 		Scope current = this;
 		Symbol output = null;
 		do {
@@ -70,6 +71,7 @@ public class Scope {
 	 * returns the kind associated with an identifier
 	 *
 	 * @param name the identifier
+	 *
 	 * @return the kind, null if it does not exist
 	 */
 	public IdentifierKind getKind(String name) {
@@ -81,6 +83,7 @@ public class Scope {
 	 * returns the type associated with an identifier
 	 *
 	 * @param name the identifier
+	 *
 	 * @return the type, null if it does not exist
 	 */
 	public TokenType getType(String name) {
@@ -92,6 +95,7 @@ public class Scope {
 	 * returns the scope associated with an identifier
 	 *
 	 * @param name the identifier
+	 *
 	 * @return the scope, null if it does not exist
 	 */
 	public Scope getScope(String name) {
@@ -105,6 +109,7 @@ public class Scope {
 	 * identifier not found
 	 *
 	 * @param name symbol identifier
+	 *
 	 * @return it's scope level.
 	 */
 	public int getLevel(String name) {
@@ -115,7 +120,7 @@ public class Scope {
 				return -1;
 			}
 		}
-		return level;
+		return ptr.level;
 	}
 
 	/**
@@ -127,14 +132,40 @@ public class Scope {
 		return level;
 	}
 
+	public int getLength(String name) {
+		Symbol s = getSymbol(name);
+		if (s != null) {
+			return s.arraySize;
+		} else {
+			return -1;
+		}
+	}
+
+	public int getArrayIndexOffset(String name) {
+		return getSymbol(name).arrayStartOffset;
+	}
+
+	public int getMemoryOffset(String name) {
+		return getSymbol(name).offsetFromStackPointer;
+	}
+
+	public int sizeInBytes(String name) {
+		return getSymbol(name).size();
+	}
+
 	/**
 	 * Returns if there a variable with this name that exists.
 	 *
 	 * @param name identifier name
+	 *
 	 * @return a variable with this name exists
 	 */
 	public boolean exists(String name) {
 		return getSymbol(name) != null;
+	}
+
+	public void setOffset(String name, int offset) {
+		map.get(name).offsetFromStackPointer = offset;
 	}
 
 	/**
@@ -149,12 +180,15 @@ public class Scope {
 	 */
 	private static class Symbol {
 
-		final public String name;
+		public final String name;
 		public IdentifierKind kind;
 		public TokenType type;
 		public Scope scope;					//only used in procedures & functions (and programs)
 		public ArrayList<Pair<String, TokenType>> args;
 		public int offsetFromStackPointer;
+		public int arrayStartOffset;
+		public int arraySize = 1;		//defaults to 1 for size function
+		public String label;
 
 		/**
 		 * trivial constructor
@@ -181,6 +215,7 @@ public class Scope {
 		 * toString helper function
 		 *
 		 * @param t number of tabs to indent output with
+		 *
 		 * @return human readable string representing identifier
 		 */
 		private String toString(String t) {
@@ -197,21 +232,33 @@ public class Scope {
 			}
 			return output.toString();
 		}
+
+		/**
+		 * gives size of value in bytes
+		 *
+		 * @return number of bytes used for this symbol
+		 */
+		public int size() {
+			return arraySize * 4;
+		}
 	}
 
 	/**
 	 * checks if the string is a valid id
 	 *
 	 * @param name
+	 *
 	 * @return
 	 */
 	public boolean isValidId(String name) {
 		return !(map.containsKey(name));
 	}
-	
+
 	/**
 	 * adds new identifier
+	 *
 	 * @param id
+	 *
 	 * @throws Exception
 	 */
 	public void put(String id) throws Exception {
@@ -220,11 +267,12 @@ public class Scope {
 		}
 		map.put(id, new Symbol(id));
 	}
-	
+
 	/**
 	 *
 	 * @param id
 	 * @param type
+	 *
 	 * @throws Exception
 	 */
 	public void set(String id, TokenType type) throws Exception {
@@ -254,6 +302,16 @@ public class Scope {
 		}
 	}
 
+	public void set(String id, int start, int end) throws Exception {
+		Symbol s = map.get(id);
+		if (s.kind != IdentifierKind.ARR) {
+			throw new Exception(id + " is not an array, only array have start and end.");
+		} else {
+			s.arrayStartOffset = start;
+			s.arraySize = end - start + 1;
+		}
+	}
+
 	public void addArg(String funcID, String argID, TokenType argType) throws Exception {
 		Symbol s = map.get(funcID);
 		if (s == null || s.kind != IdentifierKind.FUNC) {
@@ -279,4 +337,6 @@ public class Scope {
 			return output;
 		}
 	}
+
+	public static UniqueIdentifierGenerator labelGenerator = new UniqueIdentifierGenerator("main");
 }
