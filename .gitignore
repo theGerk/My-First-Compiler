@@ -3,6 +3,6 @@
 **/SDD/*.synctex.gz
 **/SDD/*.aux
 **/SDD/*.log
-/src/scanner/Scanner.java~
-/.idea/
-/.editorconfig
+src/scanner/Scanner.java~
+.idea/
+.editorconfig
