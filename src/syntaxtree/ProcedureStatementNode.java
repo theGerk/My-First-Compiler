@@ -13,9 +13,9 @@ import symboltable.Scope;
  *
  * @author Benji
  */
-public class ProcedureStatementNode extends StatementNode {
+public class ProcedureStatementNode extends StatementNode implements IPublicName {
 
-	public final String id;
+	private final String id;
 	protected ArrayList<ExpressionNode> args;
 
 	/**
@@ -55,5 +55,15 @@ public class ProcedureStatementNode extends StatementNode {
 			arg.indentedToString(level + 1);
 		}
 		return output.toString();
+	}
+	
+	/**
+	 * getter for a identifier string
+	 *
+	 * @return the identifier or name for a node
+	 */
+	@Override
+	public String getName() {
+		return id;
 	}
 }

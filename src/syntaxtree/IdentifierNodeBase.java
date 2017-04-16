@@ -8,7 +8,7 @@ import scanner.TokenType;
  *
  * @author Benji
  */
-public abstract class IdentifierNodeBase extends ExpressionNode{
+public abstract class IdentifierNodeBase extends ExpressionNode implements IPublicName {
 	/**
 	 * The name of the variable associated with this node.
 	 */
@@ -24,6 +24,7 @@ public abstract class IdentifierNodeBase extends ExpressionNode{
 	 *
 	 * @return The name of this VariableNode.
 	 */
+	@Override
 	public String getName() {
 		return (this.name);
 	}

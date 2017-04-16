@@ -1,11 +1,9 @@
 package syntaxtree;
 
-import scanner.TokenType;
-
 /**
  * Created by Benji on 4/15/2017.
  */
-public abstract class AssignmentStatementNodeBase extends StatementNode {
+public abstract class AssignmentStatementNodeBase extends StatementNode implements IPublicName {
 
 	protected final ExpressionNode assign;
 

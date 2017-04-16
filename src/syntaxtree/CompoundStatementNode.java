@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import symboltable.Scope;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +12,7 @@ import java.util.ArrayList;
  */
 public class CompoundStatementNode extends StatementNode {
 
-	private final ArrayList<StatementNode> statements = new ArrayList<StatementNode>();
+	private final ArrayList<StatementNode> statements = new ArrayList<>();
 
 	public void addStatement(StatementNode state) {
 		this.statements.add(state);
@@ -24,5 +26,23 @@ public class CompoundStatementNode extends StatementNode {
 			answer += state.indentedToString(level + 1);
 		}
 		return answer;
+	}
+
+	/**
+	 * Writes component into assembly with tabbing for readability and sets up
+	 * symbol table where needed.
+	 *
+	 * @param symbolTable the current scope
+	 * @param indent tabs
+	 *
+	 * @return Mips assembly
+	 */
+	@Override
+	protected String toMips(Scope symbolTable, String indent) {
+		StringBuilder output = new StringBuilder(indent).append("#CompoundStatementNode\n");
+		for (StatementNode statement : statements) {
+			output.append(statement.toMips(symbolTable, indent));
+		}
+		return output.toString();
 	}
 }

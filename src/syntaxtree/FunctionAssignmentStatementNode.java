@@ -26,4 +26,14 @@ public class FunctionAssignmentStatementNode extends AssignmentStatementNodeBase
 	public String indentedToString(int level) {
 		return indentation(level) + assignee + " :=\n" + assign.indentedToString(level + 1);
 	}
+	
+	/**
+	 * getter for a identifier string
+	 *
+	 * @return the identifier or name for a node
+	 */
+	@Override
+	public String getName() {
+		return assignee;
+	}
 }

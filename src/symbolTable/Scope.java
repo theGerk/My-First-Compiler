@@ -22,19 +22,22 @@ public class Scope {
 	 * Creates head scope
 	 */
 	public Scope() {
+		name = "";
 		parentScope = null;
 		level = 0;
 	}
 
 	/**
-	 * constructs new scope child scope and set's parent's buffer to having it
-	 * as scope
+	 * constructs new scope child scope and setLabel's parent's buffer to having
+	 * it as scope
 	 *
 	 * @param parent the parent scope, null if there is none
+	 * @param funcID the identifier for whatever contains this scope
 	 */
-	public Scope(Scope parent) {
+	public Scope(Scope parent, String funcID) {
 		parentScope = parent;
 		level = parent.level + 1;
+		name = funcID;
 	}
 
 	/**
@@ -46,6 +49,7 @@ public class Scope {
 		return parentScope;
 	}
 
+	final private String name;
 	final private int level;
 	final private Scope parentScope;
 	final private HashMap<String, Symbol> map = new HashMap<>();
@@ -168,11 +172,15 @@ public class Scope {
 		map.get(name).offsetFromStackPointer = offset;
 	}
 
+	public void setLabel(String id, String myLabel) {
+		getSymbol(id).label = myLabel;
+	}
+
 	/**
 	 * kind of identifiers available.
 	 */
 	public enum IdentifierKind {
-		PROG, VAR, ARR, FUNC
+		VAR, ARR, FUNC
 	}
 
 	/**
@@ -194,11 +202,9 @@ public class Scope {
 		 * trivial constructor
 		 *
 		 * @param name identifier string
-		 * @param kind kind of identifier it is
 		 */
 		public Symbol(String name) {
 			this.name = name;
-			this.kind = kind;
 		}
 
 		/**
@@ -251,7 +257,7 @@ public class Scope {
 	 * @return
 	 */
 	public boolean isValidId(String name) {
-		return !(map.containsKey(name));
+		return !map.containsKey(name) && (this.name != name || this.parentScope.map.get(this.name).type == null);
 	}
 
 	/**
@@ -280,6 +286,11 @@ public class Scope {
 		if (s.type != null) {
 			throw new Exception("type already set: " + id);
 		}
+		if (s.kind == IdentifierKind.FUNC) {
+			if (s.scope.map.containsKey(id)) {
+				throw new Exception(id + ":\tCan not have a function that returns something also have a variable inside it with the same name");
+			}
+		}
 		s.type = type;
 	}
 
@@ -287,6 +298,9 @@ public class Scope {
 		Symbol s = map.get(id);
 		if (s.scope != null) {
 			throw new Exception("scope is already set: " + id);
+		}
+		if (scope.map.containsKey(id)) {
+			throw new Exception("A function may not have a variable or function within that shares it's name");
 		}
 		s.scope = scope;
 	}

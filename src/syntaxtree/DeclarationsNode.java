@@ -5,7 +5,7 @@ import symboltable.Scope;
 import java.util.ArrayList;
 
 /**
- * Represents a set of declarations in a Pascal program.
+ * Represents a setLabel of declarations in a Pascal program.
  *
  * @author Erik Steinmetz
  */
@@ -63,11 +63,12 @@ public class DeclarationsNode extends SyntaxTreeBase {
 		String startLabel = symbolTable.getLevel() == 0 ? "" : Scope.labelGenerator.getId();		//not needed in global scope
 		String endLabel = symbolTable.getLevel() == 0 ? "" : Scope.labelGenerator.getId();
 
-		return indent + "move $t0, $sp\t#saves stack pointer for later useage\n" // save previous stack pointer in t0
+		return indent + "#DeclarationsNode\n"
+				+ indent + "move $t0, $sp\t#saves stack pointer for later useage\n" // save previous stack pointer in t0
 				+ indent + "addi $sp, $sp, " + -offset + "\t#move stack pointer for function start\n" // move stack pointer
-				+ indent + "sw $sp, ($sp)\t#set up stack pointer for new function\n" // set current stack head
-				+ indent + "sw $ra, 4($sp)\t#save return address\n" // set return address in memory
-				+ indent + "sw $t0, 8($sp)\t#save old stack pointer\n" // set previous stack pointer value
+				+ indent + "sw $sp, ($sp)\t#set up stack pointer for new function\n" // setLabel current stack head
+				+ indent + "sw $ra, 4($sp)\t#save return address\n" // setLabel return address in memory
+				+ indent + "sw $t0, 8($sp)\t#save old stack pointer\n" // setLabel previous stack pointer value
 
 				// determine what one level up function is and put it in memory
 				+ (symbolTable.getLevel() == 0 // if in global scope
@@ -86,6 +87,6 @@ public class DeclarationsNode extends SyntaxTreeBase {
 
 				//load final values
 				+ indent + "li $t0, " + symbolTable.getLevel() + "\n" // puts scope level in t0
-				+ indent + "sw $t0, 16($sp)\t#save scope level of this function\n\n";
+				+ indent + "sw $t0, 16($sp)\t#save scope level of this function\n";
 	}
 }

@@ -69,6 +69,7 @@ public class Parser {
 	 * and eats it and moves on if token is correct.
 	 *
 	 * @param expected
+	 *
 	 * @return the string that was eaten
 	 */
 	public String match(TokenType expected) {
@@ -260,7 +261,7 @@ public class Parser {
 			String name = match(TokenType.ID);
 			currentScope.put(name);
 			currentScope.set(name, IdentifierKind.FUNC);
-			currentScope = new Scope(currentScope);	//creates new scope and enters
+			currentScope = new Scope(currentScope, name);	//creates new scope and enters
 			currentScope.getParent().set(name, currentScope);
 
 			//match arguments
@@ -285,7 +286,7 @@ public class Parser {
 			String name = match(TokenType.ID);
 			currentScope.put(name);
 			currentScope.set(name, IdentifierKind.FUNC);
-			currentScope = new Scope(currentScope);
+			currentScope = new Scope(currentScope, name);
 			currentScope.getParent().set(name, currentScope);
 
 			//match arguments

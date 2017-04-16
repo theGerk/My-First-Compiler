@@ -21,18 +21,6 @@ public class IfStatementNode extends StatementNode {
 		elseStatement = onFalse;
 	}
 	
-	public ExpressionNode getTest() {
-        return test;
-    }
-
-    public StatementNode getThenStatement() {
-        return thenStatement;
-    }
-
-    public StatementNode getElseStatement() {
-        return elseStatement;
-    }
-	
     @Override
     public String indentedToString( int level) {
         String answer = this.indentation( level);
