@@ -17,8 +17,8 @@ whitespace	= [ \n\t]|\r\n
 letter		= [A-Za-z_]
 digit		= [0-9]
 word		= ({letter})({letter}|{digit})*
-integer     = {digit}+
-real		= {digit}+\.{digit}+
+integer     = [+-]?{digit}+
+real		= [+-]?{digit}+\.{digit}+
 symbol		= <>|<=|>=|:=|[;,.:\[\]()+\-=*<>/]
 comment		= \{[^\}]*\}
 

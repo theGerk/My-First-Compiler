@@ -24,7 +24,7 @@ public class BinaryOperationNode extends ExpressionNode {
 	/**
 	 * The kind of operation.
 	 */
-	private TokenType operation;
+	private final TokenType operation;
 
 	/**
 	 * Creates an operation node given an operation token.
@@ -39,24 +39,6 @@ public class BinaryOperationNode extends ExpressionNode {
 		super(outType(op, left.getType(), right.getType()));
 		this.left = left;
 		this.right = right;
-		this.operation = op;
-	}
-
-	// Getters
-	public ExpressionNode getLeft() {
-		return (this.left);
-	}
-
-	public ExpressionNode getRight() {
-		return (this.right);
-	}
-
-	public TokenType getOperation() {
-		return (this.operation);
-	}
-
-	// Setters
-	public void setOperation(TokenType op) {
 		this.operation = op;
 	}
 
@@ -300,126 +282,170 @@ public class BinaryOperationNode extends ExpressionNode {
 		//evaluate right side
 		build.append(right.toMips(symbolTable, indent + '\t'));
 
-		//do computation
-		switch (leftInput.getType()) {
-			case REAL: {
-				RealLiteralNode leftVal = (RealLiteralNode) leftInput;
-				switch (RightInput.getType()) {
-					case REAL: {
-						RealLiteralNode rightVal = (RealLiteralNode) RightInput;
-						switch (operation) {
-							case PLUS:
-								return new RealLiteralNode(leftVal.getValue() + rightVal.getValue());
-							case MINUS:
-								return new RealLiteralNode(leftVal.getValue() - rightVal.getValue());
-							case ASTERISK:
-								return new RealLiteralNode(leftVal.getValue() * rightVal.getValue());
-							case DIAMOND:
-								return new IntLiteralNode(leftVal.getValue() != rightVal.getValue());
-							case LESSTHAN:
-								return new IntLiteralNode(leftVal.getValue() < rightVal.getValue());
-							case GREATERTHAN:
-								return new IntLiteralNode(leftVal.getValue() > rightVal.getValue());
-							case LESSTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() <= rightVal.getValue());
-							case GREATERTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() >= rightVal.getValue());
-							case EQUALS:
-								return new IntLiteralNode(leftVal.getValue() == rightVal.getValue());
-							case FORWARDSLASH:
-								return new RealLiteralNode(leftVal.getValue() / rightVal.getValue());
-						}
-					}
-					case INTEGER: {
-						IntLiteralNode rightVal = (IntLiteralNode) RightInput;
-						switch (operation) {
-							case PLUS:
-								return new RealLiteralNode(leftVal.getValue() + rightVal.getValue());
-							case MINUS:
-								return new RealLiteralNode(leftVal.getValue() - rightVal.getValue());
-							case ASTERISK:
-								return new RealLiteralNode(leftVal.getValue() * rightVal.getValue());
-							case DIAMOND:
-								return new IntLiteralNode(leftVal.getValue() != rightVal.getValue());
-							case LESSTHAN:
-								return new IntLiteralNode(leftVal.getValue() < rightVal.getValue());
-							case GREATERTHAN:
-								return new IntLiteralNode(leftVal.getValue() > rightVal.getValue());
-							case LESSTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() <= rightVal.getValue());
-							case GREATERTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() >= rightVal.getValue());
-							case EQUALS:
-								return new IntLiteralNode(leftVal.getValue() == rightVal.getValue());
-							case FORWARDSLASH:
-								return new RealLiteralNode(leftVal.getValue() / rightVal.getValue());
-						}
-					}
-				}
-			}
-			case INTEGER: {
-				IntLiteralNode leftVal = (IntLiteralNode) leftInput;
-				switch (RightInput.getType()) {
-					case REAL: {
-						RealLiteralNode rightVal = (RealLiteralNode) RightInput;
-						switch (operation) {
-							case PLUS:
-								return new RealLiteralNode(leftVal.getValue() + rightVal.getValue());
-							case MINUS:
-								return new RealLiteralNode(leftVal.getValue() - rightVal.getValue());
-							case ASTERISK:
-								return new RealLiteralNode(leftVal.getValue() * rightVal.getValue());
-							case DIAMOND:
-								return new IntLiteralNode(leftVal.getValue() != rightVal.getValue());
-							case LESSTHAN:
-								return new IntLiteralNode(leftVal.getValue() < rightVal.getValue());
-							case GREATERTHAN:
-								return new IntLiteralNode(leftVal.getValue() > rightVal.getValue());
-							case LESSTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() <= rightVal.getValue());
-							case GREATERTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() >= rightVal.getValue());
-							case EQUALS:
-								return new IntLiteralNode(leftVal.getValue() == rightVal.getValue());
-							case FORWARDSLASH:
-								return new RealLiteralNode(leftVal.getValue() / rightVal.getValue());
-						}
-					}
-					case INTEGER: {
-						IntLiteralNode rightVal = (IntLiteralNode) RightInput;
-						switch (operation) {
-							case AND:
-								return new IntLiteralNode(leftVal.getValue() & rightVal.getValue());
-							case OR:
-								return new IntLiteralNode(leftVal.getValue() | rightVal.getValue());
-							case DIV:
-								return new IntLiteralNode(leftVal.getValue() / rightVal.getValue());
-							case MOD:
-								return new IntLiteralNode(leftVal.getValue() % rightVal.getValue());
-							case PLUS:
-								return new IntLiteralNode(leftVal.getValue() + rightVal.getValue());
-							case MINUS:
-								return new IntLiteralNode(leftVal.getValue() - rightVal.getValue());
-							case ASTERISK:
-								return new IntLiteralNode(leftVal.getValue() * rightVal.getValue());
-							case DIAMOND:
-								return new IntLiteralNode(leftVal.getValue() != rightVal.getValue());
-							case LESSTHAN:
-								return new IntLiteralNode(leftVal.getValue() < rightVal.getValue());
-							case GREATERTHAN:
-								return new IntLiteralNode(leftVal.getValue() > rightVal.getValue());
-							case LESSTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() <= rightVal.getValue());
-							case GREATERTHANEQUALS:
-								return new IntLiteralNode(leftVal.getValue() >= rightVal.getValue());
-							case EQUALS:
-								return new IntLiteralNode(leftVal.getValue() == rightVal.getValue());
-							case FORWARDSLASH:
-								return new RealLiteralNode((float) leftVal.getValue() / (float) rightVal.getValue());
-						}
-					}
-				}
-			}
+		//push back stack head	(alo puts stack head in t0)
+		build.append(indent).append("lw $t0, ($sp)\n")
+				.append(indent).append("addi $t0, $t0, 4\n")
+				.append(indent).append("sw $t0, (sp)\n");
 
+		//do computation
+		switch (left.getType()) {
+			case REAL:
+				build.append(indent).append("lwc1 $f2, -4($t0)\t#put second operand into f2\n") //put right into f2
+						.append(indent).append("lwc1 $f0, ($t0)\t#put first operand into f0\n");	//put left into f0
+				switch (right.getType()) {
+					case REAL:
+						appendFloatingPointComputation(build, indent);
+						break;
+					case INTEGER:
+						build.append(indent).append("cvt.s.w $f2, $f2\t#cast to float\n");	//need to cast right side
+						appendFloatingPointComputation(build, indent);
+						break;
+				}
+				break;
+			case INTEGER:
+				switch (right.getType()) {
+					case REAL:
+						build.append(indent).append("lwc1 $f0, ($t0)\t#put first operand into f0\n")
+								.append(indent).append("lwc1 $f2, -4(t0)\t#put second operand into f2")
+								.append(indent).append("cvt.s.w $f0, $f0\t#cast to float\n");
+						appendFloatingPointComputation(build, indent);
+						break;
+					case INTEGER:
+						if (operation == TokenType.FORWARDSLASH) {	//only thing that uses floating point math over here
+							build.append(indent).append("lwc1 $f0, ($t0)\t#put first operand into f0\n")
+									.append(indent).append("lwc1 $f2, -4($t0)\t#put second operand into f1")
+									.append(indent).append("cvt.s.w $f0, $f0\t#cast to float\n")
+									.append(indent).append("cvt.s.w $f2, $f2\t#cast to float\n");
+							appendFloatingPointComputation(build, indent);
+						} else {
+							build.append(indent).append("lw $t1, ($t0)\t#put first operand in t1\n")
+									.append(indent).append("lw $t2, -4($t0)\t#put second operand in t1\n");
+							appendIntegerComputation(build, indent);
+						}
+				}
 		}
+		return build.toString();
 	}
+
+	/**
+	 * expects values to be loaded in f0 and f2 in order, saves value to stack
+	 * at t0
+	 *
+	 * @param build the string builder being used, will be appended to
+	 * @param indent for formating
+	 *
+	 * @return same object as build
+	 */
+	private StringBuilder appendFloatingPointComputation(StringBuilder build, String indent) {
+		switch (operation) {
+			case PLUS:
+				build.append(indent).append("add.s $f0, $f0, $f2\n")
+						.append(indent).append("swc1 $f0, ($t0)\t#put return value on stack\n");
+				break;
+			case MINUS:
+				build.append(indent).append("sub.s $f0, $f0, $f2\n")
+						.append(indent).append("swc1 $f0, ($t0)\t#put return value on stack\n");
+				break;
+			case ASTERISK:
+				build.append(indent).append("mul.s $f0, $f0, $f2\n")
+						.append(indent).append("swc1 $f0, ($t0)\t#put return value on stack\n");
+				break;
+			case DIAMOND:
+				build.append(indent).append("c.eq.s $f0, $f2\t#compare not equal\n")
+						.append(indent).append("li $t1, 1\n")
+						.append(indent).append("movt $t1, $zero\n")
+						.append(indent).append("sw $t1, ($t0)\n");
+				break;
+			case LESSTHAN:
+				build.append(indent).append("c.lt.s $f0, $f2\t#compare less then\n")
+						.append(indent).append("li $t1, 1\n")
+						.append(indent).append("movf $t1, $zero\n")
+						.append(indent).append("sw $t1, ($t0)\t#put return value on stack\n");
+				break;
+			case GREATERTHAN:
+				build.append(indent).append("c.gt.s $f0, $f2\t#compare greater then\n")
+						.append(indent).append("li $t1, 1\n")
+						.append(indent).append("movf $t1, $zero\n")
+						.append(indent).append("sw $t1, ($t0)\t#put return value on stack\n");
+				break;
+			case LESSTHANEQUALS:
+				build.append(indent).append("c.ge.s $f0, $f2\t#compare less then or equal to\n")
+						.append(indent).append("li $t1, 1\n")
+						.append(indent).append("movt $t1, $zero\n")
+						.append(indent).append("sw $t1, ($t0)\t#put return value on stack\n");
+				break;
+			case GREATERTHANEQUALS:
+				build.append(indent).append("c.le.s $f0, $f2\t#compares greater then or equal to\n")
+						.append(indent).append("li $t1, 1\n")
+						.append(indent).append("movt $t1, $zero\n")
+						.append(indent).append("sw $t1, ($t0)\t#put return value on stack\n");
+				break;
+			case EQUALS:
+				build.append(indent).append("c.eq.s $f0, $f2\t#compare equals\n")
+						.append(indent).append("li $t1, 1\n")
+						.append(indent).append("movf $t1, $zero\n")
+						.append(indent).append("sw $t1, ($t0)\t#put return value on stack\n");
+				break;
+			case FORWARDSLASH:
+				build.append(indent).append("div.s $f0, $f0, $f2\n")
+						.append(indent).append("swc1 $f0, ($t0)\t#put return value on stack\n");
+				break;
+		}
+		return build;
+	}
+
+	/**
+	 * expects values to be loaded in t1 and t2 in order, saves value to stack
+	 * at t0
+	 *
+	 * @param build the string builder being used, will be appended to
+	 * @param indent for formating
+	 *
+	 * @return same object as build
+	 */
+	private StringBuilder appendIntegerComputation(StringBuilder build, String indent) {
+		//put output of opperation into $t1
+		switch (operation) {
+			case AND:
+				build.append(indent).append("and $t1, $t1, $t2\n");
+				break;
+			case OR:
+				build.append(indent).append("or $t1, $t1, $t2\n");
+				break;
+			case DIV:
+				build.append(indent).append("div $t1, $t1, $t2\n");
+				break;
+			case MOD:
+				build.append(indent).append("rem $t1, $t1, $t2\n");
+				break;
+			case PLUS:
+				build.append(indent).append("add $t1, $t1, $t2\n");
+				break;
+			case MINUS:
+				build.append(indent).append("sub #t1, $t1, $t2\n");
+				break;
+			case ASTERISK:
+				build.append(indent).append("mul $t1, $t1, $t2\n");
+				break;
+			case DIAMOND:
+				build.append(indent).append("sne $t1, $t1, $t2\n");
+				break;
+			case LESSTHAN:
+				build.append(indent).append("slt $t1, $t1, $t2\n");
+				break;
+			case GREATERTHAN:
+				build.append(indent).append("sgt $t1, $t1, $t2\n");
+				break;
+			case LESSTHANEQUALS:
+				build.append(indent).append("sle $t1, $t1, $t2\n");
+				break;
+			case GREATERTHANEQUALS:
+				build.append(indent).append("sgt $t1, $t1, $t2\n");
+				break;
+			case EQUALS:
+				build.append(indent).append("seq $t1, $t1, $t2\n");
+				break;
+		}
+		return build.append(indent).append("sw $t1, ($t0)\t#save computation\n");
+	}
+}
