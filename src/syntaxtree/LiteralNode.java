@@ -12,7 +12,7 @@ import scanner.TokenType;
  *
  * @author Erik Steinmetz
  */
-public abstract class LiteralNode extends ExpressionNode {	//TODO add folding
+public abstract class LiteralNode extends ExpressionNode {	//TODO code gen?
 
 	/**
 	 * Creates a LiteralNode with the given attribute.

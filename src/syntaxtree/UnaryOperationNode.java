@@ -7,6 +7,7 @@ package syntaxtree;
 
 import scanner.LookUp;
 import scanner.TokenType;
+import symboltable.Scope;
 
 /**
  *
@@ -52,7 +53,7 @@ public class UnaryOperationNode extends ExpressionNode {
 	public String indentedToString(int level) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-	
+
 	/**
 	 * folds code, returns value node if possible, null otherwise
 	 *
@@ -61,22 +62,23 @@ public class UnaryOperationNode extends ExpressionNode {
 	@Override
 	public LiteralNode fold() {
 		LiteralNode input = expression.fold();
-		if(input == null) {
+		if (input == null) {
 			return null;
 		} else {
-			switch (input.getType()){
-				case REAL:{
-					RealLiteralNode val = (RealLiteralNode)input;
-					switch (operator){
+			switch (input.getType()) {
+				case REAL: {
+					RealLiteralNode val = (RealLiteralNode) input;
+					switch (operator) {
 						case PLUS:
 							return val;
 						case MINUS:
 							return new RealLiteralNode(-val.getValue());
 					}
 				}
-				case INTEGER:{
-					IntLiteralNode val = (IntLiteralNode)input;
-					switch (operator){
+				break;
+				case INTEGER: {
+					IntLiteralNode val = (IntLiteralNode) input;
+					switch (operator) {
 						case NOT:
 							return new IntLiteralNode(~val.getValue());
 						case PLUS:
@@ -85,7 +87,51 @@ public class UnaryOperationNode extends ExpressionNode {
 							return new IntLiteralNode(-val.getValue());
 					}
 				}
+				break;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	protected String toMips(Scope symbolTable, String indent) {
+		//check for folding
+		LiteralNode fold = fold();
+		if (fold != null) {
+			return fold.toMips(symbolTable, indent);
+		}
+
+		StringBuilder build = new StringBuilder(indent).append("#UnaryOperationNode\n");
+
+		//evaluate expression and load onto stack
+		build.append(expression.toMips(symbolTable, indent + '\t'));
+
+		//if a plus do nothing
+		if (operator == TokenType.PLUS) {
+			build.append(indent).append("#do nothing for +");
+		} else {
+			//put stack head ptr in t0
+			build.append(indent).append("lw $t0, ($sp)\n");
+
+			switch (expression.getType()) {
+				case REAL:	//can only be + or - and + is already dealt with so must be a- operation
+					build.append(indent).append("lwc1 $f0, ($t0)\t#put operand into f0\n");
+					build.append(indent).append("neg.s $f0, $f0\t#make negation\n");
+					build.append(indent).append("swc1 $f0, ($t0)\t#put return value on stack\n");
+					break;
+				case INTEGER:
+					build.append("lw $t1, ($t0)\t#put operand into t1\n");
+					switch (operator) {
+						case NOT:
+							build.append("not $t1, $t1\t#make bitwise negation\n");
+							break;
+						case MINUS:
+							build.append("neg $t1, $t1\t#make arithmatic negation\n");
+							break;
+					}
+					build.append("sw $t1, ($t0)\t#put return value on stack");
+			}
+		}
+		return build.toString();
 	}
 }

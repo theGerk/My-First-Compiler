@@ -56,7 +56,7 @@ public class DeclarationsNode extends SyntaxTreeBase {
 		int offset = 24;
 		for (String var : vars) {
 			symbolTable.setOffset(var, offset);
-			offset += symbolTable.sizeInBytes(var);
+			offset += symbolTable.sizeInBytes(var);	//note that arrays go up in the stack
 		}
 
 		//get labels to be used
@@ -64,8 +64,14 @@ public class DeclarationsNode extends SyntaxTreeBase {
 		String endLabel = symbolTable.getLevel() == 0 ? "" : Scope.labelGenerator.getId();
 
 		return indent + "#DeclarationsNode\n"
+				//move stack pointer
 				+ indent + "move $t0, $sp\t#saves stack pointer for later useage\n" // save previous stack pointer in t0
-				+ indent + "addi $sp, $sp, " + -offset + "\t#move stack pointer for function start\n" // move stack pointer
+				+ (symbolTable.getLevel() == 0 // if we are the global scope then we have not initialized a stack head
+				? "" // do nothing in global
+				: indent + "lw $sp, ($sp)\t#move stack pointer to the head of the stack")// move stack pointer to stack head
+				+ indent + "addi $sp, $sp, " + -offset + "\t#move stack pointer for function start\n" // move stack pointer to the new function's location
+
+				// set up function
 				+ indent + "sw $sp, ($sp)\t#set up stack pointer for new function\n" // setLabel current stack head
 				+ indent + "sw $ra, 4($sp)\t#save return address\n" // setLabel return address in memory
 				+ indent + "sw $t0, 8($sp)\t#save old stack pointer\n" // setLabel previous stack pointer value

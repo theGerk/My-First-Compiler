@@ -294,11 +294,11 @@ public class BinaryOperationNode extends ExpressionNode {
 						.append(indent).append("lwc1 $f0, ($t0)\t#put first operand into f0\n");	//put left into f0
 				switch (right.getType()) {
 					case REAL:
-						appendFloatingPointComputation(build, indent);
+						appendFloatingPointComputationAndPush(build, indent);
 						break;
 					case INTEGER:
 						build.append(indent).append("cvt.s.w $f2, $f2\t#cast to float\n");	//need to cast right side
-						appendFloatingPointComputation(build, indent);
+						appendFloatingPointComputationAndPush(build, indent);
 						break;
 				}
 				break;
@@ -308,7 +308,7 @@ public class BinaryOperationNode extends ExpressionNode {
 						build.append(indent).append("lwc1 $f0, ($t0)\t#put first operand into f0\n")
 								.append(indent).append("lwc1 $f2, -4(t0)\t#put second operand into f2")
 								.append(indent).append("cvt.s.w $f0, $f0\t#cast to float\n");
-						appendFloatingPointComputation(build, indent);
+						appendFloatingPointComputationAndPush(build, indent);
 						break;
 					case INTEGER:
 						if (operation == TokenType.FORWARDSLASH) {	//only thing that uses floating point math over here
@@ -316,11 +316,11 @@ public class BinaryOperationNode extends ExpressionNode {
 									.append(indent).append("lwc1 $f2, -4($t0)\t#put second operand into f1")
 									.append(indent).append("cvt.s.w $f0, $f0\t#cast to float\n")
 									.append(indent).append("cvt.s.w $f2, $f2\t#cast to float\n");
-							appendFloatingPointComputation(build, indent);
+							appendFloatingPointComputationAndPush(build, indent);
 						} else {
 							build.append(indent).append("lw $t1, ($t0)\t#put first operand in t1\n")
 									.append(indent).append("lw $t2, -4($t0)\t#put second operand in t1\n");
-							appendIntegerComputation(build, indent);
+							appendIntegerComputationAndPush(build, indent);
 						}
 				}
 		}
@@ -336,7 +336,7 @@ public class BinaryOperationNode extends ExpressionNode {
 	 *
 	 * @return same object as build
 	 */
-	private StringBuilder appendFloatingPointComputation(StringBuilder build, String indent) {
+	private StringBuilder appendFloatingPointComputationAndPush(StringBuilder build, String indent) {
 		switch (operation) {
 			case PLUS:
 				build.append(indent).append("add.s $f0, $f0, $f2\n")
@@ -403,7 +403,7 @@ public class BinaryOperationNode extends ExpressionNode {
 	 *
 	 * @return same object as build
 	 */
-	private StringBuilder appendIntegerComputation(StringBuilder build, String indent) {
+	private StringBuilder appendIntegerComputationAndPush(StringBuilder build, String indent) {
 		//put output of opperation into $t1
 		switch (operation) {
 			case AND:

@@ -145,10 +145,6 @@ public class Scope {
 		}
 	}
 
-	public int getArrayIndexOffset(String name) {
-		return getSymbol(name).arrayStartOffset;
-	}
-
 	public int getMemoryOffset(String name) {
 		return getSymbol(name).offsetFromStackPointer;
 	}
@@ -172,8 +168,21 @@ public class Scope {
 		map.get(name).offsetFromStackPointer = offset;
 	}
 
+	public int getArrayZeroIndexMemoryOffset(String name) {
+		Symbol s = getSymbol(name);
+		return s.offsetFromStackPointer - s.offsetFromStackPointer;
+	}
+
 	public void setLabel(String id, String myLabel) {
 		getSymbol(id).label = myLabel;
+	}
+
+	public int getArrayLength(String name) {
+		return getSymbol(name).arraySize;
+	}
+
+	public int getStartIndex(String name) {
+		return getSymbol(name).arrayStartOffset; //To change body of generated methods, choose Tools | Templates.
 	}
 
 	/**

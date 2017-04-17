@@ -46,13 +46,23 @@ public class ProgramNode extends SyntaxTreeBase implements IMakeFunctionLabels {
 
 		//then return
 		return indent + "#ProgramNode\n"
+				+ indent + ".data\n"
+				+ indent + Constant.ARRAY_OUT_OF_BOUNDS_MSG_LABEL + ": .asciiz \"You may not access an index in an array out of it's range.\\nPrepare to die.\"\n"
 				+ indent + ".text\n"
 				+ indent + "main:\n"
 				+ globalVariables.toMips(symbolTable, indent + '\t')
 				+ main.toMips(symbolTable, indent + '\t')
 				+ indent + "li $v0, 10\n"
-				+ indent + "syscall"
-				+ functions.toMips(symbolTable, indent + '\t');
+				+ indent + "syscall\n"
+				+ functions.toMips(symbolTable, indent + '\t')
+				+ indent + "#ERRORs\n"
+				+ indent + Constant.ARRAY_OUT_OF_BOUNDS_LABEL + ":\n"
+				+ indent + "la $a0, " + Constant.ARRAY_OUT_OF_BOUNDS_MSG_LABEL + "\n"
+				+ indent + "li $v0, 4\n"
+				+ indent + "syscall\n"
+				+ indent + "li $v0, 17\n"
+				+ indent + "li $a0, " + Constant.ARRAY_OUT_OF_BOUNDS_ERROR_CODE + "\n"
+				+ indent + "syscall\n";
 	}
 
 	@Override

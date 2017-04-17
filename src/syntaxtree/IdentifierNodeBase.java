@@ -3,12 +3,12 @@ package syntaxtree;
 import scanner.TokenType;
 
 /**
- * Created by Benji on 4/14/2017.
- * Anything that has an identifier extends this
+ * Created by Benji on 4/14/2017. Anything that has an identifier extends this
  *
  * @author Benji
  */
-public abstract class IdentifierNodeBase extends ExpressionNode implements IPublicName {
+public abstract class IdentifierNodeBase extends ExpressionNode implements IPublicName { //TODO maybe code gen?
+
 	/**
 	 * The name of the variable associated with this node.
 	 */
@@ -30,7 +30,7 @@ public abstract class IdentifierNodeBase extends ExpressionNode implements IPubl
 	}
 
 	@Override
-	public LiteralNode fold(){
+	public LiteralNode fold() {
 		return null;
 	}
 }

@@ -8,7 +8,7 @@ package syntaxtree;
 public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase {
 
 	protected final VariableNode variable;
-	
+
 	/**
 	 * getter for a identifier string
 	 *
@@ -16,13 +16,13 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 	 */
 	@Override
 	public String getName() {
-		variable.getName()
+		return variable.getName();
 	}
-	
+
 	public VariableAssignmentStatementNode(VariableNode var, ExpressionNode expr) throws Exception {
 		super(expr);
 		if (var.getType() != expr.getType()) {
-			throw new Exception(var.getName() + " can not be assigned a: "  + expr.getType() + ", expects: " + var.getType());
+			throw new Exception(var.getName() + " can not be assigned a: " + expr.getType() + ", expects: " + var.getType());
 		}
 		variable = var;
 	}
