@@ -72,7 +72,8 @@ public class DeclarationsNode extends SyntaxTreeBase {
 				+ indent + "addi $sp, $sp, " + -offset + "\t#move stack pointer for function start\n" // move stack pointer to the new function's location
 
 				// set up function
-				+ indent + "sw $sp, ($sp)\t#set up stack pointer for new function\n" // setLabel current stack head
+				+ indent + "addi $s0, $sp, -4\n"
+				+ indent + "sw $s0, ($sp)\t#set up stack pointer for new function\n" // setLabel current stack head
 				+ indent + "sw $ra, 4($sp)\t#save return address\n" // setLabel return address in memory
 				+ indent + "sw $t0, 8($sp)\t#save old stack pointer\n" // setLabel previous stack pointer value
 

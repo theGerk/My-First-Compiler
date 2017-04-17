@@ -185,6 +185,10 @@ public class Scope {
 		return getSymbol(name).arrayStartOffset; //To change body of generated methods, choose Tools | Templates.
 	}
 
+	public String getLabel(String name) {
+		return getSymbol(name).label;
+	}
+
 	/**
 	 * kind of identifiers available.
 	 */

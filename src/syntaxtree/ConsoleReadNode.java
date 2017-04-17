@@ -6,6 +6,7 @@
 package syntaxtree;
 
 import scanner.TokenType;
+import symboltable.Scope;
 
 /**
  *
@@ -16,7 +17,7 @@ public class ConsoleReadNode extends ExpressionNode {
 	public ConsoleReadNode(TokenType returnType) {
 		super(returnType);
 	}
-	
+
 	/**
 	 * checks for if code folding is possible
 	 *
@@ -26,10 +27,29 @@ public class ConsoleReadNode extends ExpressionNode {
 	public LiteralNode fold() {
 		return null;
 	}
-	
+
 	@Override
 	public String indentedToString(int level) {
 		return indentation(level) + "read " + returnType + " from console";
+	}
+
+	@Override
+	protected String toMips(Scope symbolTable, String indent) {
+		switch (returnType) {
+			case REAL:
+				return indent + "#ConsoleReadNode\n"
+						+ indent + "lw $t0, ($sp)\n"
+						+ indent + "li $v0, 6\n"
+						+ indent + "syscall\n"
+						+ indent + "swc1 $f0, ($t0)\n";
+			case INTEGER:
+				return indent + "#ConsoleReadNode\n"
+						+ indent + "lw $t0, ($sp)\n"
+						+ indent + "li $v0, 5\n"
+						+ indent + "syscall\n"
+						+ indent + "sw $v0, ($t0)\n";
+		}
+		return null;
 	}
 
 }

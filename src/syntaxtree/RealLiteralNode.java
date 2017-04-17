@@ -9,9 +9,9 @@ public class RealLiteralNode extends LiteralNode {
 
 	private final float value;
 
-	public RealLiteralNode(float value) {
+	public RealLiteralNode(float input) {
 		super(TokenType.REAL);
-		this.value = value;
+		this.value = input;
 	}
 
 	/**
@@ -28,9 +28,15 @@ public class RealLiteralNode extends LiteralNode {
 
 	/**
 	 * gets value of node
+	 *
 	 * @return node's value
 	 */
 	public float getValue() {
 		return value;
+	}
+
+	@Override
+	int getRawInt() {
+		return Float.floatToRawIntBits(value);
 	}
 }

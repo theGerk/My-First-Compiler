@@ -50,6 +50,7 @@ public class FunctionExpressionNode extends IdentifierNodeBase {
 	 * Creates a String representation of this node and its children.
 	 *
 	 * @param level The tree level at which this node resides.
+	 *
 	 * @return A String representing this node.
 	 */
 	@Override
@@ -59,5 +60,32 @@ public class FunctionExpressionNode extends IdentifierNodeBase {
 			output.append(expressionNode.indentedToString(level + 1));
 		}
 		return output.toString();
+	}
+
+	@Override
+	protected String toMips(Scope symbolTable, String indent) {
+		StringBuilder build = new StringBuilder(indent).append("#FunctionExpressionNode\n");
+
+		//for each expression push it's evaluation onto the stack
+		for (int i = 0; i < parametersList.size(); i++) {
+			build.append(parametersList.get(i).toMips(symbolTable, indent + '\t'));
+			build.append(indent).append("lw $t0, ($sp)\n");
+			build.append(indent).append("addi $t0, $t0, -4\n");
+			build.append(indent).append("sw $t0, ($sp)\n");
+		}
+
+		//call function
+		build.append(indent).append("jal ").append(symbolTable.getLabel(getName())).append("\n");
+
+		//push stack back to begining of evaluation
+		if (parametersList.size() > 0) {
+			build.append(indent).append("lw $t0, ($sp)\n");
+			build.append(indent).append("lw $t1, ($t0)\n");	//retrive return value from function
+			build.append(indent).append("addi $t0, $t0, ").append(parametersList.size() * 4).append("\n");
+			build.append(indent).append("sw $t0, ($sp)\n");
+			build.append(indent).append("lw $t1, ($t0)\n");	//store return value on stack
+		}
+
+		return build.toString();
 	}
 }

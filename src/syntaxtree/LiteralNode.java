@@ -6,6 +6,7 @@
 package syntaxtree;
 
 import scanner.TokenType;
+import symboltable.Scope;
 
 /**
  * Represents a value or number literal in an expression.
@@ -31,5 +32,15 @@ public abstract class LiteralNode extends ExpressionNode {	//TODO code gen?
 	@Override
 	public LiteralNode fold() {
 		return this;
+	}
+
+	abstract int getRawInt();
+
+	@Override
+	protected String toMips(Scope symbolTable, String indent) {
+		return indent + "#LiteralNode"
+				+ indent + "lw $t0, ($sp)\n"
+				+ indent + "li $t1, " + getRawInt() + "\n"
+				+ indent + "sw $t1, ($t0)\n";
 	}
 }

@@ -67,7 +67,7 @@ public class ArrayVarNode extends VariableNode {
 		output.append(index.toMips(symbolTable, indent + '\t'));
 
 		//get ptr to array's scope in v0
-		output.append(IPublicName.getVarPtrInV0(symbolTable, name, indent + '\t'));
+		output.append(IPublicName.getFuncPtrInV0(symbolTable, name, indent + '\t'));
 
 		//get 0 based index
 		output.append(indent).append("lw $t0, ($sp)\t#load stack head pointer\n");	//load stack head pointer
