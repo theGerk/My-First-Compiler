@@ -3,7 +3,7 @@ package syntaxtree;
 /**
  * Created by Benji on 4/15/2017.
  */
-public abstract class AssignmentStatementNodeBase extends StatementNode implements IPublicName {	//TODO maybe make code gen
+public abstract class AssignmentStatementNodeBase extends StatementNode implements IPublicName {	//probably should have put some code gen up here
 
 	protected final ExpressionNode assign;
 

@@ -5,6 +5,6 @@ package syntaxtree;
  *
  * @author Erik Steinmetz
  */
-public abstract class StatementNode extends SyntaxTreeBase { //TODO code gen
+public abstract class StatementNode extends SyntaxTreeBase {
 
 }

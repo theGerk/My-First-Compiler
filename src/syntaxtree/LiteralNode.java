@@ -13,7 +13,7 @@ import symboltable.Scope;
  *
  * @author Erik Steinmetz
  */
-public abstract class LiteralNode extends ExpressionNode {	//TODO code gen?
+public abstract class LiteralNode extends ExpressionNode {
 
 	/**
 	 * Creates a LiteralNode with the given attribute.

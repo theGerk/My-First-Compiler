@@ -8,7 +8,7 @@ import symboltable.Scope;
  *
  * @author Benji
  */
-public abstract class IdentifierNodeBase extends ExpressionNode implements IPublicName { //TODO maybe code gen?
+public abstract class IdentifierNodeBase extends ExpressionNode implements IPublicName {
 
 	/**
 	 * The name of the variable associated with this node.
