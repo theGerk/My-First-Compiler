@@ -103,7 +103,7 @@ public class Parser {
 			SubProgramDeclarationsNode subprogramDeclarations = subprogramDeclarations();
 			CompoundStatementNode compoundStatement = compoundStatement();
 			match(TokenType.PERIOD);
-			return new ProgramNode(id, declarations, subprogramDeclarations, compoundStatement);
+			return new ProgramNode(id, declarations, subprogramDeclarations, compoundStatement, currentScope);
 		} catch (Exception ex) {
 			error(ex.getMessage());
 			return null;

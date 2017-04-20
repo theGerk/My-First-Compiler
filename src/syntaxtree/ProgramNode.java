@@ -13,12 +13,14 @@ public class ProgramNode extends SyntaxTreeBase implements IMakeFunctionLabels {
 	private final DeclarationsNode globalVariables;
 	private final SubProgramDeclarationsNode functions;
 	private final CompoundStatementNode main;
+	private final Scope symbolTable;
 
-	public ProgramNode(String aName, DeclarationsNode globals, SubProgramDeclarationsNode functions, CompoundStatementNode main) {
+	public ProgramNode(String aName, DeclarationsNode globals, SubProgramDeclarationsNode functions, CompoundStatementNode main, Scope scope) {
 		this.name = aName;
 		globalVariables = globals;
 		this.functions = functions;
 		this.main = main;
+		symbolTable = scope;
 	}
 
 	@Override
@@ -63,6 +65,10 @@ public class ProgramNode extends SyntaxTreeBase implements IMakeFunctionLabels {
 				+ indent + "li $v0, 17\n"
 				+ indent + "li $a0, " + Constant.ARRAY_OUT_OF_BOUNDS_ERROR_CODE + "\n"
 				+ indent + "syscall\n";
+	}
+
+	public String toMips() {
+		return toMips(symbolTable, "");
 	}
 
 	@Override

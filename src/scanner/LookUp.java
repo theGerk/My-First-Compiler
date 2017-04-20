@@ -16,8 +16,8 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class LookUp {
 
-	private HashMap<String, TokenType> lookup;
-	private HashMap<TokenType, String> reverseLookup;
+	private final HashMap<String, TokenType> lookup = new HashMap<>();
+	private final HashMap<TokenType, String> reverseLookup = new HashMap<>();
 
 	/**
 	 * An array of strings corresponding to the TokenType enumerable.
@@ -43,6 +43,7 @@ public class LookUp {
 
 	/**
 	 * Gets a symbol or keyword
+	 *
 	 * @param key Keyword or Symbol
 	 * @return TokenType associated with it
 	 */
@@ -51,7 +52,8 @@ public class LookUp {
 	}
 
 	/**
-	 *reverse of getValue
+	 * reverse of getValue
+	 *
 	 * @param key TokenType
 	 * @return String of symbol that was read to getValue the token type
 	 */
