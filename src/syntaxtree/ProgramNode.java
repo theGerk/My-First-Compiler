@@ -46,25 +46,44 @@ public class ProgramNode extends SyntaxTreeBase implements IMakeFunctionLabels {
 		//first set up labels
 		makeLabels("", symbolTable);
 
+		//init builder
+		StringBuilder build = new StringBuilder(indent).append("#ProgramNode\n");
+
+		//data section, error messages	//TODO add globals here
+		build.append(indent).append(".data\n");
+		build.append(indent).append(Constant.ARRAY_OUT_OF_BOUNDS_MSG_LABEL).append(": .asciiz \"You may not access an index in an array out of it's range.\\nPrepare to die.\"\n");
+
+		//text section
+		build.append(indent).append(".text\n");
+
+		//main function start
+		build.append(indent).append("main:\n");
+
+		//add in global variables:
+		build.append(globalVariables.toMips(symbolTable, indent + '\t'));
+
+		//add in main function
+		build.append(main.toMips(symbolTable, indent + '\t'));
+
+		//load end of program
+		build.append(indent).append("li $v0, 10\n");
+		build.append(indent).append("syscall\n");
+
+		//put in functions
+		build.append(functions.toMips(symbolTable, indent + '\t'));
+
+		//error messages
+		build.append(indent).append("#ERRORs\n");
+		build.append(indent).append(Constant.ARRAY_OUT_OF_BOUNDS_LABEL).append(":\n");
+		build.append(indent).append("la $a0, ").append(Constant.ARRAY_OUT_OF_BOUNDS_MSG_LABEL).append("\n");
+		build.append(indent).append("li $v0, 4\n");
+		build.append(indent).append("syscall\n");
+		build.append(indent).append("li $v0, 17\n");
+		build.append(indent).append("li $a0, ").append(Constant.ARRAY_OUT_OF_BOUNDS_ERROR_CODE).append("\n");
+		build.append(indent).append("syscall\n");
+
 		//then return
-		return indent + "#ProgramNode\n"
-				+ indent + ".data\n"
-				+ indent + Constant.ARRAY_OUT_OF_BOUNDS_MSG_LABEL + ": .asciiz \"You may not access an index in an array out of it's range.\\nPrepare to die.\"\n"
-				+ indent + ".text\n"
-				+ indent + "main:\n"
-				+ globalVariables.toMips(symbolTable, indent + '\t')
-				+ main.toMips(symbolTable, indent + '\t')
-				+ indent + "li $v0, 10\n"
-				+ indent + "syscall\n"
-				+ functions.toMips(symbolTable, indent + '\t')
-				+ indent + "#ERRORs\n"
-				+ indent + Constant.ARRAY_OUT_OF_BOUNDS_LABEL + ":\n"
-				+ indent + "la $a0, " + Constant.ARRAY_OUT_OF_BOUNDS_MSG_LABEL + "\n"
-				+ indent + "li $v0, 4\n"
-				+ indent + "syscall\n"
-				+ indent + "li $v0, 17\n"
-				+ indent + "li $a0, " + Constant.ARRAY_OUT_OF_BOUNDS_ERROR_CODE + "\n"
-				+ indent + "syscall\n";
+		return build.toString();
 	}
 
 	public String toMips() {
