@@ -38,7 +38,7 @@ public abstract class LiteralNode extends ExpressionNode {
 
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
-		return indent + "#LiteralNode"
+		return indent + "#LiteralNode\n"
 				+ indent + "lw $t0, ($sp)\n"
 				+ indent + "li $t1, " + getRawInt() + "\n"
 				+ indent + "sw $t1, ($t0)\n";

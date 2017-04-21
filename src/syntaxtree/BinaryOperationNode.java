@@ -285,7 +285,7 @@ public class BinaryOperationNode extends ExpressionNode {
 		//push back stack head	(alo puts stack head in t0)
 		build.append(indent).append("lw $t0, ($sp)\n")
 				.append(indent).append("addi $t0, $t0, 4\n")
-				.append(indent).append("sw $t0, (sp)\n");
+				.append(indent).append("sw $t0, ($sp)\n");
 
 		//do computation
 		switch (left.getType()) {

@@ -6,6 +6,7 @@
 package scanner;
 
 import parser.Parser;
+import syntaxtree.ProgramNode;
 
 /**
  *
@@ -20,7 +21,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Parser parse = new Parser("simple.pas");
-		String str = parse.program().toMips();
+		ProgramNode program = parse.program();
+		String str = program.toMips();
 		System.out.print(str);
 	}
 }
