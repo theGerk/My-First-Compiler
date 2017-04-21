@@ -41,6 +41,7 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
 		return indent + "#VariableAssignmentStatementNode\n"
+				+ assign.toMips(symbolTable, indent + '\t')
 				+ IPublicName.getVarPtrInV0(symbolTable, getName(), indent)
 				//load from stack into where v0 is pointing
 				+ indent + "lw $t0, ($sp)\t#put stack head in t0\n"

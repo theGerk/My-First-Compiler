@@ -5,6 +5,15 @@
  */
 package scanner;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import parser.Parser;
 import syntaxtree.ProgramNode;
 
@@ -23,6 +32,11 @@ public class Main {
 		Parser parse = new Parser("simple.pas");
 		ProgramNode program = parse.program();
 		String str = program.toMips();
-		System.out.print(str);
+		Path file = Paths.get("output.asm");
+		try {
+			Files.write(file, Arrays.asList(str), Charset.forName("UTF-8"));
+		} catch (IOException ex) {
+			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 }

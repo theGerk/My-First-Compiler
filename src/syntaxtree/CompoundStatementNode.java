@@ -41,7 +41,7 @@ public class CompoundStatementNode extends StatementNode {
 	protected String toMips(Scope symbolTable, String indent) {
 		StringBuilder output = new StringBuilder(indent).append("#CompoundStatementNode\n");
 		for (StatementNode statement : statements) {
-			output.append(statement.toMips(symbolTable, indent));
+			output.append(statement.toMips(symbolTable, indent + '\t'));
 		}
 		return output.toString();
 	}
