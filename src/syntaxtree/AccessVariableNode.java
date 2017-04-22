@@ -8,18 +8,18 @@ import symboltable.Scope;
  *
  * @author Erik Steinmetz
  */
-public class VariableNode extends IdentifierNodeBase {
+public class AccessVariableNode extends IdentifierNodeBase {
 
 	/**
 	 * Creates a LiteralNode with the given attribute.
 	 *
 	 * @param id The attribute for this value node.
 	 */
-	public VariableNode(String id, Scope containingScope) throws Exception {
+	public AccessVariableNode(String id, Scope containingScope) throws Exception {
 		super(id, validateID(id, containingScope));
 	}
 
-	protected VariableNode(String id, TokenType type) {
+	protected AccessVariableNode(String id, TokenType type) {
 		super(id, type);
 	}
 
@@ -49,19 +49,16 @@ public class VariableNode extends IdentifierNodeBase {
 	 */
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
-		StringBuilder output = new StringBuilder(indent).append("#VariableNode\n");
+		StringBuilder build = new StringBuilder(indent).append("#AccessVariableNode\n");
 
 		//get ptr to variable's scope in v0:
-		output.append(IPublicName.getVarPtrInV0(symbolTable, getName(), indent + '\t'));
-
-		//get ptr to value in t0
-		output.append(indent).append("addi $t0, $v0, ").append(symbolTable.getMemoryOffset(getName())).append("\t#put ptr to variable in t0\n");
+		build.append(IPublicName.getVarPtrInV0(symbolTable, getName(), indent));
 
 		//put value on stack
-		output.append(indent).append("lw $t0, ($t0)\n");
-		output.append(indent).append("lw $t1, ($sp)\n");
-		output.append(indent).append("sw $t0, ($t1)\n");
+		build.append(indent).append("lw $t0, ($v0)\n");
+		build.append(indent).append("lw $t1, ($sp)\n");
+		build.append(indent).append("sw $t0, ($t1)\n");
 
-		return output.toString();
+		return build.toString();
 	}
 }

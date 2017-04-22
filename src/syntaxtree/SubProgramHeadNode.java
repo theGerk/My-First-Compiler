@@ -13,7 +13,8 @@ public class SubProgramHeadNode extends SyntaxTreeBase implements IPublicName {
 
 	public SubProgramHeadNode(String name, ArrayList<String> arguments) {
 		this.name = name;
-		this.arguments = (String[]) arguments.toArray();
+		this.arguments = new String[arguments.size()];
+		arguments.toArray(this.arguments);
 	}
 
 	/**

@@ -10,27 +10,27 @@ main:
 	sw $s0, ($sp)	#set up stack pointer for new function
 	sw $ra, 4($sp)	#save return address
 	sw $t0, 8($sp)	#save old stack pointer
-	li $t0, 0
+	li $t0, 0	#load function level to t0
 	sw $t0, 16($sp)	#save scope level of this function
 	#CompoundStatementNode
 		#VariableAssignmentStatementNode
 			#LiteralNode
-			lw $t0, ($sp)
-			li $t1, 4
-			sw $t1, ($t0)
+			lw $t0, ($sp)	#put stack head pointer in t0
+			li $t1, 4	#The actual literal value
+			sw $t1, ($t0)	#put value on stack
 		#putting ptr to fee's function call in V0
-		lw $v0, ($sp)
+		move $v0, $sp
 		addi $v0, $v0, 24	#offset to variable
 		lw $t0, ($sp)	#put stack head in t0
 		lw $t1, ($t0)	#pop last value on stack into t1
 		sw $t1, ($v0)	#store value where it goes
 		#VariableAssignmentStatementNode
 			#LiteralNode
-			lw $t0, ($sp)
-			li $t1, 5
-			sw $t1, ($t0)
+			lw $t0, ($sp)	#put stack head pointer in t0
+			li $t1, 5	#The actual literal value
+			sw $t1, ($t0)	#put value on stack
 		#putting ptr to fi's function call in V0
-		lw $v0, ($sp)
+		move $v0, $sp
 		addi $v0, $v0, 28	#offset to variable
 		lw $t0, ($sp)	#put stack head in t0
 		lw $t1, ($t0)	#pop last value on stack into t1
@@ -39,18 +39,17 @@ main:
 			#BinaryOperationNode
 				#BinaryOperationNode
 					#LiteralNode
-					lw $t0, ($sp)
-					li $t1, 3
-					sw $t1, ($t0)
+					lw $t0, ($sp)	#put stack head pointer in t0
+					li $t1, 3	#The actual literal value
+					sw $t1, ($t0)	#put value on stack
 				lw $t0, ($sp)
 				addi $t0, $t0, -4
 				sw $t0, ($sp)
-					#VariableNode
-						#putting ptr to fee's function call in V0
-						lw $v0, ($sp)
-						addi $v0, $v0, 24	#offset to variable
-					addi $t0, $v0, 24	#put ptr to variable in t0
-					lw $t0, ($t0)
+					#AccessVariableNode
+					#putting ptr to fee's function call in V0
+					move $v0, $sp
+					addi $v0, $v0, 24	#offset to variable
+					lw $t0, ($v0)
 					lw $t1, ($sp)
 					sw $t0, ($t1)
 				lw $t0, ($sp)
@@ -63,12 +62,11 @@ main:
 			lw $t0, ($sp)
 			addi $t0, $t0, -4
 			sw $t0, ($sp)
-				#VariableNode
-					#putting ptr to fi's function call in V0
-					lw $v0, ($sp)
-					addi $v0, $v0, 28	#offset to variable
-				addi $t0, $v0, 28	#put ptr to variable in t0
-				lw $t0, ($t0)
+				#AccessVariableNode
+				#putting ptr to fi's function call in V0
+				move $v0, $sp
+				addi $v0, $v0, 28	#offset to variable
+				lw $t0, ($v0)
 				lw $t1, ($sp)
 				sw $t0, ($t1)
 			lw $t0, ($sp)
@@ -79,28 +77,27 @@ main:
 			add $t1, $t1, $t2
 			sw $t1, ($t0)	#save computation
 		#putting ptr to fo's function call in V0
-		lw $v0, ($sp)
+		move $v0, $sp
 		addi $v0, $v0, 32	#offset to variable
 		lw $t0, ($sp)	#put stack head in t0
 		lw $t1, ($t0)	#pop last value on stack into t1
 		sw $t1, ($v0)	#store value where it goes
 		#IfStatementNode
 			#BinaryOperationNode
-				#VariableNode
-					#putting ptr to fo's function call in V0
-					lw $v0, ($sp)
-					addi $v0, $v0, 32	#offset to variable
-				addi $t0, $v0, 32	#put ptr to variable in t0
-				lw $t0, ($t0)
+				#AccessVariableNode
+				#putting ptr to fo's function call in V0
+				move $v0, $sp
+				addi $v0, $v0, 32	#offset to variable
+				lw $t0, ($v0)
 				lw $t1, ($sp)
 				sw $t0, ($t1)
 			lw $t0, ($sp)
 			addi $t0, $t0, -4
 			sw $t0, ($sp)
 				#LiteralNode
-				lw $t0, ($sp)
-				li $t1, 13
-				sw $t1, ($t0)
+				lw $t0, ($sp)	#put stack head pointer in t0
+				li $t1, 13	#The actual literal value
+				sw $t1, ($t0)	#put value on stack
 			lw $t0, ($sp)
 			addi $t0, $t0, 4
 			sw $t0, ($sp)
@@ -113,11 +110,11 @@ main:
 		beqz $s0, GoToFalseStatement
 			#VariableAssignmentStatementNode
 				#LiteralNode
-				lw $t0, ($sp)
-				li $t1, 13
-				sw $t1, ($t0)
+				lw $t0, ($sp)	#put stack head pointer in t0
+				li $t1, 13	#The actual literal value
+				sw $t1, ($t0)	#put value on stack
 			#putting ptr to fo's function call in V0
-			lw $v0, ($sp)
+			move $v0, $sp
 			addi $v0, $v0, 32	#offset to variable
 			lw $t0, ($sp)	#put stack head in t0
 			lw $t1, ($t0)	#pop last value on stack into t1
@@ -126,23 +123,22 @@ main:
 		GoToFalseStatement:
 			#VariableAssignmentStatementNode
 				#LiteralNode
-				lw $t0, ($sp)
-				li $t1, 26
-				sw $t1, ($t0)
+				lw $t0, ($sp)	#put stack head pointer in t0
+				li $t1, 26	#The actual literal value
+				sw $t1, ($t0)	#put value on stack
 			#putting ptr to fo's function call in V0
-			lw $v0, ($sp)
+			move $v0, $sp
 			addi $v0, $v0, 32	#offset to variable
 			lw $t0, ($sp)	#put stack head in t0
 			lw $t1, ($t0)	#pop last value on stack into t1
 			sw $t1, ($v0)	#store value where it goes
 		SkipFalseStatement:
 		#ConsoleWriteNode
-			#VariableNode
-				#putting ptr to fo's function call in V0
-				lw $v0, ($sp)
-				addi $v0, $v0, 32	#offset to variable
-			addi $t0, $v0, 32	#put ptr to variable in t0
-			lw $t0, ($t0)
+			#AccessVariableNode
+			#putting ptr to fo's function call in V0
+			move $v0, $sp
+			addi $v0, $v0, 32	#offset to variable
+			lw $t0, ($v0)
 			lw $t1, ($sp)
 			sw $t0, ($t1)
 		lw $t0, ($sp)

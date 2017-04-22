@@ -15,12 +15,12 @@ interface IPublicName {
 	String getName();
 
 	static String getFuncPtrInV0(Scope scope, String variable, String indent) {
-		StringBuilder output = new StringBuilder(indent).append("#putting ptr to ").append(variable).append("'s function call in V0\n")
-				.append(indent).append("lw $v0, ($sp)\n");
+		StringBuilder build = new StringBuilder(indent).append("#putting ptr to ").append(variable).append("'s function call in V0\n");
+		build.append(indent).append("move $v0, $sp\n");
 		for (int i = scope.getLevel(variable); i < scope.getLevel(); i++) {
-			output.append(indent).append("lw $v0, ($v0)\t#").append(i).append("\n");
+			build.append(indent).append("lw $v0, 12($v0)\t#").append(i).append("\n");
 		}
-		return output.toString();
+		return build.toString();
 	}
 
 	static String getVarPtrInV0(Scope scope, String variable, String indent) {

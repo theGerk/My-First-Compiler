@@ -38,9 +38,11 @@ public abstract class LiteralNode extends ExpressionNode {
 
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
-		return indent + "#LiteralNode\n"
-				+ indent + "lw $t0, ($sp)\n"
-				+ indent + "li $t1, " + getRawInt() + "\n"
-				+ indent + "sw $t1, ($t0)\n";
+		StringBuilder build = new StringBuilder(indent).append("#LiteralNode\n");
+		build.append(indent).append("lw $t0, ($sp)\t#put stack head pointer in t0\n");
+		build.append(indent).append("li $t1, ").append(getRawInt()).append("\t#The actual literal value\n");
+		build.append(indent).append("sw $t1, ($t0)\t#put value on stack\n");
+
+		return build.toString();
 	}
 }

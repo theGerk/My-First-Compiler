@@ -92,7 +92,7 @@ public class DeclarationsNode extends SyntaxTreeBase {
 			build.append(indent).append("sw $t0, 12($sp)\t#save one level up pointer\n"); // puts pointer onto stack
 		}
 		//load final values
-		build.append(indent).append("li $t0, ").append(symbolTable.getLevel()).append("\n"); // puts scope level in t0
+		build.append(indent).append("li $t0, ").append(symbolTable.getLevel()).append("\t#load function level to t0\n"); // puts scope level in t0
 		build.append(indent).append("sw $t0, 16($sp)\t#save scope level of this function\n");
 
 		return build.toString();

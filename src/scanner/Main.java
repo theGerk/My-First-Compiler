@@ -6,7 +6,6 @@
 package scanner;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,7 +28,7 @@ public class Main {
 	 * @param args the command line arguments, args[0] is the input file
 	 */
 	public static void main(String[] args) {
-		Parser parse = new Parser("simple.pas");
+		Parser parse = new Parser("fib.pas");
 		ProgramNode program = parse.program();
 		String str = program.toMips();
 		Path file = Paths.get("output.asm");

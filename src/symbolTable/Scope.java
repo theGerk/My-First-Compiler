@@ -339,6 +339,7 @@ public class Scope {
 		}
 	}
 
+	@SuppressWarnings("element-type-mismatch")
 	public void addArg(String funcID, String argID, TokenType argType) throws Exception {
 		Symbol s = map.get(funcID);
 		if (s == null || s.kind != IdentifierKind.FUNC) {

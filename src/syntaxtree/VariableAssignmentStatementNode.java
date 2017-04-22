@@ -21,7 +21,7 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 		return variable;
 	}
 
-	public VariableAssignmentStatementNode(VariableNode var, ExpressionNode expr) throws Exception {
+	public VariableAssignmentStatementNode(AccessVariableNode var, ExpressionNode expr) throws Exception {
 		super(expr);
 		if (var.getType() != expr.getType()) {
 			throw new Exception(var.getName() + " can not be assigned a: " + expr.getType() + ", expects: " + var.getType());
@@ -40,12 +40,15 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
-		return indent + "#VariableAssignmentStatementNode\n"
-				+ assign.toMips(symbolTable, indent + '\t')
-				+ IPublicName.getVarPtrInV0(symbolTable, getName(), indent)
-				//load from stack into where v0 is pointing
-				+ indent + "lw $t0, ($sp)\t#put stack head in t0\n"
-				+ indent + "lw $t1, ($t0)\t#pop last value on stack into t1\n"
-				+ indent + "sw $t1, ($v0)\t#store value where it goes\n";
+		StringBuilder build = new StringBuilder(indent).append("#VariableAssignmentStatementNode\n");
+		build.append(assign.toMips(symbolTable, indent + '\t'));
+		build.append(IPublicName.getVarPtrInV0(symbolTable, getName(), indent));
+
+		//load from stack into where v0 is pointing
+		build.append(indent).append("lw $t0, ($sp)\t#put stack head in t0\n");
+		build.append(indent).append("lw $t1, ($t0)\t#pop last value on stack into t1\n");
+		build.append(indent).append("sw $t1, ($v0)\t#store value where it goes\n");
+
+		return build.toString();
 	}
 }

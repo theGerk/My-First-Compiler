@@ -312,7 +312,7 @@ public class Parser {
 			match(TokenType.RIGHTPARANTHESIS);
 			return output;
 		}
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
 
 	/**
@@ -377,7 +377,7 @@ public class Parser {
 				switch (currentScope.getKind(lookAhead.getLexeme())) {
 					case VAR:
 					case ARR: {
-						VariableNode var = variable();
+						AccessVariableNode var = variable();
 						match(TokenType.ASSIGNOP);
 						ExpressionNode expr = expression();
 						return new VariableAssignmentStatementNode(var, expr);
@@ -407,7 +407,7 @@ public class Parser {
 			case READ:
 				match(TokenType.READ);
 				match(TokenType.LEFTPARANTHESIS);
-				VariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO getValue permission
+				AccessVariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO getValue permission
 				match(TokenType.RIGHTPARANTHESIS);
 				return new VariableAssignmentStatementNode(variable, new ConsoleReadNode(variable.getType()));
 			case WRITE:
@@ -424,12 +424,12 @@ public class Parser {
 	/**
 	 * parses a variable, possibly one in an array
 	 */
-	private VariableNode variable() throws Exception {
-		VariableNode output;
+	private AccessVariableNode variable() throws Exception {
+		AccessVariableNode output;
 		String id = match(TokenType.ID);
 		switch (currentScope.getKind(id)) {
 			case VAR:
-				output = new VariableNode(id, currentScope);
+				output = new AccessVariableNode(id, currentScope);
 				break;
 			case ARR:
 				match(TokenType.LEFTSQUAREBRACKET);
@@ -573,7 +573,7 @@ public class Parser {
 					match(TokenType.RIGHTPARANTHESIS);
 					return new FunctionExpressionNode(id, expressionList, currentScope);
 				} else {
-					return new VariableNode(id, currentScope);
+					return new AccessVariableNode(id, currentScope);
 				}
 			}
 			case REAL_LITERAL:

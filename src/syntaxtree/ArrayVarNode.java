@@ -6,7 +6,7 @@ import symboltable.Scope;
 /**
  * Created by Benji on 4/12/2017.
  */
-public class ArrayVarNode extends VariableNode {
+public class ArrayVarNode extends AccessVariableNode {
 
 	/**
 	 * Creates a String representation of this node and its children.
