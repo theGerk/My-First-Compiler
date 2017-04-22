@@ -13,5 +13,10 @@ package general;
  */
 public class Pair<A,B> {
     A key;
-    B obj;    
+    B val;
+    
+    public Pair(A key, B value){
+        this.key = key;
+        val = value;
+    }
 }
