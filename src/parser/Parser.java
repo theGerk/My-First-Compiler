@@ -5,7 +5,7 @@
  */
 package parser;
 
-import javafx.util.Pair;
+
 import scanner.Scanner;
 import scanner.Token;
 import scanner.TokenType;

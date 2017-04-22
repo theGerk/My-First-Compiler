@@ -5,6 +5,7 @@
  */
 package symboltable;
 
+import general.UniqueIdentifierGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
 
