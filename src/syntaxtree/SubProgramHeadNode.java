@@ -11,6 +11,12 @@ public class SubProgramHeadNode extends SyntaxTreeBase implements IPublicName {
 	private final String name;
 	private final String[] arguments;
 
+	/**
+	 * just the tip
+	 *
+	 * @param name name of function
+	 * @param arguments name of arguments
+	 */
 	public SubProgramHeadNode(String name, ArrayList<String> arguments) {
 		this.name = name;
 		this.arguments = new String[arguments.size()];

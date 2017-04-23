@@ -14,6 +14,11 @@ public class CompoundStatementNode extends StatementNode {
 
 	private final ArrayList<StatementNode> statements = new ArrayList<>();
 
+	/**
+	 * adds a statement to the statements list
+	 *
+	 * @param state type to be read from console
+	 */
 	public void addStatement(StatementNode state) {
 		this.statements.add(state);
 	}

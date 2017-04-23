@@ -14,6 +14,11 @@ import symboltable.Scope;
  */
 public class ConsoleReadNode extends ExpressionNode {
 
+	/**
+	 * node puts value from console onto stack
+	 *
+	 * @param returnType type to be read from console
+	 */
 	public ConsoleReadNode(TokenType returnType) {
 		super(returnType);
 	}

@@ -1,7 +1,6 @@
 package syntaxtree;
 
 import scanner.TokenType;
-import symboltable.Scope;
 
 /**
  * Created by Benji on 4/14/2017. Anything that has an identifier extends this
@@ -15,6 +14,12 @@ public abstract class IdentifierNodeBase extends ExpressionNode implements IPubl
 	 */
 	protected final String name;
 
+	/**
+	 * constructor
+	 *
+	 * @param id name of identifier
+	 * @param tokenType type of identifier
+	 */
 	protected IdentifierNodeBase(String id, TokenType tokenType) {
 		super(tokenType);
 		name = id;

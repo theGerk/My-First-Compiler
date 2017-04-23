@@ -15,6 +15,14 @@ public class IfStatementNode extends StatementNode {
 	private final StatementNode thenStatement;
 	private final StatementNode elseStatement;
 
+	/**
+	 * constructor
+	 *
+	 * @param condition expression resulting in boolean (integer)
+	 * @param onTrue what to do if condition is true
+	 * @param onFalse what to do if condition is false
+	 * @throws Exception
+	 */
 	public IfStatementNode(ExpressionNode condition, StatementNode onTrue, StatementNode onFalse) throws Exception {
 		if (condition.getType() != TokenType.INTEGER) {
 			throw new Exception("Conditionals must resolve to an integer");

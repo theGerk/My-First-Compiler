@@ -13,6 +13,11 @@ public class SubProgramDeclarationsNode extends SyntaxTreeBase implements IMakeF
 
 	private final ArrayList<SubProgramNode> functions = new ArrayList<>();
 
+	/**
+	 * adds function to node
+	 *
+	 * @param aSubProgram a function to be added
+	 */
 	public void addSubProgramDeclaration(SubProgramNode aSubProgram) {
 		functions.add(aSubProgram);
 	}

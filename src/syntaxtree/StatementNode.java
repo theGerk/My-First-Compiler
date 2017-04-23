@@ -1,7 +1,7 @@
 package syntaxtree;
 
 /**
- * Represents a single statement in Pascal.
+ * Represents a single statement in Pascal. Quite useless really
  *
  * @author Erik Steinmetz
  */

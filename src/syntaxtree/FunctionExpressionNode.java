@@ -6,10 +6,18 @@ import symboltable.Scope;
 import java.util.ArrayList;
 
 /**
- * Created by Benji on 4/12/2017.
+ * Function as an expression (returns something)
  */
 public class FunctionExpressionNode extends IdentifierNodeBase {
 
+	/**
+	 * Constructor for function as an expression
+	 *
+	 * @param id function name
+	 * @param params arguments being passed in
+	 * @param containingScope scope containing expression
+	 * @throws Exception
+	 */
 	public FunctionExpressionNode(String id, ArrayList<ExpressionNode> params, Scope containingScope) throws Exception {
 		super(id, validateID(id, containingScope));
 		if (containingScope.getKind(id) != Scope.IdentifierKind.FUNC) {
@@ -27,6 +35,13 @@ public class FunctionExpressionNode extends IdentifierNodeBase {
 		parametersList = params;
 	}
 
+	/**
+	 * bypasses error checking for children
+	 *
+	 * @param id name of function being called
+	 * @param params argumetns to function
+	 * @param type return type of function
+	 */
 	protected FunctionExpressionNode(String id, ArrayList<ExpressionNode> params, TokenType type) {
 		super(id, type);
 		parametersList = params;

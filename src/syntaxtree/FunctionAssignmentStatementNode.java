@@ -3,12 +3,20 @@ package syntaxtree;
 import symboltable.Scope;
 
 /**
- * Created by Benji on 4/14/2017.
+ * sets return statement for functions
  */
 public class FunctionAssignmentStatementNode extends AssignmentStatementNodeBase {
 
 	protected final String assignee;
 
+	/**
+	 * constructor
+	 *
+	 * @param id ID of function we are assigning to
+	 * @param expression expression to assign to ID
+	 * @param currentScope scope containing statement
+	 * @throws Exception
+	 */
 	public FunctionAssignmentStatementNode(String id, ExpressionNode expression, Scope currentScope) throws Exception {
 		super(expression);
 		if (currentScope.getType(id) != expression.getType()) {

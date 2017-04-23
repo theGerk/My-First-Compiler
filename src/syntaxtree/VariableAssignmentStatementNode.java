@@ -21,6 +21,13 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 		return variable;
 	}
 
+	/**
+	 * constucts a variable assignment ndoe
+	 *
+	 * @param var variable being assigned to
+	 * @param expr expression to evaluate to get value to assign to var
+	 * @throws Exception
+	 */
 	public VariableAssignmentStatementNode(AccessVariableNode var, ExpressionNode expr) throws Exception {
 		super(expr);
 		if (var.getType() != expr.getType()) {

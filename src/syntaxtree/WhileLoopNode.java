@@ -12,6 +12,13 @@ public class WhileLoopNode extends StatementNode {
 	private final ExpressionNode condition;
 	private final StatementNode instruction;
 
+	/**
+	 * constuctor.. blah blah blah
+	 *
+	 * @param cond condition on which to loop, evaluates to boolean (integer)
+	 * @param statment statement is done on looping
+	 * @throws Exception
+	 */
 	public WhileLoopNode(ExpressionNode cond, StatementNode statment) throws Exception {
 		if (cond.getType() != TokenType.INTEGER) {
 			throw new Exception("Need integer in condition");

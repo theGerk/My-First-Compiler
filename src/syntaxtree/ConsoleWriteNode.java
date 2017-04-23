@@ -9,6 +9,11 @@ public class ConsoleWriteNode extends StatementNode {
 
 	private final ExpressionNode expr;	//expression to write to console
 
+	/**
+	 * write line to console
+	 *
+	 * @param expression expression to be written
+	 */
 	public ConsoleWriteNode(ExpressionNode expression) {
 		expr = expression;
 	}

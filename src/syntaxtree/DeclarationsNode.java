@@ -1,7 +1,6 @@
 package syntaxtree;
 
 import symboltable.Scope;
-
 import java.util.ArrayList;
 
 /**
@@ -13,10 +12,20 @@ public class DeclarationsNode extends SyntaxTreeBase {
 
 	protected ArrayList<String> vars = new ArrayList<>();
 
+	/**
+	 * adds a variable to the declarations node
+	 *
+	 * @param aVariable to be added to to the node
+	 */
 	public void addVariable(String aVariable) {
 		vars.add(aVariable);
 	}
 
+	/**
+	 * get array of variable identifiers
+	 *
+	 * @return
+	 */
 	public String[] getVars() {
 		return (String[]) vars.toArray();
 	}

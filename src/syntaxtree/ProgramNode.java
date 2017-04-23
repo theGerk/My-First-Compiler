@@ -15,6 +15,15 @@ public class ProgramNode extends SyntaxTreeBase implements IMakeFunctionLabels {
 	private final CompoundStatementNode main;
 	private final Scope symbolTable;
 
+	/**
+	 * Sets up a program
+	 *
+	 * @param aName name of program, not really used
+	 * @param globals global declarations
+	 * @param functions global functions
+	 * @param main main function ie: global statements
+	 * @param scope the global scope
+	 */
 	public ProgramNode(String aName, DeclarationsNode globals, SubProgramDeclarationsNode functions, CompoundStatementNode main, Scope scope) {
 		this.name = aName;
 		globalVariables = globals;

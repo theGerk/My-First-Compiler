@@ -9,6 +9,11 @@ public class RealLiteralNode extends LiteralNode {
 
 	private final float value;
 
+	/**
+	 * constuctor for a floating point node
+	 *
+	 * @param input value of node
+	 */
 	public RealLiteralNode(float input) {
 		super(TokenType.REAL);
 		this.value = input;

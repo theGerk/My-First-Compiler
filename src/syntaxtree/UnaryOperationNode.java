@@ -18,6 +18,13 @@ public class UnaryOperationNode extends ExpressionNode {
 	private final TokenType operator;
 	private final ExpressionNode expression;
 
+	/**
+	 * constuctor
+	 *
+	 * @param op operation to be done
+	 * @param expr expression for operation to be done on
+	 * @throws Exception
+	 */
 	public UnaryOperationNode(TokenType op, ExpressionNode expr) throws Exception {
 		super(outType(op, expr.getType()));
 		operator = op;

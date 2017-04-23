@@ -34,6 +34,11 @@ public abstract class LiteralNode extends ExpressionNode {
 		return this;
 	}
 
+	/**
+	 * gets a raw integer representation of the node's value
+	 *
+	 * @return raw integer representation
+	 */
 	abstract int getRawInt();
 
 	@Override
@@ -44,5 +49,35 @@ public abstract class LiteralNode extends ExpressionNode {
 		build.append(indent).append("sw $t1, ($t0)\t#put value on stack\n");
 
 		return build.toString();
+	}
+
+	/**
+	 * constructs integer lteral node
+	 *
+	 * @param val int literal value
+	 * @return IntLiteralNode
+	 */
+	public static LiteralNode make(int val) {
+		return new IntLiteralNode(val);
+	}
+
+	/**
+	 * constructs floating point literal node
+	 *
+	 * @param val real literal value
+	 * @return RealLiteralNode
+	 */
+	public static LiteralNode make(float val) {
+		return new RealLiteralNode(val);
+	}
+
+	/**
+	 * constructs boolean literal node (just an integer)
+	 *
+	 * @param val boolean value
+	 * @return IntLiteralNode
+	 */
+	public static LiteralNode make(boolean val) {
+		return new IntLiteralNode(val);
 	}
 }
