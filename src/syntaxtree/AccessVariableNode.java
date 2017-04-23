@@ -14,11 +14,19 @@ public class AccessVariableNode extends IdentifierNodeBase {
 	 * Creates a LiteralNode with the given attribute.
 	 *
 	 * @param id The attribute for this value node.
+	 * @param containingScope scope of function the statement is in
+	 * @throws java.lang.Exception if there is an error
 	 */
 	public AccessVariableNode(String id, Scope containingScope) throws Exception {
 		super(id, validateID(id, containingScope));
 	}
 
+	/**
+	 * Used to bypass error checking for children to call
+	 *
+	 * @param id ID of variable
+	 * @param type type of variable
+	 */
 	protected AccessVariableNode(String id, TokenType type) {
 		super(id, type);
 	}

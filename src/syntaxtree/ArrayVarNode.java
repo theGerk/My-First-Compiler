@@ -76,7 +76,7 @@ public class ArrayVarNode extends AccessVariableNode {
 
 		//check for out of bounds
 		output.append(indent).append("bltz $t1, ").append(Constant.ARRAY_OUT_OF_BOUNDS_LABEL).append("\n");
-		output.append(indent).append("bge $t1, ").append(symbolTable.getLength(getName())).append(", ").append(Constant.ARRAY_OUT_OF_BOUNDS_LABEL).append("\n");
+		output.append(indent).append("bge $t1, ").append(symbolTable.getArrayLength(getName())).append(", ").append(Constant.ARRAY_OUT_OF_BOUNDS_LABEL).append("\n");
 
 		//put value on the stack
 		output.append(indent).append("sll $t1, $t1, 2\t#covert to bytes\n");	//multiply by 4 by bitshifting

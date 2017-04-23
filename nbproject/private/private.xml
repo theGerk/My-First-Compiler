@@ -5,12 +5,9 @@
         <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/symboltable/Scope.java</file>
         <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/syntaxtree/SubProgramDeclarationsNode.java</file>
         <group>
-            <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/syntaxtree/ProgramNode.java</file>
-            <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/scanner/LookUp.java</file>
-            <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/parser/Parser.java</file>
-            <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/symbolTable/Scope.java</file>
-            <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/scanner/Main.java</file>
-            <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/scanner/Scanner.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/general/Pair.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/parser/Parser.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/general/UniqueIdentifierGenerator.java</file>
         </group>
     </open-files>
 </project-private>

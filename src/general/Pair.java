@@ -6,17 +6,49 @@
 package general;
 
 /**
+ * An arbitrary pair of two objects.
  *
  * @author bendy
- * @param <A>
- * @param <B>
+ * @param <leftType> type for left value
+ * @param <rightType> type for right value
  */
-public class Pair<A,B> {
-    A key;
-    B val;
-    
-    public Pair(A key, B value){
-        this.key = key;
-        val = value;
-    }
+public class Pair<leftType, rightType> {
+
+	/**
+	 * left value
+	 */
+	public leftType left;
+	/**
+	 * right value
+	 */
+	public rightType right;
+
+	/**
+	 * constructs new pair with given right and left values
+	 *
+	 * @param left left value
+	 * @param right right value
+	 */
+	public Pair(leftType left, rightType right) {
+		this.left = left;
+		this.right = right;
+	}
+
+	/**
+	 * returns left value
+	 *
+	 * @return left value
+	 */
+	public leftType getLeft() {
+		return left;
+	}
+
+	/**
+	 * returns right value
+	 *
+	 * @return right value
+	 */
+	public rightType getRight() {
+		return right;
+	}
 }

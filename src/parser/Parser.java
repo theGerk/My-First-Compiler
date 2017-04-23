@@ -5,7 +5,7 @@
  */
 package parser;
 
-
+import general.Pair;
 import scanner.Scanner;
 import scanner.Token;
 import scanner.TokenType;
@@ -407,7 +407,7 @@ public class Parser {
 			case READ:
 				match(TokenType.READ);
 				match(TokenType.LEFTPARANTHESIS);
-				AccessVariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO getValue permission
+				AccessVariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO getRight permission
 				match(TokenType.RIGHTPARANTHESIS);
 				return new VariableAssignmentStatementNode(variable, new ConsoleReadNode(variable.getType()));
 			case WRITE:
@@ -502,7 +502,7 @@ public class Parser {
 		}
 		Pair<TokenType, ExpressionNode> simplePart = simplePart();
 		if (simplePart != null) {
-			output = new BinaryOperationNode(output, simplePart.getKey(), simplePart.getValue());
+			output = new BinaryOperationNode(output, simplePart.getLeft(), simplePart.getRight());
 		}
 		return output;
 	}
@@ -517,7 +517,7 @@ public class Parser {
 			ExpressionNode expr = term();
 			Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = simplePart();
 			if (tokenTypeExpressionNodePair != null) {
-				expr = new BinaryOperationNode(expr, tokenTypeExpressionNodePair.getKey(), tokenTypeExpressionNodePair.getValue());
+				expr = new BinaryOperationNode(expr, tokenTypeExpressionNodePair.getLeft(), tokenTypeExpressionNodePair.getRight());
 			}
 			return new Pair<>(type, expr);
 		} else {
@@ -532,7 +532,7 @@ public class Parser {
 		ExpressionNode output = factor();
 		Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = termPart();
 		if (tokenTypeExpressionNodePair != null) {
-			output = new BinaryOperationNode(output, tokenTypeExpressionNodePair.getKey(), tokenTypeExpressionNodePair.getValue());
+			output = new BinaryOperationNode(output, tokenTypeExpressionNodePair.getLeft(), tokenTypeExpressionNodePair.getRight());
 		}
 		return output;
 	}
@@ -547,7 +547,7 @@ public class Parser {
 			ExpressionNode expr = factor();
 			Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = termPart();
 			if (tokenTypeExpressionNodePair != null) {
-				expr = new BinaryOperationNode(expr, tokenTypeExpressionNodePair.getKey(), tokenTypeExpressionNodePair.getValue());
+				expr = new BinaryOperationNode(expr, tokenTypeExpressionNodePair.getLeft(), tokenTypeExpressionNodePair.getRight());
 			}
 			return new Pair<>(type, expr);
 		} else {

@@ -5,11 +5,11 @@
  */
 package symboltable;
 
+import general.Pair;
 import general.UniqueIdentifierGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javafx.util.Pair;
 import scanner.TokenType;
 
 /**
@@ -137,19 +137,22 @@ public class Scope {
 		return level;
 	}
 
-	public int getLength(String name) {
-		Symbol s = getSymbol(name);
-		if (s != null) {
-			return s.arraySize;
-		} else {
-			return -1;
-		}
-	}
-
+	/**
+	 * gets memory offset of a variable
+	 *
+	 * @param name the ID for the target variable
+	 * @return it's memory offset
+	 */
 	public int getMemoryOffset(String name) {
 		return getSymbol(name).offsetFromStackPointer;
 	}
 
+	/**
+	 * gets the size of a variable in bytes
+	 *
+	 * @param name the ID for the variable
+	 * @return the variable's size in bytes
+	 */
 	public int sizeInBytes(String name) {
 		return getSymbol(name).size();
 	}
@@ -165,27 +168,52 @@ public class Scope {
 		return getSymbol(name) != null;
 	}
 
+	/**
+	 * setter, sets offset for a given ID
+	 *
+	 * @param name ID for variable
+	 * @param offset offset value
+	 */
 	public void setOffset(String name, int offset) {
 		map.get(name).offsetFromStackPointer = offset;
 	}
 
-	public int getArrayZeroIndexMemoryOffset(String name) {
-		Symbol s = getSymbol(name);
-		return s.offsetFromStackPointer - s.offsetFromStackPointer;
-	}
-
+	/**
+	 * Sets label for a given Function
+	 *
+	 * @param id ID for function
+	 * @param myLabel label being used
+	 */
 	public void setLabel(String id, String myLabel) {
 		getSymbol(id).label = myLabel;
 	}
 
+	/**
+	 * Gets length of an array
+	 *
+	 * @param name ID for array variable
+	 * @return the size of the array
+	 */
 	public int getArrayLength(String name) {
 		return getSymbol(name).arraySize;
 	}
 
+	/**
+	 * gets start index for an array
+	 *
+	 * @param name ID for the array
+	 * @return the start index
+	 */
 	public int getStartIndex(String name) {
-		return getSymbol(name).arrayStartOffset; //To change body of generated methods, choose Tools | Templates.
+		return getSymbol(name).arrayStartOffset;
 	}
 
+	/**
+	 * gets label for a function
+	 *
+	 * @param name ID for a function
+	 * @return label used to jump to function
+	 */
 	public String getLabel(String name) {
 		return getSymbol(name).label;
 	}
@@ -247,7 +275,7 @@ public class Scope {
 			}
 			if (args != null) {
 				for (Pair<String, TokenType> arg : args) {
-					output.append(scope.getSymbol(arg.getKey()).toString(t + '\t'));
+					output.append(scope.getSymbol(arg.getLeft()).toString(t + '\t'));
 				}
 			}
 			return output.toString();
@@ -260,6 +288,26 @@ public class Scope {
 		 */
 		public int size() {
 			return arraySize * 4;
+		}
+
+		/**
+		 * checks if a given ID is valid
+		 *
+		 * @param id ID to check if it is the symbol
+		 * @return ture if the ID is in the symbol's scope
+		 */
+		public boolean hasID(String id) {
+			if (scope != null && !scope.isValidId(id)) {
+				return true;
+			}
+			if (args != null) {
+				for (Pair<String, TokenType> arg : args) {
+					if (arg.left.equals(id)) {
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 	}
 
@@ -289,11 +337,12 @@ public class Scope {
 	}
 
 	/**
+	 * sets a tokenType for an Identifier
 	 *
-	 * @param id
-	 * @param type
+	 * @param id ID we are setting
+	 * @param type Token Type
 	 *
-	 * @throws Exception
+	 * @throws Exception if an error occurs
 	 */
 	public void set(String id, TokenType type) throws Exception {
 		Symbol s = map.get(id);
@@ -308,6 +357,13 @@ public class Scope {
 		s.type = type;
 	}
 
+	/**
+	 * sets Scope for an identifier
+	 *
+	 * @param id ID we are setting scope for
+	 * @param scope scope to be given to ID
+	 * @throws Exception if something goes wrong
+	 */
 	public void set(String id, Scope scope) throws Exception {
 		Symbol s = map.get(id);
 		if (s.scope != null) {
@@ -319,6 +375,13 @@ public class Scope {
 		s.scope = scope;
 	}
 
+	/**
+	 * sets kind for a given identifier
+	 *
+	 * @param id identifier we are targeting
+	 * @param kind kind to give to ID
+	 * @throws Exception if something goes wrong
+	 */
 	public void set(String id, IdentifierKind kind) throws Exception {
 		Symbol s = map.get(id);
 		if (s.kind != null) {
@@ -330,6 +393,14 @@ public class Scope {
 		}
 	}
 
+	/**
+	 * sets start and end indicies for an array
+	 *
+	 * @param id Identifier for an array
+	 * @param start start index
+	 * @param end end index
+	 * @throws Exception
+	 */
 	public void set(String id, int start, int end) throws Exception {
 		Symbol s = map.get(id);
 		if (s.kind != IdentifierKind.ARR) {
@@ -340,18 +411,32 @@ public class Scope {
 		}
 	}
 
-	@SuppressWarnings("element-type-mismatch")
+	/**
+	 * adds argument to a function symbol
+	 *
+	 * @param funcID ID of the symbol (a function)
+	 * @param argID ID for arugment to be added
+	 * @param argType Type for argument
+	 * @throws Exception on error
+	 */
 	public void addArg(String funcID, String argID, TokenType argType) throws Exception {
 		Symbol s = map.get(funcID);
 		if (s == null || s.kind != IdentifierKind.FUNC) {
 			throw new Exception(funcID + " is not a function");
-		} else if (s.args.contains(argID)) {
+		} else if (s.hasID(argID)) {
 			throw new Exception(argID + " already exists in scope");
 		} else {
 			s.args.add(new Pair<>(argID, argType));
 		}
 	}
 
+	/**
+	 * gets type for arugments in an arraylist
+	 *
+	 * @param id ID of function
+	 * @return types of arguments of id in order
+	 * @throws Exception on error
+	 */
 	public ArrayList<TokenType> getArgsTypes(String id) throws Exception {
 		Symbol s = getSymbol(id);
 		if (s == null) {
@@ -361,11 +446,14 @@ public class Scope {
 		} else {
 			ArrayList<TokenType> output = new ArrayList();
 			for (Pair<String, TokenType> p : s.args) {
-				output.add(p.getValue());
+				output.add(p.getRight());
 			}
 			return output;
 		}
 	}
 
+	/**
+	 * generates labels for the program
+	 */
 	public static UniqueIdentifierGenerator labelGenerator = new UniqueIdentifierGenerator("main");
 }
