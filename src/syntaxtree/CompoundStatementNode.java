@@ -17,10 +17,10 @@ public class CompoundStatementNode extends StatementNode {
 	/**
 	 * adds a statement to the statements list
 	 *
-	 * @param state type to be read from console
+	 * @param statment statement being added
 	 */
-	public void addStatement(StatementNode state) {
-		this.statements.add(state);
+	public void addStatement(StatementNode statment) {
+		this.statements.add(statment);
 	}
 
 	@Override
