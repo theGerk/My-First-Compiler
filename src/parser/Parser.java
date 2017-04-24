@@ -12,7 +12,6 @@ import scanner.TokenType;
 import symboltable.Scope;
 import symboltable.Scope.IdentifierKind;
 import syntaxtree.*;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
