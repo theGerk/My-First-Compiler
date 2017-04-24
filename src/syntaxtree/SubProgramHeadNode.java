@@ -59,7 +59,7 @@ public class SubProgramHeadNode extends SyntaxTreeBase implements IPublicName {
 		//iterate across arguments
 		for (int i = 0; i < arguments.length; i++) {
 			build.append(indent).append("lw $t1, ").append((i + 1) * 4).append("($t0)\t#get loaded value from stack\n");
-			build.append(indent).append("sw $t1, ").append(symbolTable.getMemoryOffset(arguments[i])).append("($sp)\t#save word in correct spot (hopefully?)\n");	//TODO confirm where arguments are added to declared vars
+			build.append(indent).append("sw $t1, ").append(symbolTable.getMemoryOffset(arguments[i])).append("($sp)\t#save word in correct spot (hopefully?)\n");	//This is done in SubProgramNode constructor
 		}
 
 		return build.toString();

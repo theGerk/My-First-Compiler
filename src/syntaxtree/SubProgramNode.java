@@ -37,7 +37,7 @@ public class SubProgramNode extends SyntaxTreeBase implements IMakeFunctionLabel
 		this.instructions = instructions;
 		this.subFunctions = subFunctions;
 		for (String var : header.getArguments()) {
-			this.variables.addVariable(var);
+			this.variables.addVariable(var);	///here it is!! we add arguments to declared vars!
 		}
 	}
 
