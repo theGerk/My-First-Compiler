@@ -24,7 +24,8 @@ syscall
 		populate:
 			#DeclarationsNode
 			move $t0, $sp	#saves stack pointer for later useage
-			lw $sp, ($sp)	#move stack pointer to the head of the stack			addi $sp, $sp, -28	#move stack pointer for function start
+			lw $sp, ($sp)	#move stack pointer to the head of the stack
+			addi $sp, $sp, -28	#move stack pointer for function start
 			addi $s0, $sp, -4
 			sw $s0, ($sp)	#set up stack pointer for new function
 			sw $ra, 4($sp)	#save return address
@@ -214,7 +215,8 @@ syscall
 				populate_sum:
 					#DeclarationsNode
 					move $t0, $sp	#saves stack pointer for later useage
-					lw $sp, ($sp)	#move stack pointer to the head of the stack					addi $sp, $sp, -32	#move stack pointer for function start
+					lw $sp, ($sp)	#move stack pointer to the head of the stack
+					addi $sp, $sp, -32	#move stack pointer for function start
 					addi $s0, $sp, -4
 					sw $s0, ($sp)	#set up stack pointer for new function
 					sw $ra, 4($sp)	#save return address
@@ -257,7 +259,8 @@ syscall
 		r:
 			#DeclarationsNode
 			move $t0, $sp	#saves stack pointer for later useage
-			lw $sp, ($sp)	#move stack pointer to the head of the stack			addi $sp, $sp, -28	#move stack pointer for function start
+			lw $sp, ($sp)	#move stack pointer to the head of the stack
+			addi $sp, $sp, -28	#move stack pointer for function start
 			addi $s0, $sp, -4
 			sw $s0, ($sp)	#set up stack pointer for new function
 			sw $ra, 4($sp)	#save return address
@@ -332,7 +335,8 @@ syscall
 				r_r1:
 					#DeclarationsNode
 					move $t0, $sp	#saves stack pointer for later useage
-					lw $sp, ($sp)	#move stack pointer to the head of the stack					addi $sp, $sp, -24	#move stack pointer for function start
+					lw $sp, ($sp)	#move stack pointer to the head of the stack
+					addi $sp, $sp, -24	#move stack pointer for function start
 					addi $s0, $sp, -4
 					sw $s0, ($sp)	#set up stack pointer for new function
 					sw $ra, 4($sp)	#save return address

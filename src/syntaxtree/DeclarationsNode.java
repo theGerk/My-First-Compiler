@@ -78,7 +78,7 @@ public class DeclarationsNode extends SyntaxTreeBase {
 		//move stack pointer
 		build.append(indent).append("move $t0, $sp\t#saves stack pointer for later useage\n"); // save previous stack pointer in t0
 		if (symbolTable.getLevel() != 0) {
-			build.append(indent).append("lw $sp, ($sp)\t#move stack pointer to the head of the stack");// move stack pointer to stack head
+			build.append(indent).append("lw $sp, ($sp)\t#move stack pointer to the head of the stack\n");// move stack pointer to stack head
 		}
 		build.append(indent).append("addi $sp, $sp, ").append(-offset).append("\t#move stack pointer for function start\n"); // move stack pointer to the new function's location
 
