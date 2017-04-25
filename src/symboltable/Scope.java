@@ -423,8 +423,6 @@ public class Scope {
 		Symbol s = map.get(funcID);
 		if (s == null || s.kind != IdentifierKind.FUNC) {
 			throw new Exception(funcID + " is not a function");
-		} else if (s.hasID(argID)) {
-			throw new Exception(argID + " already exists in scope");
 		} else {
 			s.args.add(new Pair<>(argID, argType));
 		}

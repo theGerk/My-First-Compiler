@@ -72,7 +72,9 @@ public class DeclarationsNode extends SyntaxTreeBase {
 		String startLabel = symbolTable.getLevel() == 0 ? "" : Scope.labelGenerator.getId();		//not needed in global scope
 		String endLabel = symbolTable.getLevel() == 0 ? "" : Scope.labelGenerator.getId();
 
+		//start generation
 		StringBuilder build = new StringBuilder(indent).append("#DeclarationsNode\n");
+
 		//move stack pointer
 		build.append(indent).append("move $t0, $sp\t#saves stack pointer for later useage\n"); // save previous stack pointer in t0
 		if (symbolTable.getLevel() != 0) {

@@ -71,7 +71,7 @@ public class ArrayVarNode extends AccessVariableNode {
 
 		//get 0 based index
 		output.append(indent).append("lw $t0, ($sp)\t#load stack head pointer\n");	//load stack head pointer
-		output.append(indent).append("lw $t1, ($t0)\t#put index in t0");	//load the index into t1
+		output.append(indent).append("lw $t1, ($t0)\t#put index in t0\n");	//load the index into t1
 		output.append(indent).append("subi $t1, $t1, ").append(symbolTable.getStartIndex(getName())).append("\t#treat as 0 based indexing\n");
 
 		//check for out of bounds
@@ -81,8 +81,8 @@ public class ArrayVarNode extends AccessVariableNode {
 		//put value on the stack
 		output.append(indent).append("sll $t1, $t1, 2\t#covert to bytes\n");	//multiply by 4 by bitshifting
 		output.append(indent).append("add $t1, $t1, $v0\t#offset in array\n");	//put ptr to actual value in t1 (t1 had byte offset from ptr, and v0 had array ptr)
-		output.append(indent).append("lw $t1, ($t1)");
-		output.append(indent).append("sw $t1, ($t0)");
+		output.append(indent).append("lw $t1, ($t1)\n");
+		output.append(indent).append("sw $t1, ($t0)\n");
 
 		return output.toString();
 	}

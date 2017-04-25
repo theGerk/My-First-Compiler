@@ -94,6 +94,7 @@ public class Parser {
 	 * @return Program node with all useful information
 	 */
 	public ProgramNode program() {
+		System.out.println("program");
 		try {
 			match(TokenType.PROGRAM);
 			String id = match(TokenType.ID);	//TODO maybe add symbol table reference
@@ -116,6 +117,7 @@ public class Parser {
 	 * @throws java.lang.Exception error message
 	 */
 	private ArrayList<String> identifierList() throws Exception {
+		System.out.println("identifier list");
 		ArrayList<String> output = new ArrayList<>();
 		String id = match(TokenType.ID);
 		currentScope.put(id);
@@ -136,6 +138,7 @@ public class Parser {
 	 * @throws java.lang.Exception error message
 	 */
 	private DeclarationsNode declarations() throws Exception {
+		System.out.println("declarations");
 		DeclarationsNode output = new DeclarationsNode();
 		while (lookAhead.equals(TokenType.VAR)) {
 			match(TokenType.VAR);
@@ -188,6 +191,7 @@ public class Parser {
 	 * @return
 	 */
 	private TypeReturn type() {
+		System.out.println("type");
 		if (lookAhead.equals(TokenType.ARRAY)) {
 			match(TokenType.ARRAY);
 			match(TokenType.LEFTSQUAREBRACKET);
@@ -208,6 +212,7 @@ public class Parser {
 	 * @return Type of something
 	 */
 	private TokenType standardType() {
+		System.out.println("standard type");
 		if (lookAhead.equals(TokenType.INTEGER)) {
 			match(TokenType.INTEGER);
 			return TokenType.INTEGER;
@@ -223,6 +228,7 @@ public class Parser {
 	 * @return Node
 	 */
 	private SubProgramDeclarationsNode subprogramDeclarations() throws Exception {
+		System.out.println("subprogram declarations");
 		SubProgramDeclarationsNode output = new SubProgramDeclarationsNode();
 		while (lookAhead.equals(TokenType.FUNCTION) || lookAhead.equals(TokenType.PROCEDURE)) {
 			output.addSubProgramDeclaration(subprogramDeclaration());
@@ -237,6 +243,7 @@ public class Parser {
 	 * @return Node with function's information
 	 */
 	private SubProgramNode subprogramDeclaration() throws Exception {
+		System.out.println("subprogram declaration");
 		SubProgramHeadNode head = subprogramHead(); //enters child scope in here
 		DeclarationsNode variables = declarations();
 		SubProgramDeclarationsNode subFunctions = subprogramDeclarations();
@@ -252,6 +259,7 @@ public class Parser {
 	 * @return node with information about the function
 	 */
 	private SubProgramHeadNode subprogramHead() throws Exception {
+		System.out.println("subprogram head");
 		if (lookAhead.equals(TokenType.FUNCTION)) {
 			//Match function
 			match(TokenType.FUNCTION);
@@ -305,6 +313,7 @@ public class Parser {
 	 * @return
 	 */
 	private ArrayList<String> arguments() throws Exception {
+		System.out.print("arguments");
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 			match(TokenType.LEFTPARANTHESIS);
 			ArrayList<String> output = parameterList();
@@ -320,6 +329,7 @@ public class Parser {
 	 * @return parameter list
 	 */
 	private ArrayList<String> parameterList() throws Exception {
+		System.out.println("parameter list");
 		while (true) {
 			ArrayList<String> ids = identifierList();
 			match(TokenType.COLON);
@@ -338,6 +348,7 @@ public class Parser {
 	 * eats a compound statement
 	 */
 	private CompoundStatementNode compoundStatement() throws Exception {
+		System.out.println("compound statement");
 		match(TokenType.BEGIN);
 		CompoundStatementNode output = optionalStatements();
 		match(TokenType.END);
@@ -348,7 +359,8 @@ public class Parser {
 	 * eats an optional statements
 	 */
 	private CompoundStatementNode optionalStatements() throws Exception {
-		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE)) {
+		System.out.println("optional statements");
+		if (lookAhead.equals(TokenType.ID) || lookAhead.equals(TokenType.BEGIN) || lookAhead.equals(TokenType.IF) || lookAhead.equals(TokenType.WHILE) || lookAhead.equals(TokenType.WRITE) || lookAhead.equals(TokenType.READ)) {
 			return statementList();
 		}
 		return new CompoundStatementNode();
@@ -358,6 +370,7 @@ public class Parser {
 	 * eats a statement list
 	 */
 	private CompoundStatementNode statementList() throws Exception {
+		System.out.println("statement list");
 		CompoundStatementNode output = new CompoundStatementNode();
 		output.addStatement(statement());
 		while (lookAhead.equals(TokenType.SEMICOLON)) {
@@ -371,6 +384,7 @@ public class Parser {
 	 * eats a statement
 	 */
 	private StatementNode statement() throws Exception {
+		System.out.println("statement");
 		switch (lookAhead.getType()) {
 			case ID:
 				switch (currentScope.getKind(lookAhead.getLexeme())) {
@@ -424,6 +438,7 @@ public class Parser {
 	 * parses a variable, possibly one in an array
 	 */
 	private AccessVariableNode variable() throws Exception {
+		System.out.println("variable");
 		AccessVariableNode output;
 		String id = match(TokenType.ID);
 		switch (currentScope.getKind(id)) {
@@ -446,6 +461,7 @@ public class Parser {
 	 * assignment statement, then returns accordingly
 	 */
 	private StatementNode procedureStatement() throws Exception {
+		System.out.println("procedure statement");
 		ArrayList<ExpressionNode> parameters = new ArrayList<>();
 		String id = match(TokenType.ID);
 		if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
@@ -453,6 +469,7 @@ public class Parser {
 			parameters = expressionList();
 			match(TokenType.RIGHTPARANTHESIS);
 		} else if (lookAhead.equals(TokenType.ASSIGNOP) && currentScope.getType(id) != null) { //TODO document this
+			match(TokenType.ASSIGNOP);
 			ExpressionNode expression = expression();
 			return new FunctionAssignmentStatementNode(id, expression, currentScope);
 		}
@@ -463,6 +480,7 @@ public class Parser {
 	 * eats an expression list
 	 */
 	private ArrayList<ExpressionNode> expressionList() throws Exception {
+		System.out.println("expression list");
 		ArrayList<ExpressionNode> output = new ArrayList<>();
 		output.add(expression());
 		while (lookAhead.equals(TokenType.COMMA)) {
@@ -476,6 +494,7 @@ public class Parser {
 	 * eats an expression
 	 */
 	private ExpressionNode expression() throws Exception {
+		System.out.println("expression");
 		ExpressionNode firstPart = simpleExpression();
 		if (relop()) {
 			TokenType operator = lookAhead.getType();
@@ -491,6 +510,7 @@ public class Parser {
 	 * eats a simple expression
 	 */
 	private ExpressionNode simpleExpression() throws Exception {
+		System.out.println("simple expression");
 		ExpressionNode output;
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
 			TokenType sign = sign();
@@ -510,6 +530,7 @@ public class Parser {
 	 * May return null, need to check for that
 	 */
 	private Pair<TokenType, ExpressionNode> simplePart() throws Exception {
+		System.out.println("simple part");
 		if (addop()) {
 			TokenType type = lookAhead.getType();
 			match(type);
@@ -528,6 +549,7 @@ public class Parser {
 	 * eats a term
 	 */
 	private ExpressionNode term() throws Exception {
+		System.out.println("term");
 		ExpressionNode output = factor();
 		Pair<TokenType, ExpressionNode> tokenTypeExpressionNodePair = termPart();
 		if (tokenTypeExpressionNodePair != null) {
@@ -540,6 +562,7 @@ public class Parser {
 	 * May return null, need to check for that
 	 */
 	private Pair<TokenType, ExpressionNode> termPart() throws Exception {
+		System.out.println("term part");
 		if (mulop()) {
 			TokenType type = lookAhead.getType();
 			match(type);
@@ -558,6 +581,7 @@ public class Parser {
 	 * returns a factor
 	 */
 	private ExpressionNode factor() throws Exception {
+		System.out.println("factor");
 		switch (lookAhead.getType()) {
 			case ID: {
 				String id = match(TokenType.ID);
@@ -599,6 +623,7 @@ public class Parser {
 	 * eats a sign
 	 */
 	private TokenType sign() throws Exception {
+		System.out.println("sign");
 		if (lookAhead.equals(TokenType.PLUS) || lookAhead.equals(TokenType.MINUS)) {
 			TokenType type = lookAhead.getType();
 			match(type);

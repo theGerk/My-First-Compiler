@@ -86,7 +86,7 @@ public class UniqueIdentifierGenerator {
 				return;	// already in the list
 			}
 		}
-		if (validChars.get(start) != valid) {
+		if (validChars.size() == start || validChars.get(start) != valid) {
 			validChars.add(start, valid);
 			guess.clear();
 		}
@@ -140,7 +140,6 @@ public class UniqueIdentifierGenerator {
 		} else {
 			addValid(request);
 			String output = getId(request, new ArrayList<>());
-			givenIds.add(output);
 			return output;
 		}
 	}
@@ -151,6 +150,7 @@ public class UniqueIdentifierGenerator {
 			increment(guess);
 			current = prefix + guessToString(guess);
 		}
+		givenIds.add(current);
 		return current;
 	}
 }

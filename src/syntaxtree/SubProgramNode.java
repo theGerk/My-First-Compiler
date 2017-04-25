@@ -68,6 +68,9 @@ public class SubProgramNode extends SyntaxTreeBase implements IMakeFunctionLabel
 	protected String toMips(Scope symbolTable, String indent) {
 		StringBuilder build = new StringBuilder(indent).append("#SubProgramNode\n");
 
+		//put label
+		build.append(indent).append(symbolTable.getParent().getLabel(getName())).append(":\n");
+
 		//set up function space
 		build.append(variables.toMips(symbolTable, indent + '\t'));
 

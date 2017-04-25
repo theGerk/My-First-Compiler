@@ -422,7 +422,7 @@ public class BinaryOperationNode extends ExpressionNode {
 				build.append(indent).append("add $t1, $t1, $t2\n");
 				break;
 			case MINUS:
-				build.append(indent).append("sub #t1, $t1, $t2\n");
+				build.append(indent).append("sub $t1, $t1, $t2\n");
 				break;
 			case ASTERISK:
 				build.append(indent).append("mul $t1, $t1, $t2\n");
