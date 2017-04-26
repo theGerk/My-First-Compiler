@@ -9,7 +9,7 @@ import symboltable.Scope;
  */
 public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase {
 
-	protected final String variable;
+	protected final AssignVariableNode variable;
 
 	/**
 	 * getter for a identifier string
@@ -18,7 +18,7 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 	 */
 	@Override
 	public String getName() {
-		return variable;
+		return variable.getName();
 	}
 
 	/**
@@ -28,12 +28,12 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 	 * @param expr expression to evaluate to get value to assign to var
 	 * @throws Exception
 	 */
-	public VariableAssignmentStatementNode(AccessVariableNode var, ExpressionNode expr) throws Exception {
+	public VariableAssignmentStatementNode(AssignVariableNode var, ExpressionNode expr) throws Exception {
 		super(expr);
 		if (var.getType() != expr.getType()) {
 			throw new Exception(var.getName() + " can not be assigned a: " + expr.getType() + ", expects: " + var.getType());
 		}
-		variable = var.getName();
+		variable = var;
 	}
 
 	@Override
@@ -47,14 +47,29 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
+		//TODO rewrite
 		StringBuilder build = new StringBuilder(indent).append("#VariableAssignmentStatementNode\n");
+
+		//get expression evaluated and put on stack
 		build.append(assign.toMips(symbolTable, indent + '\t'));
-		build.append(IPublicName.getVarPtrInV0(symbolTable, getName(), indent));
+
+		//move stack to get ptr to variable
+		build.append(indent).append("lw $t0, ($sp)\n");
+		build.append(indent).append("addi $t0, $t0, -4\n");
+		build.append(indent).append("sw $t0, ($sp)\n");
+
+		//get ptr to put value on stack
+		build.append(variable.toMips(symbolTable, indent + '\t'));
 
 		//load from stack into where v0 is pointing
-		build.append(indent).append("lw $t0, ($sp)\t#put stack head in t0\n");
-		build.append(indent).append("lw $t1, ($t0)\t#pop last value on stack into t1\n");
-		build.append(indent).append("sw $t1, ($v0)\t#store value where it goes\n");
+		build.append(indent).append("lw $t0, ($sp)\t#has stack head\n");
+		build.append(indent).append("lw $t1, ($t0)\t#has ptr to assign to\n");
+		build.append(indent).append("lw $t2, 4($t0)\t#has value to assign\n");
+		build.append(indent).append("sw $t2, ($t1)\t#make assignment\n");
+
+		//return stack to previous state
+		build.append(indent).append("addi $t0, $t0, 4\n");
+		build.append(indent).append("sw $t0, ($sp)\t#pop off stack values\n");
 
 		return build.toString();
 	}

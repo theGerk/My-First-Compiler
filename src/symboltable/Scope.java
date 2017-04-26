@@ -113,6 +113,8 @@ public class Scope {
 	 * that is global and so on. negative numbers are for errors. -1 =
 	 * identifier not found
 	 *
+	 * Function identifiers return one level higher
+	 *
 	 * @param name symbol identifier
 	 *
 	 * @return it's scope level.
@@ -125,7 +127,7 @@ public class Scope {
 				return -1;
 			}
 		}
-		return ptr.level;
+		return (getKind(name) == IdentifierKind.FUNC) ? ptr.level : ptr.level + 1;
 	}
 
 	/**
@@ -390,6 +392,7 @@ public class Scope {
 		s.kind = kind;
 		if (kind == IdentifierKind.FUNC) {
 			s.args = new ArrayList<>();
+			s.offsetFromStackPointer = 20;	//defined in declarations node
 		}
 	}
 

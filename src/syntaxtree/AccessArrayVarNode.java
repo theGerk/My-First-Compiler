@@ -6,7 +6,7 @@ import symboltable.Scope;
 /**
  * Created by Benji on 4/12/2017.
  */
-public class ArrayVarNode extends AccessVariableNode {
+public class AccessArrayVarNode extends AccessVariableNode {
 
 	/**
 	 * Creates a String representation of this node and its children.
@@ -29,7 +29,7 @@ public class ArrayVarNode extends AccessVariableNode {
 	 *
 	 * @throws Exception if the identifier is for an not an array
 	 */
-	public ArrayVarNode(String id, ExpressionNode expr, Scope containingScope) throws Exception {
+	public AccessArrayVarNode(String id, ExpressionNode expr, Scope containingScope) throws Exception {
 		super(id, validateID(id, containingScope));
 		if (expr.getType() != TokenType.INTEGER) {
 			throw new Exception("Need integer type for array index");
@@ -44,7 +44,7 @@ public class ArrayVarNode extends AccessVariableNode {
 	 * @param expr the expression to be resolved to determine index
 	 * @param type the type the node would return
 	 */
-	protected ArrayVarNode(String id, ExpressionNode expr, TokenType type) {
+	protected AccessArrayVarNode(String id, ExpressionNode expr, TokenType type) {
 		super(id, type);
 		index = expr;
 	}
@@ -67,7 +67,7 @@ public class ArrayVarNode extends AccessVariableNode {
 		output.append(index.toMips(symbolTable, indent + '\t'));
 
 		//get ptr to array's scope in v0
-		output.append(IPublicName.getFuncPtrInV0(symbolTable, name, indent + '\t'));
+		output.append(IPublicName.getVarPtrInV0(symbolTable, name, indent + '\t'));
 
 		//get 0 based index
 		output.append(indent).append("lw $t0, ($sp)\t#load stack head pointer\n");	//load stack head pointer
@@ -85,5 +85,10 @@ public class ArrayVarNode extends AccessVariableNode {
 		output.append(indent).append("sw $t1, ($t0)\n");
 
 		return output.toString();
+	}
+
+	@Override
+	public AssignVariableNode toAssignment(Scope scope) throws Exception {
+		return new AssignArrayVarNode(getName(), index, scope);
 	}
 }

@@ -393,7 +393,7 @@ public class Parser {
 						AccessVariableNode var = variable();
 						match(TokenType.ASSIGNOP);
 						ExpressionNode expr = expression();
-						return new VariableAssignmentStatementNode(var, expr);
+						return new VariableAssignmentStatementNode(var.toAssignment(currentScope), expr);
 					}
 					case FUNC: {
 						return procedureStatement();
@@ -422,7 +422,7 @@ public class Parser {
 				match(TokenType.LEFTPARANTHESIS);
 				AccessVariableNode variable = variable(); //breaks with tradition of following Stienmetz code, but will allow us to read directly into an index in an array.	//TODO getRight permission
 				match(TokenType.RIGHTPARANTHESIS);
-				return new VariableAssignmentStatementNode(variable, new ConsoleReadNode(variable.getType()));
+				return new VariableAssignmentStatementNode(variable.toAssignment(currentScope), new ConsoleReadNode(variable.getType()));
 			case WRITE:
 				match(TokenType.WRITE);
 				match(TokenType.LEFTPARANTHESIS);
@@ -447,7 +447,7 @@ public class Parser {
 				break;
 			case ARR:
 				match(TokenType.LEFTSQUAREBRACKET);
-				output = new ArrayVarNode(id, expression(), currentScope);
+				output = new AccessArrayVarNode(id, expression(), currentScope);
 				match(TokenType.RIGHTSQUAREBRACKET);
 				break;
 			default:
@@ -589,7 +589,7 @@ public class Parser {
 					match(TokenType.LEFTSQUAREBRACKET);
 					ExpressionNode expression = expression();
 					match(TokenType.RIGHTSQUAREBRACKET);
-					return new ArrayVarNode(id, expression, currentScope);
+					return new AccessArrayVarNode(id, expression, currentScope);
 				} else if (lookAhead.equals(TokenType.LEFTPARANTHESIS)) {
 					match(TokenType.LEFTPARANTHESIS);
 					ArrayList<ExpressionNode> expressionList = expressionList();

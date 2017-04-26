@@ -49,11 +49,19 @@ public class FunctionAssignmentStatementNode extends AssignmentStatementNodeBase
 
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
-		return indent + "#FunctionAssignmentStatementNode\n"
-				+ IPublicName.getFuncPtrInV0(symbolTable.getParent(), getName(), indent)
-				//load from stack into function return
-				+ indent + "lw $t0, ($sp)\t#put stack head in t0\n"
-				+ indent + "lw $t1, ($t0)\t#pop last value on stack into t1\n"
-				+ indent + "sw $t1, 20($v0)\t#store value in return slot\n";
+		StringBuilder build = new StringBuilder(indent + "#FunctionAssignmentStatementNode\n");
+
+		//evaluate and put on stack
+		build.append(assign.toMips(symbolTable, indent + '\t'));
+
+		//get var ptr
+		build.append(IPublicName.getVarPtrInV0(symbolTable, assignee, indent));
+
+		//load from stack into where v0 is pointing
+		build.append(indent).append("lw $t0, ($sp)\t#has stack head\n");
+		build.append(indent).append("lw $t2, ($t0)\t#has value to assign\n");
+		build.append(indent).append("sw $t2, ($v0)\t#make assignment\n");
+
+		return build.toString();
 	}
 }

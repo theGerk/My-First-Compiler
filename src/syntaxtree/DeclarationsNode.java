@@ -92,8 +92,8 @@ public class DeclarationsNode extends SyntaxTreeBase {
 		if (symbolTable.getLevel() != 0) {
 			build.append(indent).append("\n"); // otherwise implement loop to find nearest function who's level is just one up
 			build.append(indent).append("#search for one level up function\n");
-			build.append(indent).append("li $t2, ").append(symbolTable.getLevel() - 1).append("\t#load current level\n"); // put current function level - 1 in t2 (what we are searching for)
-			build.append(indent).append("lw $t1, 16($t0)\t#load previous level\n"); // we will now use t0 for a function pointer and t1 as the level of t0's function
+			build.append(indent).append("li $t2, ").append(symbolTable.getLevel() - 1).append("\t#load current level - 1 (what we are searching for)\n"); // put current function level - 1 in t2 (what we are searching for)
+			build.append(indent).append("lw $t1, 16($t0)\t#load previous function's level\n"); // we will now use t0 for a function pointer and t1 as the level of t0's function
 			build.append(indent).append("beq $t1, $t2, ").append(endLabel).append("\n"); // branch skip if we are already done
 			build.append(indent).append(startLabel).append(":\n");
 			build.append(indent).append("lw $t0, 12($t0)\t#go one level up\n"); // goes to one up function in t0

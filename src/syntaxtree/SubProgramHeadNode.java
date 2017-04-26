@@ -53,7 +53,7 @@ public class SubProgramHeadNode extends SyntaxTreeBase implements IPublicName {
 		StringBuilder build = new StringBuilder(indent).append("#SubProgramHeadNode\n");
 
 		//load ptr to previous stack's head to pick up values
-		build.append(indent).append("lw $t0, 4($sp)\n");
+		build.append(indent).append("lw $t0, 8($sp)\n");
 		build.append(indent).append("lw $t0, ($t0)\n");
 
 		//iterate across arguments

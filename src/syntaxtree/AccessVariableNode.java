@@ -69,4 +69,15 @@ public class AccessVariableNode extends IdentifierNodeBase {
 
 		return build.toString();
 	}
+
+	/**
+	 * makes variable over to an assignment variable node
+	 *
+	 * @param scope
+	 * @return
+	 * @throws Exception
+	 */
+	public AssignVariableNode toAssignment(Scope scope) throws Exception {
+		return new AssignVariableNode(name, scope);
+	}
 }

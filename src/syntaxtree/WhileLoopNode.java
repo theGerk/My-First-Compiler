@@ -50,13 +50,13 @@ public class WhileLoopNode extends StatementNode {
 		build.append(condition.toMips(symbolTable, indent + '\t'));
 
 		//get result and branch on not equal zero
-		build.append(indent).append("lw $t0, ($sp)\n");
-		build.append(indent).append("lw $t1, ($sp)\n");
-		build.append(indent).append("bnez $t1, ").append(endOfLoop).append("\n");
+		build.append(indent).append("lw $t0, ($sp)\t#get stack head ptr\n");
+		build.append(indent).append("lw $t1, ($t0)\t#get result off stack\n");
+		build.append(indent).append("beqz $t1, ").append(endOfLoop).append("\t#skip if evaluates to 0\n");
 
 		//do contents
 		build.append(instruction.toMips(symbolTable, indent + '\t'));
-		build.append(indent).append("j ").append(whileCondition).append("\n");
+		build.append(indent).append("j ").append(whileCondition).append("\t#jump to evaluate condition again\n");
 		build.append(indent).append(endOfLoop).append(":\n");
 
 		return build.toString();
