@@ -13,7 +13,7 @@ public class ProgramNode extends SyntaxTreeBase implements IMakeFunctionLabels {
 	private final DeclarationsNode globalVariables;
 	private final SubProgramDeclarationsNode functions;
 	private final CompoundStatementNode main;
-	private final Scope symbolTable;
+	public final Scope symbolTable;
 
 	/**
 	 * Sets up a program

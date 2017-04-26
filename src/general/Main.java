@@ -23,12 +23,18 @@ import syntaxtree.ProgramNode;
 public class Main {
 
 	/**
+	 * make main static class
+	 */
+	private Main() {
+	}
+
+	/**
 	 * Main function
 	 *
 	 * @param args the command line arguments, args[0] is the input file
 	 */
 	public static void main(String[] args) {
-		Parser parse = new Parser("fib.pas");
+		Parser parse = new Parser(args[0]);
 		ProgramNode program = parse.program();
 		String str = program.toMips();
 		Path file = Paths.get("output.asm");
@@ -37,5 +43,19 @@ public class Main {
 		} catch (IOException ex) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		file = Paths.get("symbolTable.txt");
+		try {
+			Files.write(file, Arrays.asList(program.symbolTable.toString()), Charset.forName("UTF-8"));
+		} catch (IOException ex) {
+			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	public static String makeSpaces(String input) {
+		char[] chars = new char[input.length()];
+		for (int i = 0; i < chars.length; i++) {
+			chars[i] = ' ';
+		}
+		return String.valueOf(chars);
 	}
 }

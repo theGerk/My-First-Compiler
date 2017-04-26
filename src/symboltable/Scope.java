@@ -5,10 +5,13 @@
  */
 package symboltable;
 
+import general.Main;
 import general.Pair;
 import general.UniqueIdentifierGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Queue;
 
 import scanner.TokenType;
 
@@ -23,7 +26,7 @@ public class Scope {
 	 * Creates head scope
 	 */
 	public Scope() {
-		name = "";
+		name = " GLOBAL";
 		parentScope = null;
 		level = 0;
 	}
@@ -258,29 +261,25 @@ public class Scope {
 		 */
 		@Override
 		public String toString() {
-			return toString("");
-		}
-
-		/**
-		 * toString helper function
-		 *
-		 * @param t number of tabs to indent output with
-		 *
-		 * @return human readable string representing identifier
-		 */
-		private String toString(String t) {
-			StringBuilder output = new StringBuilder(t);
-			if (type != null) {
-				output.append(kind.toString()).append(" of ").append(type.toString());
-			} else {
-				output.append(kind.toString());
+			String spaces = Main.makeSpaces(name + ':') + '\t';
+			StringBuilder build = new StringBuilder(name).append("\tkind: ").append(kind).append('\n');
+			build.append(spaces).append("type: ").append(type).append('\n');
+			switch (kind) {
+				case FUNC:
+					build.append(spaces).append("label: ").append(label).append('\n');
+					build.append(spaces).append("arugments:\n");
+					for (Pair<String, TokenType> arg : args) {
+						build.append(spaces).append('\t').append(arg.left).append(" : ").append(arg.right).append('\n');
+					}
+					break;
+				case ARR:
+					build.append(spaces).append("size: ").append(arraySize).append('\n');
+					build.append(spaces).append("first index in array: ").append(arrayStartOffset).append('\n');
+				case VAR:
+					build.append(spaces).append("memory offset: ").append(offsetFromStackPointer).append('\n');
+					break;
 			}
-			if (args != null) {
-				for (Pair<String, TokenType> arg : args) {
-					output.append(scope.getSymbol(arg.getLeft()).toString(t + '\t'));
-				}
-			}
-			return output.toString();
+			return build.toString();
 		}
 
 		/**
@@ -457,4 +456,21 @@ public class Scope {
 	 * generates labels for the program
 	 */
 	public static UniqueIdentifierGenerator labelGenerator = new UniqueIdentifierGenerator("main");
+
+	@Override
+	public String toString() {
+		ArrayList<Scope> queue = new ArrayList<>();
+		StringBuilder build = new StringBuilder(this.name).append(":\n");
+		for (Entry<String, Symbol> entry : map.entrySet()) {
+			build.append(entry.getValue().toString());
+			if (entry.getValue().kind == IdentifierKind.FUNC) {
+				queue.add(entry.getValue().scope);
+			}
+		}
+		build.append("----------------------\n\n");
+		for (Scope q : queue) {
+			build.append(q.toString());
+		}
+		return build.toString();
+	}
 }

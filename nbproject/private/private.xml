@@ -4,6 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/symboltable/Scope.java</file>
         <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/syntaxtree/SubProgramDeclarationsNode.java</file>
-        <group/>
+        <group>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/ConsoleWriteNode.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/FunctionAssignmentStatementNode.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/IfStatementNode.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/CompoundStatementNode.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/ProcedureStatementNode.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/parser/Parser.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/StatementNode.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/SubProgramNode.java</file>
+        </group>
     </open-files>
 </project-private>
