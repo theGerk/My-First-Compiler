@@ -46,6 +46,11 @@ public class ConsoleWriteNode extends StatementNode {
 				build.append(indent).append("li $v0, 2\n");
 				build.append(indent).append("syscall\n");
 		}
+
+		//append a new line
+		build.append(indent).append("li $v0, 11\t#prepare syscall for print character\n");
+		build.append(indent).append("li $a0, 10\t#put newline to be printed\n");
+		build.append(indent).append("syscall\n");
 		return build.toString();
 	}
 }

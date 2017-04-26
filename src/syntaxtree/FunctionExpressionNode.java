@@ -94,11 +94,11 @@ public class FunctionExpressionNode extends IdentifierNodeBase {
 
 		//push stack back to begining of evaluation
 		if (parametersList.size() > 0) {
-			build.append(indent).append("lw $t0, ($sp)\n");
-			build.append(indent).append("lw $t1, ($t0)\n");	//retrive return value from function
-			build.append(indent).append("addi $t0, $t0, ").append(parametersList.size() * 4).append("\n");
-			build.append(indent).append("sw $t0, ($sp)\n");
-			build.append(indent).append("lw $t1, ($t0)\n");	//store return value on stack
+			build.append(indent).append("lw $t0, ($sp)\t#get ptr to return value from function (stack head)\n");
+			build.append(indent).append("lw $t1, ($t0)\t#get return value from function\n");	//retrive return value from function
+			build.append(indent).append("addi $t0, $t0, ").append(parametersList.size() * 4).append("\t#pop stack head back to where it shoudl be\n");
+			build.append(indent).append("sw $t0, ($sp)\t#put stackhead back to it's rightful value\n");
+			build.append(indent).append("sw $t1, ($t0)\t#put return value from function there\n");	//store return value on stack
 		}
 
 		return build.toString();

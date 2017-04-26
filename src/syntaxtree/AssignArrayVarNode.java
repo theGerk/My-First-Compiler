@@ -44,7 +44,7 @@ public class AssignArrayVarNode extends AssignVariableNode {
 		output.append(index.toMips(symbolTable, indent + '\t'));
 
 		//get ptr to array's scope in v0
-		output.append(IPublicName.getVarPtrInV0(symbolTable, getName(), indent + '\t'));
+		output.append(IPublicName.getVarPtrInV0(symbolTable, getName(), indent));
 
 		//get 0 based index
 		output.append(indent).append("lw $t0, ($sp)\t#load stack head pointer\n");	//load stack head pointer

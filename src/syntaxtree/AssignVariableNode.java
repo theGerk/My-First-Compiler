@@ -76,6 +76,11 @@ class AssignVariableNode extends SyntaxTreeBase implements IPublicName {
 		return var;
 	}
 
+	/**
+	 * The type of the variable we assign to
+	 *
+	 * @return the type of the variable
+	 */
 	TokenType getType() {
 		return expectedType;
 	}

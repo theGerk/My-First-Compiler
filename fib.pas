@@ -1,19 +1,23 @@
 {use all nodes!}
 program ID;
-var fibs : array[-2 : 100] of integer;
+var fibs : array[-2 : 4] of integer;
+function factorial(a : integer) : integer;
+	begin
+		if a < 1 then factorial := 1 else factorial := a * factorial(a - fibs[-2])
+	end;
 procedure populate;
 	var iter : integer;
-	function sum(a, b: integer): integer;
+	function populate(a : integer): integer;
 		begin
-			sum := a + b
+			populate := factorial(a)
 		end;
 	begin
 		iter := 0;
 		read(fibs[-2]);
 		read(fibs[-1]);
-		while iter <= 100 do
+		while iter <= 4 do
 			begin
-				fibs[iter] := sum(fibs[iter - 1], fibs[iter - 2]);
+				fibs[iter] := populate(fibs[iter - 1]);
 				iter := iter + 1
 			end
 	end;
@@ -26,7 +30,7 @@ procedure r;
 		end;
 	begin
 		iter := -2;
-		while iter <= 100 do r1
+		while iter <= 4 do r1
 	end;
 begin
 	populate;

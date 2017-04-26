@@ -127,7 +127,7 @@ public class Scope {
 				return -1;
 			}
 		}
-		return (getKind(name) == IdentifierKind.FUNC) ? ptr.level : ptr.level + 1;
+		return (getKind(name) == IdentifierKind.FUNC) ? ptr.level + 1 : ptr.level;
 	}
 
 	/**
