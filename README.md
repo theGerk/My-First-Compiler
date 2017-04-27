@@ -6,15 +6,15 @@
 
 This package has the Main class and classes that are non-specific to the project
 
-## Main ##
+### Main ###
 
 Static class, with main function and other general static functions
 
-## Pair ##
+### Pair ###
 
 A generalized pair, able to group together two objects.
 
-## UID Generator ##
+### UID Generator ###
 
 This is able to generate unique identifiers. It is used to make labels for the output MIPS so there are no naming conflicts.
 
