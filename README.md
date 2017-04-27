@@ -2,7 +2,7 @@
 
 ----------
 
-# General #
+## General ##
 
 This package has the Main class and classes that are non-specific to the project
 
@@ -20,24 +20,24 @@ This is able to generate unique identifiers. It is used to make labels for the o
 
 ----------
 
-# Scanner #
+## Scanner ##
 
 The scanner package manages the scanner, which reads in the input file (the Pascal file), and tokenizes the input.
 
 ----------
 
-# Parser #
+## Parser ##
 
 The parser package manages the parser, which takes tokens from the scanner and checks to make sure they are in valid order, and produces and parse tree in the process.
 
 ---------
 
-# Symbol Table #
+## Symbol Table ##
 
 The symbol table package contains classes that are able to manage and hold all data associated with a symbol or identifier that is parsed from the pascal code.
 
 ---------
 
-# Syntax Tree #
+## Syntax Tree ##
 
-The syntax tree package contians a plethora of classes, with the expection of some abstract classes for the purposes of abstraction, each class here represents one 'object' that is parsed out of the pascal. Each different class represents some different idea, and thus each class is able to generate it's own assebly code. Currently the ```toMips``` function will output a string of MIPS assembly code.
+The syntax tree package contains a plethora of classes, with the exception of some abstract classes for the purposes of abstraction, each class here represents one 'object' that is parsed out of the pascal. Each different class represents some different idea, and thus each class is able to generate it's own assembly code. Currently the ```toMips``` function will output a string of MIPS assembly code.
