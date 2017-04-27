@@ -7,6 +7,8 @@ package scanner;
 %class Scanner
 %function nextToken
 %type Token
+%line
+%column
 %eofval{
 	return null;
 %eofval}
@@ -30,22 +32,22 @@ comment		= \{[^\}]*\}
 
 {word}	{
 	System.out.println("Found a word: " + yytext());
-	return(new Token(yytext()));
+	return(new Token(yytext(), yyline, yycolumn));
 }
 
 {integer}   {
     System.out.println("found a int: " + yytext());
-    return(new Token(Integer.parseInt(yytext()), yytext()));
+    return(new Token(Integer.parseInt(yytext()), yytext(), yyline, yycolumn));
 }
 
 {real}		{
 	System.out.println("Found a real: " + yytext());
-	return(new Token(Float.parseFloat(yytext()), yytext()));
+	return(new Token(Float.parseFloat(yytext()), yytext(), yyline, yycolumn));
 }
 
 {symbol}	{
 	System.out.println("Found a symbol: " + yytext());
-	return(new Token(yytext()));
+	return(new Token(yytext(), yyline, yycolumn));
 }
 
 {whitespace} {
@@ -60,3 +62,4 @@ comment		= \{[^\}]*\}
 .	{
 	System.out.println("You done fucked up.");
 }
+

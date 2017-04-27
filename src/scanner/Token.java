@@ -20,42 +20,64 @@ public class Token {
 	 * string given to create the token
 	 */
 	private final String input;
+	/**
+	 * Token's line in input file
+	 */
+	public final int line;
+	/**
+	 * Token's column in input file
+	 */
+	public final int column;
 
 	/**
 	 * Determines token's type based off it's string
 	 *
 	 * @param key String of the token
+	 * @param line line on which the token is found
+	 * @param col column on which token is found
 	 */
-	public Token(String key) {
+	public Token(String key, int line, int col) {
 		input = key;
 		type = LookUp.LOOKUP.get(key);
 		if (type == null) {
 			type = TokenType.ID;
 		}
+		this.line = line;
+		this.column = col;
 	}
 
 	/**
-	 * Sets an int literal token, by passing in a number and the string version that
-	 * was read.
-	 *
-	 * @param key        Could be any number, supposed to be the number that was read
-	 * @param stringForm String version of the number
-	 */
-	public Token(int key, String stringForm){
-		type = TokenType.INT_LITERAL;
-		input = stringForm;
-	}
-
-	/**
-	 * Sets a real literal token, by passing in a number and the string version that
-	 * was read.
+	 * Sets an int literal token, by passing in a number and the string version
+	 * that was read.
 	 *
 	 * @param key Could be any number, supposed to be the number that was read
 	 * @param stringForm String version of the number
+	 * @param line line on which token is found
+	 * @param col column on which token is found
 	 */
-	public Token(float key, String stringForm) {
+	public Token(int key, String stringForm, int line, int col) {
+		type = TokenType.INT_LITERAL;
+		input = stringForm;
+		this.line = line;
+		this.column = col;
+
+	}
+
+	/**
+	 * Sets a real literal token, by passing in a number and the string version
+	 * that was read.
+	 *
+	 * @param key Could be any number, supposed to be the number that was read
+	 * @param stringForm String version of the number
+	 * @param line line on which token is found
+	 * @param col column on which token is found
+	 */
+	public Token(float key, String stringForm, int line, int col) {
 		type = TokenType.REAL_LITERAL;
 		input = stringForm;
+		this.line = line;
+		this.column = col;
+
 	}
 
 	/**

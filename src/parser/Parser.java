@@ -32,6 +32,8 @@ public class Parser {
 	 */
 	private void error(String err) {
 		System.out.println(err);
+		System.out.println("Line: " + lookAhead.line);
+		System.out.println("Column: " + lookAhead.column);
 		System.exit(1);
 	}
 
@@ -77,7 +79,7 @@ public class Parser {
 			try {
 				this.lookAhead = scanner.nextToken();
 				if (this.lookAhead == null) {
-					this.lookAhead = new Token("");//not sure if this is valid
+					this.lookAhead = new Token("", 0, 0);//not sure if this is valid
 				}
 			} catch (IOException ex) {
 				error("cannot getValue next token");

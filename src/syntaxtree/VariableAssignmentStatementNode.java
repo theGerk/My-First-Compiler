@@ -47,7 +47,6 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
-		//TODO rewrite
 		StringBuilder build = new StringBuilder(indent).append("#VariableAssignmentStatementNode\n");
 
 		//get expression evaluated and put on stack
