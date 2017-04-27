@@ -6,6 +6,9 @@
         <file>file:/C:/Users/Bendy/Documents/SchoolCode/Compilers/Compiler/src/syntaxtree/SubProgramDeclarationsNode.java</file>
         <group>
             <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/ConsoleWriteNode.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/general/Main.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/symboltable/Scope.java</file>
+            <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/ProgramNode.java</file>
             <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/FunctionAssignmentStatementNode.java</file>
             <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/IfStatementNode.java</file>
             <file>file:/home/bendy/Source/School/Compilers/Compiler/src/syntaxtree/CompoundStatementNode.java</file>
