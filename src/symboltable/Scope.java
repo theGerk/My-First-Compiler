@@ -262,7 +262,7 @@ public class Scope {
 		@Override
 		public String toString() {
 			String spaces = Main.makeSpaces(name + ':') + '\t';
-			StringBuilder build = new StringBuilder(name).append("\tkind: ").append(kind).append('\n');
+			StringBuilder build = new StringBuilder(name).append(":\tkind: ").append(kind).append('\n');
 			build.append(spaces).append("type: ").append(type).append('\n');
 			switch (kind) {
 				case FUNC:
@@ -273,8 +273,10 @@ public class Scope {
 					}
 					break;
 				case ARR:
+					build.append(spaces).append("memory offset: ").append(offsetFromStackPointer).append('\n');
 					build.append(spaces).append("size: ").append(arraySize).append('\n');
 					build.append(spaces).append("first index in array: ").append(arrayStartOffset).append('\n');
+					break;
 				case VAR:
 					build.append(spaces).append("memory offset: ").append(offsetFromStackPointer).append('\n');
 					break;
@@ -444,7 +446,7 @@ public class Scope {
 		} else if (s.args == null) {
 			throw new Exception(id + " is not a function");
 		} else {
-			ArrayList<TokenType> output = new ArrayList();
+			ArrayList<TokenType> output = new ArrayList<>();
 			for (Pair<String, TokenType> p : s.args) {
 				output.add(p.getRight());
 			}

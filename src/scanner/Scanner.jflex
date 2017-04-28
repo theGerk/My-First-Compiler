@@ -31,22 +31,22 @@ comment		= \{[^\}]*\}
 *	yytext creates a function that prints out the word */
 
 {word}	{
-	System.out.println("Found a word: " + yytext());
+	//System.out.println("Found a word: " + yytext());
 	return(new Token(yytext(), yyline, yycolumn));
 }
 
 {integer}   {
-    System.out.println("found a int: " + yytext());
+    //System.out.println("found a int: " + yytext());
     return(new Token(Integer.parseInt(yytext()), yytext(), yyline, yycolumn));
 }
 
 {real}		{
-	System.out.println("Found a real: " + yytext());
+	//System.out.println("Found a real: " + yytext());
 	return(new Token(Float.parseFloat(yytext()), yytext(), yyline, yycolumn));
 }
 
 {symbol}	{
-	System.out.println("Found a symbol: " + yytext());
+	//System.out.println("Found a symbol: " + yytext());
 	return(new Token(yytext(), yyline, yycolumn));
 }
 
@@ -55,7 +55,7 @@ comment		= \{[^\}]*\}
 }
 
 {comment}	{
-	System.out.println("\t----\tHere be a comment.\t----");
+	//System.out.println("\t----\tHere be a comment.\t----");
 	// do nothing
 }
 
