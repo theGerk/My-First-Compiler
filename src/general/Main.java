@@ -34,7 +34,7 @@ public class Main {
 	 * @param args the command line arguments, args[0] is the input file
 	 */
 	public static void main(String[] args) {
-		Parser parse = new Parser("input.pas");
+		Parser parse = new Parser(args[0]);
 		ProgramNode program = parse.program();
 		String str = program.toMips();
 		Path file = Paths.get("output.asm");
@@ -51,6 +51,12 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Makes string with same length as input, but only spaces.
+	 *
+	 * @param input input string
+	 * @return string with same size as input and only made of spaces.
+	 */
 	public static String makeSpaces(String input) {
 		char[] chars = new char[input.length()];
 		for (int i = 0; i < chars.length; i++) {

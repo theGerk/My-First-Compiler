@@ -19,7 +19,7 @@ whitespace	= [ \n\t]|\r\n
 letter		= [A-Za-z_]
 digit		= [0-9]
 word		= ({letter})({letter}|{digit})*
-integer     = [+-]?{digit}+
+integer		= [+-]?{digit}+
 real		= [+-]?{digit}+\.{digit}+
 symbol		= <>|<=|>=|:=|[;,.:\[\]()+\-=*<>/]
 comment		= \{[^\}]*\}
@@ -62,4 +62,5 @@ comment		= \{[^\}]*\}
 .	{
 	System.out.println("You done fucked up.");
 }
+
 
