@@ -306,14 +306,14 @@ public class BinaryOperationNode extends ExpressionNode {
 				switch (right.getType()) {
 					case REAL:
 						build.append(indent).append("lwc1 $f0, ($t0)\t#put first operand into f0\n")
-								.append(indent).append("lwc1 $f2, -4(t0)\t#put second operand into f2")
+								.append(indent).append("lwc1 $f2, -4($t0)\t#put second operand into f2\n")
 								.append(indent).append("cvt.s.w $f0, $f0\t#cast to float\n");
 						appendFloatingPointComputationAndPush(build, indent);
 						break;
 					case INTEGER:
 						if (operation == TokenType.FORWARDSLASH) {	//only thing that uses floating point math over here
 							build.append(indent).append("lwc1 $f0, ($t0)\t#put first operand into f0\n")
-									.append(indent).append("lwc1 $f2, -4($t0)\t#put second operand into f1")
+									.append(indent).append("lwc1 $f2, -4($t0)\t#put second operand into f1\n")
 									.append(indent).append("cvt.s.w $f0, $f0\t#cast to float\n")
 									.append(indent).append("cvt.s.w $f2, $f2\t#cast to float\n");
 							appendFloatingPointComputationAndPush(build, indent);

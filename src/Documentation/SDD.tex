@@ -55,6 +55,9 @@ The parser package maintains support for taking tokens from the scanner and popu
 This package contains support for a symbol table specific to the needs of this program.
 
 \subsection{Scope}
-This 
+This class represents a single scope level. It contains a pointer to it's parent scope which allowes you to find identifiers from higher scopes. \texttt{Scope} also contains a map that maps from identifiers to information about them, which is stored in a private \texttt{Symbol} class contained in the \texttt{Scope} class. Symbols contain all information that any identifier might need.
+
+\section{Syntax Tree} \label{syntaxtree}
+This maintains all node types that are in the syntax tree as well as abstract classes and interfaces that nodes inherit from for purposes abstraction and grouping. All classes documented in the \texttt{JavaDoc}. A UML diagram of this package can be found in this \href{\syntaxtreeUML}{PNG file}.
 
 \end{document}

@@ -34,7 +34,7 @@ public class Main {
 	 * @param args the command line arguments, args[0] is the input file
 	 */
 	public static void main(String[] args) {
-		Parser parse = new Parser(args[0]);
+		Parser parse = new Parser("testInput/foo.pas");
 		ProgramNode program = parse.program();
 		String str = program.toMips();
 		Path file = Paths.get("output.asm");
