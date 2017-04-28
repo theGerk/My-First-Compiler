@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\input{base}
+\title{Software Design Documumentation}
+\def\grammer{grammer.pdf}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction} \label{intro}
+This is the software design documentation, it will describe on a high level view how each package works. The entire program is based off the grammer rules defined in \href{\grammer}{this \texttt{pdf}}.
+
+\section{General} \label{general}
+The \texttt{general} package contains non-program specific classes, as well as the main class \texttt{Main}.
+
+\subsection{Main}
+The \texttt{Main} class is static and has only general static functions, as well as the \texttt{main} function, the program's entry point.
+
+\subsection{Unique Identifier Generator}
+Each instance of this class keeps track of a list of given IDs, and makes sure that it never gives the same ID twice. When geting a new ID you may make a request, if you make a request it will try and give you a string close to what you gave it. In the current implementation it will first attempt to return the string you requested, and if that is not available it will append something to that string to make it unique.
+
+By default the UID considers all alphanumeric characters and underscore to be valid characters in an identifier. All strings where you don't request a specific string are prepended with an underscore so that it does not produce an identifier that begins with a number. In future iterations of this it should only produce strings that match a regex given at creation time.
+
+\subsection{Pair}
+This very basic class simply is a pair of two genericed objects.
+
+\section{Scanner} \label{scanner}
+This package maintains classes that allow you to scan through a file and produce tokens.
+
+\subsection{TokenType}
+This is an enum that contains a value for all symbols, and then a special value for each type of literal as well as a special value for identifiers.
+
+\subsection{Token}
+This class represents tokens that are parsed from an input Pascal file. It contains the string that was parsed to produce this value, a type which is a \texttt{TokenType}, and a line and column number which is used in error messages.
+
+\subsection{Lookup}
+This class acts much like a static class. It can not be instantiated as it's default constructor is private, although it does contain a static instance of itself named \texttt{LOOKUP} that can be used. It allows you to lookup TokenTypes based on their strings, and allows you to do the reverse. The lookup may be done with the \texttt{get} function and reverse lookup is done with \texttt{teg}, although if you call \texttt{teg} on any special values\footnote{Special values are: any types representing literals, and identifier}, it will break the program.
+
+\subsection{Scanner}
+This class is computer generated from the file \texttt{Scanner.jflex} by the program \texttt{jflex-1.6.1.jar}. It turns text in a file into tokens as difined in the \href{\grammer}{grammer}. With the listed exceptions:
+\begin{enumerate}
+\item \textbf{id} is defined as \textbf{(letter\ \textbar\ \textunderscore)\ (letter\ \textbar\ \textunderscore\ \textbar\ digit)*}
+\item There are seperate \texttt{TokenType}'s for both integer and real literals, instead of just a num \texttt{TokenType}.
+\begin{enumerate}
+\item Integer literals are defined as \textbf{[+-$\lambda$] digit digit*}
+\item Real literals are defined as \textbf{[+-$\lambda$] digit digit* . digit digit*}
+\end{enumerate}
+\end{enumerate}
+
+\section{Parser} \label{parser}
+The parser package maintains support for taking tokens from the scanner and populating \hyperref[symboltable]{symbol tables} and generates a \hyperref[syntaxtree]{syntax tree}.
+
+\section{Symbol Table} \label{symboltable}
+This package contains support for a symbol table specific to the needs of this program.
+
+\subsection{Scope}
+This class represents a single scope level. It contains a pointer to it's parent scope which allowes you to find identifiers from higher scopes. \texttt{Scope} also contains a map that maps from identifiers to information about them, which is stored in a private \texttt{Symbol} class contained in the \texttt{Scope} class. Symbols contain all information that any identifier might need.
+
+\section{Syntax Tree} \label{syntaxtree}
+This maintains all node types that are in the syntax tree as well as abstract classes and interfaces that nodes inherit from for purposes abstraction and grouping. All classes documented in the \texttt{JavaDoc}. A UML diagram of this package can be found in this \href{\syntaxtreeUML}{PNG file}.
+
+\end{document}

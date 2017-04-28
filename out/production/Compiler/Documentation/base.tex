@@ -3,15 +3,13 @@
 \usepackage{mathrsfs}
 \let\mathcrl\mathscr
 \usepackage[mathscr]{euscript}
-\usepackage{verbatim}
-
+\usepackage{hyperref}
 \author{Benji Altman}
 
 
 \newcommand{\question}[1]{\noindent\textbf{#1}}
 \let\union\cup
 \let\inter\cap
-\let\texttt\pre
 \let\emptyset\varnothing
 \let\bigunion\bigcup
 \let\biginter\bigcap
@@ -46,6 +44,9 @@
 \newcommand{\ocint}[2]{\left( #1 , #2 \right]}
 \newcommand{\coint}[2]{\left[ #1 , #2 \right)}
 \newcommand{\ccint}[2]{\left[ #1 , #2 \right]}
-\newcommand{\eqclass}[1]{\overline{#1}}
+\newcommand{\eqclass}[1]{\bar{#1}}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\def\true{\text{True}}
+\def\false{\text{False}}
+\newcommand{\func}[2]{#1 \left( #2 \right)}
