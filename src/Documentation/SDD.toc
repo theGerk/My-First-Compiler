@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}General}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Main}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Unique Identifier Generator}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Pair}{2}{subsection.2.3}
+\contentsline {section}{\numberline {3}Scanner}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}TokenType}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Token}{2}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Lookup}{2}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Scanner}{3}{subsection.3.4}
+\contentsline {section}{\numberline {4}Parser}{3}{section.4}
+\contentsline {section}{\numberline {5}Symbol Table}{3}{section.5}
+\contentsline {subsection}{\numberline {5.1}Scope}{3}{subsection.5.1}
+\contentsline {section}{\numberline {6}Syntax Tree}{3}{section.6}

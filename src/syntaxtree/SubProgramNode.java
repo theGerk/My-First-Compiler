@@ -60,7 +60,7 @@ public class SubProgramNode extends SyntaxTreeBase implements IMakeFunctionLabel
 	@Override
 	public void makeLabels(String labelPrefix, Scope symbolTable) {
 		String myLabel = Scope.labelGenerator.getId(labelPrefix + getName());
-		symbolTable.setLabel(getName(), myLabel);
+		symbolTable.getParent().setLabel(getName(), myLabel);
 		subFunctions.makeLabels(myLabel + '_', symbolTable);
 	}
 

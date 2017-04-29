@@ -462,7 +462,7 @@ public class Scope {
 	@Override
 	public String toString() {
 		ArrayList<Scope> queue = new ArrayList<>();
-		StringBuilder build = new StringBuilder(this.name).append(":\n");
+		StringBuilder build = new StringBuilder(fullyQualifiedName()).append(":\n");
 		for (Entry<String, Symbol> entry : map.entrySet()) {
 			build.append(entry.getValue().toString());
 			if (entry.getValue().kind == IdentifierKind.FUNC) {
@@ -474,5 +474,14 @@ public class Scope {
 			build.append(q.toString());
 		}
 		return build.toString();
+	}
+
+	private String fullyQualifiedName() {
+		Scope parent = getParent();
+		if (parent == null) {
+			return name;
+		} else {
+			return parent.fullyQualifiedName() + "." + name;
+		}
 	}
 }
