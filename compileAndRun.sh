@@ -5,4 +5,4 @@ cd out/production/Compiler
 jar cfe out.jar general.Main */*.class
 mv out.jar ../../..
 cd ../../..
-java -jar out.jar testInput/fib.pas
+
