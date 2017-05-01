@@ -12,3 +12,7 @@
 \BOOKMARK [1][-]{section.5}{Symbol Table}{}% 12
 \BOOKMARK [2][-]{subsection.5.1}{Scope}{section.5}% 13
 \BOOKMARK [1][-]{section.6}{Syntax Tree}{}% 14
+\BOOKMARK [1][-]{section.7}{Details}{}% 15
+\BOOKMARK [2][-]{subsection.7.1}{toMips}{section.7}% 16
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Declarations}{subsection.7.1}% 17
+\BOOKMARK [3][-]{subsubsection.7.1.2}{Stack}{subsection.7.1}% 18

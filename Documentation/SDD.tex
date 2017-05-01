@@ -63,4 +63,19 @@ This maintains all node types that are in the syntax tree as well as abstract cl
 
 Code generation is maintained trough each node's \texttt{toMips} function, and syntatic analyisis is largely done in constructors for the syntax tree.
 
+\section{Details} \label{details}
+Here I will go through details of how the program runs, knowledge of this is largely irrelivant for use of the program however would be integral to contributing.
+
+\subsection{\texttt{toMips}} \label{MIPS codegen}
+As stated \hyperref[syntaxtree]{above} the \texttt{toMips} function in each node supports produces assembly to complete each node's task, as \emph{should} be documented in the \texttt{JavaDoc}, however some details are pertinant to the entire process and those will covered below.
+
+\subsubsection{Declarations} \label{declarations}
+There are a few things to cover here, to start, all variables are put on the stack, infact the entire language, as will be explained below in the \hyperref[stack]{section on the stack}, is entirely stack based.
+
+The first thing that this means is that the heap and \texttt{.data} section really aren't used. It is possible that future versions of this program will suport usage of the heap, but for now it is but a mear pipe dream. For now all variables follow one simple rule
+
+ALL arguments, arrays, and declared variables, exist in the stack, and are stored as an offset from what will be refered to as a function's stack pointer.
+
+\subsubsection{Stack}\label{stack}
+hi
 \end{document}
