@@ -1,0 +1,110 @@
+Program: ID
+|-- DECLARATIONS
+|-- --- fibs
+|-- SubProgramDeclarations
+|-- --- Program: 
+|-- --- --- FUNCTION HEADER: factorial
+|-- --- --- --- a
+|-- --- --- DECLARATIONS
+|-- --- --- --- a
+|-- --- --- Compound Statement:
+|-- --- --- --- IF STATEMENT
+|-- --- --- --- --- BinaryOpperation: LESSTHAN
+|-- --- --- --- --- --- Name: a
+|-- --- --- --- --- --- INTEGER : 1
+|-- --- --- --- --- ASSIGN RETURN
+|-- --- --- --- --- --- factorial
+|-- --- --- --- --- --- INTEGER : 1
+|-- --- --- --- --- ASSIGN RETURN
+|-- --- --- --- --- --- factorial
+|-- --- --- --- --- --- BinaryOpperation: ASTERISK
+|-- --- --- --- --- --- --- Name: a
+|-- --- --- --- --- --- --- FUNCTION EXPRESSION
+|-- --- --- --- --- --- --- --- factorial
+|-- --- --- --- --- --- --- --- BinaryOpperation: MINUS
+|-- --- --- --- --- --- --- --- --- Name: a
+|-- --- --- --- --- --- --- --- --- ArrayAccess: fibs
+|-- --- --- --- --- --- --- --- --- --- INTEGER : -2
+|-- --- --- SubProgramDeclarations
+|-- --- Program: 
+|-- --- --- FUNCTION HEADER: populate
+|-- --- --- DECLARATIONS
+|-- --- --- --- iter
+|-- --- --- Compound Statement:
+|-- --- --- --- Assignment
+|-- --- --- --- --- AssignVariable:iter : INTEGER
+|-- --- --- --- --- INTEGER : 0
+|-- --- --- --- Assignment
+|-- --- --- --- --- AssignArray: fibs : INTEGER
+|-- --- --- --- --- --- INTEGER : -2
+|-- --- --- --- --- read INTEGER from console
+|-- --- --- --- Assignment
+|-- --- --- --- --- AssignArray: fibs : INTEGER
+|-- --- --- --- --- --- INTEGER : -1
+|-- --- --- --- --- read INTEGER from console
+|-- --- --- --- WHILE LOOP
+|-- --- --- --- --- BinaryOpperation: LESSTHANEQUALS
+|-- --- --- --- --- --- Name: iter
+|-- --- --- --- --- --- INTEGER : 4
+|-- --- --- --- --- Compound Statement:
+|-- --- --- --- --- --- Assignment
+|-- --- --- --- --- --- --- AssignArray: fibs : INTEGER
+|-- --- --- --- --- --- --- --- Name: iter
+|-- --- --- --- --- --- --- FUNCTION EXPRESSION
+|-- --- --- --- --- --- --- --- populate
+|-- --- --- --- --- --- --- --- ArrayAccess: fibs
+|-- --- --- --- --- --- --- --- --- BinaryOpperation: MINUS
+|-- --- --- --- --- --- --- --- --- --- Name: iter
+|-- --- --- --- --- --- --- --- --- --- INTEGER : 1
+|-- --- --- --- --- --- Assignment
+|-- --- --- --- --- --- --- AssignVariable:iter : INTEGER
+|-- --- --- --- --- --- --- BinaryOpperation: PLUS
+|-- --- --- --- --- --- --- --- Name: iter
+|-- --- --- --- --- --- --- --- INTEGER : 1
+|-- --- --- SubProgramDeclarations
+|-- --- --- --- Program: 
+|-- --- --- --- --- FUNCTION HEADER: populate
+|-- --- --- --- --- --- a
+|-- --- --- --- --- DECLARATIONS
+|-- --- --- --- --- --- a
+|-- --- --- --- --- Compound Statement:
+|-- --- --- --- --- --- ASSIGN RETURN
+|-- --- --- --- --- --- --- populate
+|-- --- --- --- --- --- --- FUNCTION EXPRESSION
+|-- --- --- --- --- --- --- --- factorial
+|-- --- --- --- --- --- --- --- Name: a
+|-- --- --- --- --- SubProgramDeclarations
+|-- --- Program: 
+|-- --- --- FUNCTION HEADER: r
+|-- --- --- DECLARATIONS
+|-- --- --- --- iter
+|-- --- --- Compound Statement:
+|-- --- --- --- Assignment
+|-- --- --- --- --- AssignVariable:iter : INTEGER
+|-- --- --- --- --- INTEGER : -2
+|-- --- --- --- WHILE LOOP
+|-- --- --- --- --- BinaryOpperation: LESSTHANEQUALS
+|-- --- --- --- --- --- Name: iter
+|-- --- --- --- --- --- INTEGER : 4
+|-- --- --- --- --- PROCEDURE STATEMENT
+|-- --- --- --- --- --- r1
+|-- --- --- SubProgramDeclarations
+|-- --- --- --- Program: 
+|-- --- --- --- --- FUNCTION HEADER: r1
+|-- --- --- --- --- DECLARATIONS
+|-- --- --- --- --- Compound Statement:
+|-- --- --- --- --- --- WRITE TO CONSOLE
+|-- --- --- --- --- --- --- ArrayAccess: fibs
+|-- --- --- --- --- --- --- --- Name: iter
+|-- --- --- --- --- --- Assignment
+|-- --- --- --- --- --- --- AssignVariable:iter : INTEGER
+|-- --- --- --- --- --- --- BinaryOpperation: PLUS
+|-- --- --- --- --- --- --- --- Name: iter
+|-- --- --- --- --- --- --- --- INTEGER : 1
+|-- --- --- --- --- SubProgramDeclarations
+|-- Compound Statement:
+|-- --- PROCEDURE STATEMENT
+|-- --- --- populate
+|-- --- PROCEDURE STATEMENT
+|-- --- --- r
+
