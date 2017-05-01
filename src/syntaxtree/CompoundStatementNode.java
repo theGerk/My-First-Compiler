@@ -26,7 +26,7 @@ public class CompoundStatementNode extends StatementNode {
 	@Override
 	public String indentedToString(int level) {
 		String answer = this.indentation(level);
-		answer += "Compound Statement\n";
+		answer += "Compound Statement:\n";
 		for (StatementNode state : statements) {
 			answer += state.indentedToString(level + 1);
 		}

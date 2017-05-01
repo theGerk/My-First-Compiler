@@ -40,7 +40,7 @@ public class VariableAssignmentStatementNode extends AssignmentStatementNodeBase
 	public String indentedToString(int level) {
 		String answer = this.indentation(level);
 		answer += "Assignment\n";
-		answer += this.indentation(level + 1) + this.variable;
+		answer += variable.indentedToString(level + 1);
 		answer += this.assign.indentedToString(level + 1);
 		return answer;
 	}

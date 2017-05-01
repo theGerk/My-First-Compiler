@@ -47,7 +47,7 @@ class AssignVariableNode extends SyntaxTreeBase implements IPublicName {
 
 	@Override
 	public String indentedToString(int level) {
-		return this.indentation(level) + "Assign Variable Node";
+		return this.indentation(level) + "AssignVariable:" + getName() + " : " + getType() + '\n';
 	}
 
 	/**
@@ -81,7 +81,7 @@ class AssignVariableNode extends SyntaxTreeBase implements IPublicName {
 	 *
 	 * @return the type of the variable
 	 */
-	TokenType getType() {
+	public TokenType getType() {
 		return expectedType;
 	}
 

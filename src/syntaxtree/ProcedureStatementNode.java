@@ -52,7 +52,8 @@ public class ProcedureStatementNode extends StatementNode implements IPublicName
 	 */
 	@Override
 	public String indentedToString(int level) {
-		StringBuilder output = new StringBuilder(indentation(level)).append(id).append('\n');
+		StringBuilder output = new StringBuilder(indentation(level)).append("PROCEDURE STATEMENT").append('\n');
+		output.append(indentation(level + 1)).append(getName()).append('\n');
 		for (ExpressionNode arg : parametersList) {
 			arg.indentedToString(level + 1);
 		}

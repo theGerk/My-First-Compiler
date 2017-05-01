@@ -36,7 +36,7 @@ public class WhileLoopNode extends StatementNode {
 	 */
 	@Override
 	public String indentedToString(int level) {
-		return null;
+		return indentation(level) + "WHILE LOOP\n" + condition.indentedToString(level +1) + instruction.indentedToString(level + 1);
 	}
 
 	@Override

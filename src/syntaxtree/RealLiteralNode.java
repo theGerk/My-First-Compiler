@@ -28,7 +28,7 @@ public class RealLiteralNode extends LiteralNode {
 	 */
 	@Override
 	public String indentedToString(int level) {
-		return indentation(level) + value;
+		return indentation(level) + TokenType.REAL + " : " + value + '\n';
 	}
 
 	/**

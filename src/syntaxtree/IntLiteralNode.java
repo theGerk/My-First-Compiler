@@ -38,7 +38,7 @@ public class IntLiteralNode extends LiteralNode {
 	 */
 	@Override
 	public String indentedToString(int level) {
-		return indentation(level) + value;
+		return indentation(level) + TokenType.INTEGER + " : " + value + '\n';
 	}
 
 	/**

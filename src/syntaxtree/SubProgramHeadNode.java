@@ -34,7 +34,7 @@ public class SubProgramHeadNode extends SyntaxTreeBase implements IPublicName {
 	public String indentedToString(int level) {
 		StringBuilder build = new StringBuilder(indentation(level)).append("FUNCTION HEADER: ").append(name).append('\n');
 		for (String arg : arguments) {
-			build.append(indentation(level)).append(arg).append('\n');
+			build.append(indentation(level + 1)).append(arg).append('\n');
 		}
 		return build.toString();
 	}

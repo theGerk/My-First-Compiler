@@ -48,6 +48,7 @@ public class SubProgramNode extends SyntaxTreeBase implements IMakeFunctionLabel
 		answer.append(header.indentedToString(level + 1));
 		answer.append(variables.indentedToString(level + 1));
 		answer.append(instructions.indentedToString(level + 1));
+		answer.append(subFunctions.indentedToString(level + 1));
 		return answer.toString();
 	}
 

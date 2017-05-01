@@ -55,7 +55,7 @@ public class BinaryOperationNode extends ExpressionNode {
 	@Override
 	public String indentedToString(int level) {
 		String answer = this.indentation(level);
-		answer += "Operation: " + this.operation + "\n";
+		answer += "BinaryOpperation: " + this.operation + "\n";
 		answer += left.indentedToString(level + 1);
 		answer += right.indentedToString(level + 1);
 		return (answer);

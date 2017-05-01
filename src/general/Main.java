@@ -52,6 +52,12 @@ public class Main {
 			} catch (IOException ex) {
 				Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 			}
+			file = Paths.get("parseTree.txt");
+			try {
+				Files.write(file, Arrays.asList(program.indentedToString(0)), Charset.forName("UTF-8"));
+			} catch (IOException ex) {
+				Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		}
 	}
 

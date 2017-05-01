@@ -63,4 +63,10 @@ public class AssignArrayVarNode extends AssignVariableNode {
 		return output.toString();
 	}
 
+	public String indentedToString(int level) {
+		StringBuilder build = new StringBuilder(indentation(level)).append("AssignArray: ").append(getName()).append(" : ").append(getType()).append('\n');
+		build.append(index.indentedToString(level + 1));
+		return build.toString();
+	}
+
 }

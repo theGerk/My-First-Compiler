@@ -34,7 +34,7 @@ public class FunctionAssignmentStatementNode extends AssignmentStatementNodeBase
 	 */
 	@Override
 	public String indentedToString(int level) {
-		return indentation(level) + assignee + " :=\n" + assign.indentedToString(level + 1);
+		return indentation(level) + "ASSIGN RETURN\n" + indentation(level + 1) + getName() + '\n' + assign.indentedToString(level + 1);
 	}
 
 	/**

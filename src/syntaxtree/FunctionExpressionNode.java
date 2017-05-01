@@ -70,7 +70,7 @@ public class FunctionExpressionNode extends IdentifierNodeBase {
 	 */
 	@Override
 	public String indentedToString(int level) {
-		StringBuilder output = new StringBuilder(indentation(level)).append("Function ").append(this.name).append('\n');
+		StringBuilder output = new StringBuilder(indentation(level)).append("FUNCTION EXPRESSION\n").append(indentation(level + 1)).append(getName()).append('\n');
 		for (ExpressionNode expressionNode : parametersList) {
 			output.append(expressionNode.indentedToString(level + 1));
 		}

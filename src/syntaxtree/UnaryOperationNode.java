@@ -58,7 +58,7 @@ public class UnaryOperationNode extends ExpressionNode {
 
 	@Override
 	public String indentedToString(int level) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return indentation(level) + "UNARY OPERATION: " + operator.toString() + '\n' + expression.indentedToString(level + 1);
 	}
 
 	/**

@@ -1,0 +1,10 @@
+Program: ID
+|-- ab|-- SubProgramDeclarations
+|-- Compound Statement
+|-- --- Assignment
+|-- --- --- syntaxtree.AssignVariableNode@67424e82|-- --- --- read INTEGER from console|-- --- Assignment
+|-- --- --- syntaxtree.AssignVariableNode@42110406|-- --- --- read INTEGER from console|-- --- write:
+|-- --- --- Operation: ASTERISK
+|-- --- --- --- Name: a
+|-- --- --- --- Name: b
+

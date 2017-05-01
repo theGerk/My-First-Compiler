@@ -35,7 +35,7 @@ public class ConsoleReadNode extends ExpressionNode {
 
 	@Override
 	public String indentedToString(int level) {
-		return indentation(level) + "read " + returnType + " from console";
+		return indentation(level) + "read " + returnType + " from console\n";
 	}
 
 	@Override

@@ -32,9 +32,9 @@ public class DeclarationsNode extends SyntaxTreeBase {
 
 	@Override
 	public String indentedToString(int level) {
-		String answer = this.indentation(level);
+		String answer = this.indentation(level) + "DECLARATIONS\n";
 		for (String variable : vars) {
-			answer += variable;
+			answer += indentation(level + 1) + variable + "\n";
 		}
 		return answer;
 	}

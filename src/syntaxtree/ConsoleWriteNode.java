@@ -27,7 +27,7 @@ public class ConsoleWriteNode extends StatementNode {
 	 */
 	@Override
 	public String indentedToString(int level) {
-		return indentation(level) + "write:\n" + expr.indentedToString(level + 1);
+		return indentation(level) + "WRITE TO CONSOLE\n" + expr.indentedToString(level + 1);
 	}
 
 	@Override
