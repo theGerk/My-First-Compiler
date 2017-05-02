@@ -65,6 +65,15 @@ public class SubProgramNode extends SyntaxTreeBase implements IMakeFunctionLabel
 		subFunctions.makeLabels(myLabel + '_', symbolTable);
 	}
 
+	/**
+	 * Generates a function or procedure, and all it's sub-functions afterwards.
+	 * Puts label in at top of function, cleans up at the end and then jr at the
+	 * end, followed by all sub-functions of this one.
+	 *
+	 * @param symbolTable scope for the function
+	 * @param indent formating
+	 * @return MIPS
+	 */
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
 		StringBuilder build = new StringBuilder(indent).append("#SubProgramNode\n");

@@ -18,7 +18,7 @@ public class AccessArrayVarNode extends AccessVariableNode {
 	@Override
 	public String indentedToString(int level) {
 		return indentation(level) + "ArrayAccess: " + getName() + '\n'
-			+ index.indentedToString(level + 1);
+				+ index.indentedToString(level + 1);
 	}
 
 	/**
@@ -59,7 +59,6 @@ public class AccessArrayVarNode extends AccessVariableNode {
 	}
 
 	private final ExpressionNode index;
-
 
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {

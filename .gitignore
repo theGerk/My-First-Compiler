@@ -6,3 +6,4 @@
 src/scanner/Scanner.java~
 .idea/
 .editorconfig
+/nbproject/private/

@@ -74,8 +74,38 @@ There are a few things to cover here, to start, all variables are put on the sta
 
 The first thing that this means is that the heap and \texttt{.data} section really aren't used. It is possible that future versions of this program will suport usage of the heap, but for now it is but a mear pipe dream. For now all variables follow one simple rule
 
-ALL arguments, arrays, and declared variables, exist in the stack, and are stored as an offset from what will be refered to as a function's stack pointer.
+All arguments, arrays, and declared variables, exist in the stack, and are stored as an offset from what will be refered to as a function's stack pointer.
+
+An array is stored in the program by it's first index, and then offsets are calculated from there.\footnote{An alternitive way of storing arrays would be by their zero index, even if that isn't included in the array, it could potentially be faster.} Any accessing of arrays is always checked, a friendly error is thrown try any funny buesiness outside of arrays.
 
 \subsubsection{Stack}\label{stack}
-hi
+The stack is used for everything in this program. Every time a function is called it has space allocated for variables on the stack and then 24 bytes are allocated for some special values used by the function. These will be described in the \hyperref[function]{function details}.
+
+In addition to functions, expression results are also put on the stack. An \textbf{expression} is \emph{any part of code that returns a value}. If you look at the \href{\syntaxtreeUML}{UML diagram for the syntax tree} and find all the nodes that inhearit from \texttt{ExpressionNode}, all of these would be considered expressions. Any return from these expressions are put on the stack.
+
+This means that to evaluate \texttt{foo + bar}, the value of \texttt{foo} is first put on the stack, then \texttt{bar}'s value is pushed onto the stack finally they both are pulled from the stack and their values are added together and the result is put back on the stak for further computation. Functions work in much the same way. All arguments are put on the stack and then copied over to where the belong when the function begins, and before the function ends the return value from the function is copied over to be returned.\footnote{This is done even if there is no return value, but the value is simply never used in this case.}
+
+\subsubsection{Functions}\label{function}
+All code executing contexts\footnote{Anywhere a statement may be put}, including the golobal one, is considered part of a function for the purpose of the compiler, however there are some obvious special cases made for the global case where some things simply aren't done, however space is still reserved for special values that it does not use.
+
+Every function has 24 bytes of overhead (6 4-byte words) respresenting different values. Not all are used in every function, yet the space is always reserved. The values in order are listed bellow:
+
+\begin{enumerate}
+\item The current stack head (4 bytes) at 0 offset from \texttt{\$sp} \\
+The current stack head points to the current point where the stack head is. The stack head moves up and down as expressions are used, however it returns to it's inital value of \texttt{\$sp - 4} after every statement.
+\item The return address (4 bytes) at +4 offset from \texttt{\$sp} \\
+This is the address in the code from which we jumped to this function, upon completion of the function it is loaded into a registar and a \texttt{jr} instruction is called on it.
+\item Previous stack pointer value (4 bytes) at +8 offset from \texttt{\$sp} \\
+This is where \texttt{\$sp} was pointing before the current function was called. The stack pointer is returned to pointing there post execution of this function.
+\item One level up function's stack pointer (4 bytes) at +12 offset from \texttt{\$sp} \\
+This the `parent' function. It is used in order to find variables declared in a lower scope, for example if accessing a global variable. Because the parent function also has a pointer to it's parent, this is treated like a linked list and is iterated through in order to find lower and lower scope variables. The global scope sits at the bottom and this value is not used by it.
+\item Current scope level (4 bytes) at +16 offset from \texttt{\$sp} \\
+This integer represents what level the current scope is at, if it is a $0$ then it is the global scope, if it is declared in the global scope the it is $1$ and inside one of those is $2$ and so on\ldots This is used to set the above value upon function conception.
+\item Return value (4 bytes) at +20 offset from \texttt{\$sp}. \\
+This a special variable, it is only to be used in functions (not procedures), which for nearly all of instances are the same for running. None the less even in a procedure the return value space is still allocated. After the function completes this value is copied over to be put on the stack for the calling function.
+\end{enumerate}
+
+\subsubsection{Floating point opperations}
+Currently the language only supports 32-bit floating point values, although only even numbered floating point registars in the floating point co-processor are used. This is to make conversion to 64-bit floating point values easier in the future. 
+
 \end{document}

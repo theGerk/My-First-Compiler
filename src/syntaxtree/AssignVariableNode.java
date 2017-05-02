@@ -13,7 +13,7 @@ import symboltable.Scope.IdentifierKind;
  *
  * @author bendy
  */
-class AssignVariableNode extends SyntaxTreeBase implements IPublicName {
+public class AssignVariableNode extends SyntaxTreeBase implements IPublicName {
 
 	String var;
 	TokenType expectedType;

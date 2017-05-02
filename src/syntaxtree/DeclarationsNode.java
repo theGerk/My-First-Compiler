@@ -40,8 +40,8 @@ public class DeclarationsNode extends SyntaxTreeBase {
 	}
 
 	/**
-	 * Writes component into assembly with tabbing for readability and sets up
-	 * symbol table where needed.
+	 * Offsets stack pointer for new function and sets up all overhead for the
+	 * function
 	 *
 	 * @param symbolTable the current scope
 	 * @param indent tabs

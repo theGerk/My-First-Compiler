@@ -16,3 +16,5 @@
 \contentsline {subsection}{\numberline {7.1}\texttt {toMips}}{3}{subsection.7.1}
 \contentsline {subsubsection}{\numberline {7.1.1}Declarations}{3}{subsubsection.7.1.1}
 \contentsline {subsubsection}{\numberline {7.1.2}Stack}{4}{subsubsection.7.1.2}
+\contentsline {subsubsection}{\numberline {7.1.3}Functions}{4}{subsubsection.7.1.3}
+\contentsline {subsubsection}{\numberline {7.1.4}Floating point opperations}{5}{subsubsection.7.1.4}

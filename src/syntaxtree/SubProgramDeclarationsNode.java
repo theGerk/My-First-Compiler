@@ -33,8 +33,7 @@ public class SubProgramDeclarationsNode extends SyntaxTreeBase implements IMakeF
 	}
 
 	/**
-	 * Writes component into assembly with tabbing for readability and sets up
-	 * symbol table where needed.
+	 * Generates a bunch sub-functions or sub-procedures
 	 *
 	 * @param symbolTable the current scope
 	 * @param indent tabs

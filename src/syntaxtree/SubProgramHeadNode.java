@@ -48,6 +48,13 @@ public class SubProgramHeadNode extends SyntaxTreeBase implements IPublicName {
 		return name;
 	}
 
+	/**
+	 * Copies arguments into the correct variable locations.
+	 *
+	 * @param symbolTable scope of the function we are in
+	 * @param indent for formating
+	 * @return MIPS
+	 */
 	@Override
 	protected String toMips(Scope symbolTable, String indent) {
 		StringBuilder build = new StringBuilder(indent).append("#SubProgramHeadNode\n");
