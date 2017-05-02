@@ -1,7 +1,12 @@
 \documentclass{article}
 
 \title{Proper use instructions}
+\author{Benji Altman}
 \begin{document}
 \maketitle
-While in the home directory execute the file \texttt{compileAndRun.sh} as a shell script. It will produce a \texttt{JAR} file called \texttt{out.jar}. This jar file may be run using \texttt{java -jar out.jar myPascalFile.pas}. Just of course replace \texttt{myPascalFile.pas} with your desired target file.
+While in the home directory execute the file \texttt{compileAndRun.sh} as a shell script. It will produce a \texttt{JAR} file called \texttt{out.jar}. This jar file may be run using \texttt{java -jar out.jar myPascalFile.pas}. Just of course replace \texttt{myPascalFile.pas} with your desired target file. It will produce a file \texttt{out.asm}, which can be assmebled to machine language or run in a \texttt{MIPS} interpeter.
+
+If you aren't using a \texttt{UNIX} based system then you should install Ubuntu. Instuctions can be found on Ubuntu's website, you'll need a 2GB or larger flash drive or external disk.
+
+You could also use a virtual machine or just figure out how to compile on Windows but unfortunatnly we don't really support Windows explicitly.\footnote{It is written in Java and thus can be compiled in any Java supporting enviroment.}
 \end{document}
